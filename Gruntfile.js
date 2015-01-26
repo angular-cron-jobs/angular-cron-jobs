@@ -97,12 +97,7 @@ module.exports = function(grunt) {
       build: {
         singleRun: true,
         autoWatch: false
-      },
-      travis: {
-        singleRun: true,
-        autoWatch: false,
-        browsers: ['Firefox']
-      },
+      }
       dev: {
         autoWatch: true
       }
@@ -132,7 +127,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-html2js');
 
 
@@ -162,7 +156,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['build']);
   
-  grunt.registerTask('travis', ['build']);
 
   // Provides the "bump" task.
   grunt.registerTask('bump', 'Increment version number', function() {
