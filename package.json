@@ -1,0 +1,47 @@
+{
+  "name": "angular-cron-jobs",
+  "description": "UI Component For Creating Cron Job Syntax To Send To Server",
+  "version": "0.0.1",
+  "filename": "angular-cron-jobs.min.js",
+  "main": "./dist/angular-cron-jobs.min.js",
+  "homepage": "https://github.com/jacobscarter/angular-cron-jobs",
+  "author": "Jacob Carter <jacob@ieksolutions.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jacobscarter/angular-cron-jobs.git"
+  },
+  "keywords": [
+    "angular",
+    "cron",
+    "cron-job",
+    "corn job"
+  ],
+  "maintainers": [
+    {
+      "name": "Jacob Carter",
+      "website": "http://strangemilk.com/"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-bower": "*",
+    "grunt-bower-task": "*",
+    "grunt-bump": "0.0.6",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-conventional-changelog": "~0.1.1",
+    "grunt-html2js": "~0.1.3",
+    "grunt-karma": "~0.8",
+    "grunt-ngmin": "0.0.2",
+    "grunt-recess": "~0.3.0",
+    "grunt-zip": "*",
+    "jasmine-core": "^2.1.3",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.2",
+    "karma-phantomjs-launcher": "^0.1.4"
+  },
+  "license": "MIT"
+}
