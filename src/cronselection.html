@@ -1,54 +1,48 @@
-<div>
-<span>every: </span>
-	<select ng-model="myFrequency.base" ng-options="item.text for item in frequency"></select>
+<div class="cron-wrap">
+<span>Every: </span>
+	<select class="cron-select" ng-model="myFrequency.base" ng-options="item.text for item in frequency"></select>
 	
-	<div ng-show="myFrequency.base.value === 2">
+	<div ng-show="myFrequency.base.value === 2" class="select-options">
 		<span>at </span>
-		<select ng-model="myFrequency.pastTheHour" ng-options="item.value for item in pastTheHour"></select>
+		<select class="cron-select" ng-model="myFrequency.pastTheHour" ng-options="item.value for item in pastTheHour"></select>
 		<span> past the hour</span>
 	</div>
 
 
-	<div ng-show="myFrequency.base.value === 3">
+	<div ng-show="myFrequency.base.value === 3" class="select-options">
 		<span>at </span>
-		<select ng-model="myFrequency.hourValue" ng-options="item.value for item in hourValue"></select>
+		<select class="cron-select" ng-model="myFrequency.hourValue" ng-options="item.value for item in hourValue"></select>
 		<span> : </span>
-		<select ng-model="myFrequency.minuteValue" ng-options="item.value for item in minuteValue"></select>
+		<select class="cron-select" ng-model="myFrequency.minuteValue" ng-options="item.value for item in minuteValue"></select>
 	</div>
 
-	<div ng-show="myFrequency.base.value === 4">
+	<div ng-show="myFrequency.base.value === 4" class="select-options">
 		<span>on </span>
-		<select ng-model="myFrequency.dayValue" ng-options="item as item.text for item in dayValue"></select>
+		<select class="cron-select" ng-model="myFrequency.dayValue" ng-options="item as item.text for item in dayValue"></select>
 		<span>at </span>
-		<select ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
+		<select class="cron-select" ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
 		<span> : </span>
-		<select ng-model="myFrequency.weekMinuteValue" ng-options="item.value for item in minuteValue"></select>
+		<select class="cron-select" ng-model="myFrequency.weekMinuteValue" ng-options="item.value for item in minuteValue"></select>
 	</div>
 
-	<div ng-show="myFrequency.base.value === 5">
+	<div ng-show="myFrequency.base.value === 5" class="select-options">
 		<span>on the </span>
-		<select ng-model="myFrequency.dayOfMonthValue" ng-options="item as item.text for item in dayOfMonthValue"></select>
+		<select class="cron-select" ng-model="myFrequency.dayOfMonthValue" ng-options="item as item.text for item in dayOfMonthValue"></select>
 		<span>at </span>
-		<select ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
+		<select class="cron-select" ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
 		<span> : </span>
-		<select ng-model="myFrequency.weekMinuteValue" ng-options="item.value for item in minuteValue"></select>
+		<select class="cron-select" ng-model="myFrequency.weekMinuteValue" ng-options="item.value for item in minuteValue"></select>
 	</div>
 
-	<div ng-show="myFrequency.base.value === 6">
+	<div ng-show="myFrequency.base.value === 6" class="select-options">
 		<span>on the </span>
-		<select ng-model="myFrequency.dayOfMonthValue" ng-options="item as item.text for item in dayOfMonthValue"></select>
+		<select class="cron-select" ng-model="myFrequency.dayOfMonthValue" ng-options="item as item.text for item in dayOfMonthValue"></select>
 		<span>of </span>
-		<select ng-model="myFrequency.monthValue" ng-options="item as item.text for item in monthValue"></select>
+		<select class="cron-select" ng-model="myFrequency.monthValue" ng-options="item as item.text for item in monthValue"></select>
 		<span>at </span>
-		<select ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
+		<select class="cron-select" ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
 		<span> : </span>
-		<select ng-model="myFrequency.weekMinuteValue" ng-options="item.value for item in minuteValue"></select>
+		<select class="cron-select" ng-model="myFrequency.weekMinuteValue" ng-options="item.value for item in minuteValue"></select>
 	</div>
 
-
-	<input ng-model="showCustom" type="text">
-
-	<p>{{cron}}</p>
-
-	<p ng-show="showCustom === 'true'">SHOWING CUSTOM</p>
 </div>
