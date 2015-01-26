@@ -1,13 +1,25 @@
 <div>
-	<select>
-		<option value="minute">Minute</option>
-		<option value="hour">Hour</option>
-		<option value="day">Day</option>
-		<option value="week">Week</option>
-		<option value="month">Month</option>
-	</select>
+
+	<select ng-model="myFrequency.base" ng-options="item.text for item in frequency"></select>
+	
+	<div ng-show="myFrequency.base.value === 2">
+		<span>at </span>
+		<select ng-model="myFrequency.pastTheHour" ng-options="item.value for item in pastTheHour"></select>
+		<span> past the hour</span>
+	</div>
+
+
+	<div ng-show="myFrequency.base.value === 3">
+		<span>at </span>
+		<select ng-model="myFrequency.hourValue" ng-options="item.value for item in hourValue"></select>
+		<span> : </span>
+		<select ng-model="myFrequency.minuteValue" ng-options="item.value for item in minuteValue"></select>
+	</div>
+
 
 	<input ng-model="showCustom" type="text">
+
+	<p>{{cron}}</p>
 
 	<p ng-show="showCustom === 'true'">SHOWING CUSTOM</p>
 </div>

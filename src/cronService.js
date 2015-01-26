@@ -1,4 +1,5 @@
 angular.module('angular-cron-jobs').factory('cronService', function() {
+   
    var service = {};
    
    var wizards = {};
