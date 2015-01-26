@@ -30,7 +30,7 @@ module.exports = function(config) {
 
 
     // web server port
-    port: 9876,
+    port: 9878,
 
 
     // cli runner port
