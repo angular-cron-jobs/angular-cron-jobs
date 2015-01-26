@@ -97,7 +97,7 @@ module.exports = function(grunt) {
       build: {
         singleRun: true,
         autoWatch: false
-      }
+      },
       dev: {
         autoWatch: true
       }
@@ -134,17 +134,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['build']);
 
   // Build task.
-  // grunt.registerTask('build', [
-  //   'clean',
-  //   'bowerInstall', 
-  //   'copy',
-  //   'recess',
-  //   'html2js',
-  //   'concat', 
-  //   'uglify', 
-  //   'karma:build']);
-
-  // Build task.
   grunt.registerTask('build', [
     'clean',
     'bowerInstall', 
@@ -152,7 +141,8 @@ module.exports = function(grunt) {
     'recess',
     'html2js',
     'concat', 
-    'uglify']);
+    'uglify',
+    'karma:build']);
 
   grunt.registerTask('test', ['build']);
   
