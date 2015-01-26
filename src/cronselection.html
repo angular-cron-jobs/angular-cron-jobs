@@ -1,5 +1,5 @@
 <div>
-
+<span>every: </span>
 	<select ng-model="myFrequency.base" ng-options="item.text for item in frequency"></select>
 	
 	<div ng-show="myFrequency.base.value === 2">
@@ -19,6 +19,15 @@
 	<div ng-show="myFrequency.base.value === 4">
 		<span>on </span>
 		<select ng-model="myFrequency.dayValue" ng-options="item as item.text for item in dayValue"></select>
+		<span>at </span>
+		<select ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
+		<span> : </span>
+		<select ng-model="myFrequency.weekMinuteValue" ng-options="item.value for item in minuteValue"></select>
+	</div>
+
+	<div ng-show="myFrequency.base.value === 5">
+		<span>on </span>
+		<select ng-model="myFrequency.dayOfMonthValue" ng-options="item as item.text for item in dayOfMonthValue"></select>
 		<span>at </span>
 		<select ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
 		<span> : </span>
