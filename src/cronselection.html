@@ -16,6 +16,15 @@
 		<select ng-model="myFrequency.minuteValue" ng-options="item.value for item in minuteValue"></select>
 	</div>
 
+	<div ng-show="myFrequency.base.value === 4">
+		<span>on </span>
+		<select ng-model="myFrequency.dayValue" ng-options="item as item.text for item in dayValue"></select>
+		<span>at </span>
+		<select ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
+		<span> : </span>
+		<select ng-model="myFrequency.weekMinuteValue" ng-options="item.value for item in minuteValue"></select>
+	</div>
+
 
 	<input ng-model="showCustom" type="text">
 

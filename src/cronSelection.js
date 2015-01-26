@@ -192,6 +192,37 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
                 }
             ];
 
+            $scope.dayValue = [
+                { 
+                    "value": 0,
+                    "text": "Sunday"
+                },
+                { 
+                    "value": 1,
+                    "text": "Monday"
+                },
+                { 
+                    "value": 2,
+                    "text": "Tuesday"
+                },
+                { 
+                    "value": 3,
+                    "text": "Wednesday"
+                },
+                { 
+                    "value": 4,
+                    "text": "Thursday"
+                },
+                { 
+                    "value": 5,
+                    "text": "Friday"
+                },
+                { 
+                    "value": 6,
+                    "text": "Saturday"
+                }
+            ];
+
 
             $scope.$watch('myFrequency', function(n){
 
@@ -225,6 +256,26 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
                         n.hourValue.value = 0;
                     }
                     $scope.cron = n.minuteValue.value + ' ' + n.hourValue.value + ' * * *';
+                }
+
+                if(n && n.base && n.base.value === 4) {
+
+                    console.log('entered week if statement: ', angular.copy(n));
+                    
+                    if(!n.weekMinuteValue){
+                        n.weekMinuteValue = {};
+                        n.weekMinuteValue.value = 0;
+                    }
+                    if(!n.weekHourValue){
+                        n.weekHourValue = {};
+                        n.weekHourValue.value = 0;
+                    }
+                    if(!n.dayValue){
+                        n.dayValue = {};
+                        n.dayValue.value = 1;
+                    }
+
+                    $scope.cron = n.weekMinuteValue.value + ' ' + n.weekHourValue.value + ' * * ' + (n.dayValue.value - 1);
                 }
 
             }, true);
