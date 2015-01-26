@@ -1,4 +1,4 @@
-angular.module('angular-cron-jobs').directive('cronSelection', function() {
+angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', function(cronService) {
     return {
         restrict: 'EA',
         replace: true,
@@ -408,108 +408,12 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
 
 
            $scope.$watch('myFrequency', function(n){
-
-                if(n && n.base){
-                    if(n.base.value === 1){
-                      $scope.cron = '* * * * *';
-                    } else if(n.base.value === 2) {
-                      $scope.cron = '0 * * * *';
-                    } else if(n.base.value === 3) {
-                      $scope.cron = '0 0 * * *';
-                    } else if(n.base.value === 4) {
-                      $scope.cron = '0 0 * * 0';
-                    } else if(n.base.value === 5) {
-                      $scope.cron = '0 0 1 * *';
-                    } else if(n.base.value === 5) {
-                      $scope.cron = '0 0 1 1 *';
-                    }
-                    $scope.output = $scope.cron;
-                }
-
-                if(n && n.base && n.base.value === 2 && n.pastTheHour && n.pastTheHour.value) {
-                    $scope.cron = n.pastTheHour.value + ' * * * *';
-                    $scope.output = $scope.cron;
-                }
-
-                if(n && n.base && n.base.value === 3) {
-                    if(!n.minuteValue){
-                        n.minuteValue = {};
-                        n.minuteValue.value = 0;
-                    }
-                    if(!n.hourValue){
-                        n.hourValue = {};
-                        n.hourValue.value = 0;
-                    }
-                    $scope.cron = n.minuteValue.value + ' ' + n.hourValue.value + ' * * *';
-                    $scope.output = $scope.cron;
-                }
-
-                if(n && n.base && n.base.value === 4) {
-
-                    console.log('entered week if statement: ', angular.copy(n));
-                    
-                    if(!n.weekMinuteValue){
-                        n.weekMinuteValue = {};
-                        n.weekMinuteValue.value = 0;
-                    }
-                    if(!n.weekHourValue){
-                        n.weekHourValue = {};
-                        n.weekHourValue.value = 0;
-                    }
-                    if(!n.dayValue){
-                        n.dayValue = {};
-                        n.dayValue.value = 1;
-                    }
-
-                    $scope.cron = n.weekMinuteValue.value + ' ' + n.weekHourValue.value + ' * * ' + (n.dayValue.value - 1);
-                    $scope.output = $scope.cron;
-                }
-
-                if(n && n.base && n.base.value === 5) {
-                    
-                    if(!n.weekMinuteValue){
-                        n.weekMinuteValue = {};
-                        n.weekMinuteValue.value = 0;
-                    }
-                    if(!n.weekHourValue){
-                        n.weekHourValue = {};
-                        n.weekHourValue.value = 0;
-                    }
-                    if(!n.dayOfMonthValue){
-                        n.dayOfMonthValue = {};
-                        n.dayOfMonthValue.value = 0;
-                    }
-
-                    $scope.cron = n.weekMinuteValue.value + ' ' + n.weekHourValue.value + ' ' + n.dayOfMonthValue.value + ' * *';
-                    $scope.output = $scope.cron;
-                }
-
-                if(n && n.base && n.base.value === 6) {
-                    
-                    if(!n.weekMinuteValue){
-                        n.weekMinuteValue = {};
-                        n.weekMinuteValue.value = 0;
-                    }
-                    if(!n.weekHourValue){
-                        n.weekHourValue = {};
-                        n.weekHourValue.value = 0;
-                    }
-                    if(!n.dayOfMonthValue){
-                        n.dayOfMonthValue = {};
-                        n.dayOfMonthValue.value = 0;
-                    }
-
-                    if(!n.monthValue){
-                        n.monthValue = {};
-                        n.monthValue.value = 1;
-                    }
-
-                    $scope.cron = n.weekMinuteValue.value + ' ' + n.weekHourValue.value + ' ' + n.dayOfMonthValue.value + ' ' + n.monthValue.value + ' *';
-                    $scope.output = $scope.cron;
-                }
-
+                $scope.output = cronService.setCron(n);
+                console.log('output: ', $scope.output);
             }, true);
+
+           
 
         }
     };
-});
+}]);
