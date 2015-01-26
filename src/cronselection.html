@@ -26,8 +26,19 @@
 	</div>
 
 	<div ng-show="myFrequency.base.value === 5">
-		<span>on </span>
+		<span>on the </span>
 		<select ng-model="myFrequency.dayOfMonthValue" ng-options="item as item.text for item in dayOfMonthValue"></select>
+		<span>at </span>
+		<select ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
+		<span> : </span>
+		<select ng-model="myFrequency.weekMinuteValue" ng-options="item.value for item in minuteValue"></select>
+	</div>
+
+	<div ng-show="myFrequency.base.value === 6">
+		<span>on the </span>
+		<select ng-model="myFrequency.dayOfMonthValue" ng-options="item as item.text for item in dayOfMonthValue"></select>
+		<span>of </span>
+		<select ng-model="myFrequency.monthValue" ng-options="item as item.text for item in monthValue"></select>
 		<span>at </span>
 		<select ng-model="myFrequency.weekHourValue" ng-options="item.value for item in hourValue"></select>
 		<span> : </span>

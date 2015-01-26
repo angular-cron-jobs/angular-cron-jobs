@@ -3,13 +3,18 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
         restrict: 'EA',
         replace: true,
         transclude: true,
-        scope: true,
+        scope: {
+            option : '=',
+            output : '='
+        },
         templateUrl: function(element, attributes) {
           return attributes.template || "cronselection.html";
         },
         link: function($scope, $element, $attrs) {
 
             $scope.showCustom = false;
+
+            $scope.output = $scope.cron;
 
 
             $scope.frequency = [
@@ -350,8 +355,59 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
                 }
             ];
 
+            $scope.monthValue = [
+                { 
+                    "value": 1,
+                    "text": "January"
+                },
+                { 
+                    "value": 2,
+                    "text": "February"
+                },
+                { 
+                    "value": 3,
+                    "text": "March"
+                },
+                { 
+                    "value": 4,
+                    "text": "April"
+                },
+                { 
+                    "value": 5,
+                    "text": "May"
+                },
+                { 
+                    "value": 6,
+                    "text": "June"
+                },
+                { 
+                    "value": 7,
+                    "text": "July"
+                },
+                { 
+                    "value": 8,
+                    "text": "August"
+                },
+                { 
+                    "value": 9,
+                    "text": "September"
+                },
+                { 
+                    "value": 10,
+                    "text": "October"
+                },
+                { 
+                    "value": 11,
+                    "text": "November"
+                },
+                { 
+                    "value": 12,
+                    "text": "December"
+                }
+            ];
 
-            $scope.$watch('myFrequency', function(n){
+
+           $scope.$watch('myFrequency', function(n){
 
                 if(n && n.base){
                     if(n.base.value === 1){
@@ -367,10 +423,12 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
                     } else if(n.base.value === 5) {
                       $scope.cron = '0 0 1 1 *';
                     }
+                    $scope.output = $scope.cron;
                 }
 
                 if(n && n.base && n.base.value === 2 && n.pastTheHour && n.pastTheHour.value) {
                     $scope.cron = n.pastTheHour.value + ' * * * *';
+                    $scope.output = $scope.cron;
                 }
 
                 if(n && n.base && n.base.value === 3) {
@@ -383,6 +441,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
                         n.hourValue.value = 0;
                     }
                     $scope.cron = n.minuteValue.value + ' ' + n.hourValue.value + ' * * *';
+                    $scope.output = $scope.cron;
                 }
 
                 if(n && n.base && n.base.value === 4) {
@@ -403,11 +462,10 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
                     }
 
                     $scope.cron = n.weekMinuteValue.value + ' ' + n.weekHourValue.value + ' * * ' + (n.dayValue.value - 1);
+                    $scope.output = $scope.cron;
                 }
 
                 if(n && n.base && n.base.value === 5) {
-
-                    console.log('entered week if statement: ', angular.copy(n));
                     
                     if(!n.weekMinuteValue){
                         n.weekMinuteValue = {};
@@ -423,6 +481,31 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
                     }
 
                     $scope.cron = n.weekMinuteValue.value + ' ' + n.weekHourValue.value + ' ' + n.dayOfMonthValue.value + ' * *';
+                    $scope.output = $scope.cron;
+                }
+
+                if(n && n.base && n.base.value === 6) {
+                    
+                    if(!n.weekMinuteValue){
+                        n.weekMinuteValue = {};
+                        n.weekMinuteValue.value = 0;
+                    }
+                    if(!n.weekHourValue){
+                        n.weekHourValue = {};
+                        n.weekHourValue.value = 0;
+                    }
+                    if(!n.dayOfMonthValue){
+                        n.dayOfMonthValue = {};
+                        n.dayOfMonthValue.value = 0;
+                    }
+
+                    if(!n.monthValue){
+                        n.monthValue = {};
+                        n.monthValue.value = 1;
+                    }
+
+                    $scope.cron = n.weekMinuteValue.value + ' ' + n.weekHourValue.value + ' ' + n.dayOfMonthValue.value + ' ' + n.monthValue.value + ' *';
+                    $scope.output = $scope.cron;
                 }
 
             }, true);
