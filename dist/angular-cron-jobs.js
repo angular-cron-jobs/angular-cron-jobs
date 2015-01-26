@@ -9,7 +9,7 @@ angular.module('templates-angularcronjobs', ['cronselection.html']);
 angular.module("cronselection.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("cronselection.html",
     "<div>\n" +
-    "\n" +
+    "<span>every: </span>\n" +
     "	<select ng-model=\"myFrequency.base\" ng-options=\"item.text for item in frequency\"></select>\n" +
     "	\n" +
     "	<div ng-show=\"myFrequency.base.value === 2\">\n" +
@@ -29,6 +29,15 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
     "	<div ng-show=\"myFrequency.base.value === 4\">\n" +
     "		<span>on </span>\n" +
     "		<select ng-model=\"myFrequency.dayValue\" ng-options=\"item as item.text for item in dayValue\"></select>\n" +
+    "		<span>at </span>\n" +
+    "		<select ng-model=\"myFrequency.weekHourValue\" ng-options=\"item.value for item in hourValue\"></select>\n" +
+    "		<span> : </span>\n" +
+    "		<select ng-model=\"myFrequency.weekMinuteValue\" ng-options=\"item.value for item in minuteValue\"></select>\n" +
+    "	</div>\n" +
+    "\n" +
+    "	<div ng-show=\"myFrequency.base.value === 5\">\n" +
+    "		<span>on </span>\n" +
+    "		<select ng-model=\"myFrequency.dayOfMonthValue\" ng-options=\"item as item.text for item in dayOfMonthValue\"></select>\n" +
     "		<span>at </span>\n" +
     "		<select ng-model=\"myFrequency.weekHourValue\" ng-options=\"item.value for item in hourValue\"></select>\n" +
     "		<span> : </span>\n" +
@@ -242,32 +251,159 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
 
             $scope.dayValue = [
                 { 
-                    "value": 0,
+                    "value": 1,
                     "text": "Sunday"
                 },
                 { 
-                    "value": 1,
+                    "value": 2,
                     "text": "Monday"
                 },
                 { 
-                    "value": 2,
+                    "value": 3,
                     "text": "Tuesday"
                 },
                 { 
-                    "value": 3,
+                    "value": 4,
                     "text": "Wednesday"
                 },
                 { 
-                    "value": 4,
+                    "value": 5,
                     "text": "Thursday"
                 },
                 { 
-                    "value": 5,
+                    "value": 6,
                     "text": "Friday"
                 },
                 { 
-                    "value": 6,
+                    "value": 7,
                     "text": "Saturday"
+                }
+            ];
+
+            $scope.dayOfMonthValue = [
+                { 
+                    "value": 1,
+                    "text": "1st"
+                },
+                { 
+                    "value": 2,
+                    "text": "2nd"
+                },
+                { 
+                    "value": 3,
+                    "text": "3rd"
+                },
+                { 
+                    "value": 4,
+                    "text": "4th"
+                },
+                { 
+                    "value": 5,
+                    "text": "5th"
+                },
+                { 
+                    "value": 6,
+                    "text": "6th"
+                },
+                { 
+                    "value": 7,
+                    "text": "7th"
+                },
+                { 
+                    "value": 8,
+                    "text": "8th"
+                },
+                { 
+                    "value": 9,
+                    "text": "9th"
+                },
+                { 
+                    "value": 10,
+                    "text": "10th"
+                },
+                { 
+                    "value": 11,
+                    "text": "11th"
+                },
+                { 
+                    "value": 12,
+                    "text": "12th"
+                },
+                { 
+                    "value": 13,
+                    "text": "13th"
+                },
+                { 
+                    "value": 14,
+                    "text": "14th"
+                },
+                { 
+                    "value": 15,
+                    "text": "15th"
+                },
+                { 
+                    "value": 16,
+                    "text": "16th"
+                },
+                { 
+                    "value": 17,
+                    "text": "17th"
+                },
+                { 
+                    "value": 18,
+                    "text": "18th"
+                },
+                { 
+                    "value": 19,
+                    "text": "19th"
+                },
+                { 
+                    "value": 20,
+                    "text": "20th"
+                },
+                { 
+                    "value": 21,
+                    "text": "21st"
+                },
+                { 
+                    "value": 22,
+                    "text": "22nd"
+                },
+                { 
+                    "value": 23,
+                    "text": "23rd"
+                },
+                { 
+                    "value": 24,
+                    "text": "24th"
+                },
+                { 
+                    "value": 25,
+                    "text": "25th"
+                },
+                { 
+                    "value": 26,
+                    "text": "26th"
+                },
+                { 
+                    "value": 27,
+                    "text": "27th"
+                },
+                { 
+                    "value": 28,
+                    "text": "28th"
+                },
+                { 
+                    "value": 29,
+                    "text": "29th"
+                },
+                { 
+                    "value": 30,
+                    "text": "30th"
+                },
+                { 
+                    "value": 31,
+                    "text": "31st"
                 }
             ];
 
@@ -324,6 +460,26 @@ angular.module('angular-cron-jobs').directive('cronSelection', function() {
                     }
 
                     $scope.cron = n.weekMinuteValue.value + ' ' + n.weekHourValue.value + ' * * ' + (n.dayValue.value - 1);
+                }
+
+                if(n && n.base && n.base.value === 5) {
+
+                    console.log('entered week if statement: ', angular.copy(n));
+                    
+                    if(!n.weekMinuteValue){
+                        n.weekMinuteValue = {};
+                        n.weekMinuteValue.value = 0;
+                    }
+                    if(!n.weekHourValue){
+                        n.weekHourValue = {};
+                        n.weekHourValue.value = 0;
+                    }
+                    if(!n.dayOfMonthValue){
+                        n.dayOfMonthValue = {};
+                        n.dayOfMonthValue.value = 0;
+                    }
+
+                    $scope.cron = n.weekMinuteValue.value + ' ' + n.weekHourValue.value + ' ' + n.dayOfMonthValue.value + ' * *';
                 }
 
             }, true);
