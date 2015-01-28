@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v1.0.0 - 2015-01-26 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v1.0.0 - 2015-01-28 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -61,12 +61,14 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
 angular.module('angular-cron-jobs', ['templates-angularcronjobs']);
 
 angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', function(cronService) {
+        
+
     return {
         restrict: 'EA',
         replace: true,
         transclude: true,
         scope: {
-            option : '=',
+            config : '=',
             output : '='
         },
         templateUrl: function(element, attributes) {
@@ -77,7 +79,6 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             $scope.showCustom = false;
 
             $scope.output = $scope.cron;
-
 
             $scope.frequency = [
                 { 
@@ -105,6 +106,29 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                     "text": "Year"
                 }
             ];
+
+            if(typeof $scope.config === 'object' && !$scope.config.length){
+                var optionsKeyArray = Object.keys($scope.config.options);
+                for(var i in optionsKeyArray){
+                    console.log('optionsKeyArray[i]: ', optionsKeyArray[i]);
+                    var currentKeyArray = optionsKeyArray[i].split('allow');
+                    var currentKey = currentKeyArray[1];
+                    var originalKey = optionsKeyArray[i];
+                    console.log('currentKey: ', currentKey);
+                    if(!$scope.config.options[originalKey]){
+                        console.log('found false config option: ', $scope.config.options[originalKey]);
+                        for(var b in $scope.frequency){
+                            console.log('entered frequency loop');
+                            console.log('$scope.frequency[i]', $scope.frequency[b].text);
+                            console.log('currentKey: ', currentKey);
+                            if($scope.frequency[b].text === currentKey){
+                                $scope.frequency.splice(b, 1);
+                            }
+                        }
+                    }
+                }
+            }
+
 
             $scope.pastTheHour = [
                 { 
