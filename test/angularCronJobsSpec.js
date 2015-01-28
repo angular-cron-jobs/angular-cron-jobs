@@ -11,7 +11,12 @@ describe('AngularCronJobs', function() {
     }));
 
     function createView(scope) {
-        var element = angular.element('<cron-selection></cron-selection>');
+        scope.config = {
+            options : {
+                allowMinute : false
+            }
+        };
+        var element = angular.element('<cron-selection config="config"></cron-selection>');
         var elementCompiled = $compile(element)(scope);
         $rootScope.$digest();
         return elementCompiled;
