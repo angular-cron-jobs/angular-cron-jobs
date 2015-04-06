@@ -53,6 +53,22 @@ Currently the config object accepts an options property with an object of allowe
 
 Setting the keys as booleans will turn the selection on and off.
 
+##Initializing UI with data from server
+
+The directive takes an optional attribute of `init`
+
+    <cron-selection output="myOutput" config="myConfig" init="serverData"></cron-selection>
+
+This is a string in your controller of cron syntax that was recieved from your server or any other source:
+
+    $scope.serverData = "30 2 4 * *"
+    
+Thew directive will properly build out the UI to reflect this data.
+
+##Contributors
+
+[@wowo](https://github.com/wowo)
+
 ##Coming Soon:
 
 The next big to-do's on my list include:
