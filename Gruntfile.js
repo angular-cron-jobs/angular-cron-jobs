@@ -72,6 +72,18 @@ module.exports = function(grunt) {
         install: {
         }
     },
+    // Make sure code styles are up to par and there are no obvious mistakes
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc',
+      },  
+      all: {
+        src: [
+          'src/{,*/}*.js',
+          '!src/angular-cron-jobs.tpls.js'
+        ],
+      }
+    },
     html2js: {
       angularcronjobs: {
         options: {
@@ -129,6 +141,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-html2js');
 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task.
   grunt.registerTask('default', ['build']);
