@@ -53,6 +53,14 @@ Currently the config object accepts an options property with an object of allowe
 
 Setting the keys as booleans will turn the selection on and off.
 
+##Custom Templates:
+
+As noted by [TimotheeJeannin](https://github.com/TimotheeJeannin) you can use custom template by adding the following attribute to the directive DDO:
+
+    templateUrl: function(element, attributes) {
+        return attributes.template || 'cronselection.html';
+    },
+
 ##Initializing UI with data from server
 
 The directive takes an optional attribute of `init`
