@@ -6,24 +6,27 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
     service.setCron = function(n) { 
         var cron = ['*', '*', '*',  '*',  '*'];
 
-        if(n && n.base && n.base >= 2) {
-           cron[0] = n.minuteValue || '*';
-        }
+        if(n && n.base) {
+          var base = parseInt(n.base, 10);
+          if(base >= 2) {
+            cron[0] = n.minuteValue || '*';
+          }
 
-        if(n && n.base && n.base >= 3) {
-           cron[1] = n.hourValue || '*';
-        }
+          if(base >= 3) {
+            cron[1] = n.hourValue || '*';
+          }
 
-        if(n && n.base && n.base === 4) {
-           cron[4] = n.dayValue;
-        }
+          if(base === 4) {
+            cron[4] = n.dayValue;
+          }
 
-        if(n && n.base && n.base >= 5) {
-           cron[2] = n.dayOfMonthValue || '*';
-        }
+          if(base >= 5) {
+            cron[2] = n.dayOfMonthValue || '*';
+          }
 
-        if(n && n.base && n.base === 6) {
-           cron[3] = n.monthValue || '*';
+          if(base === 6) {
+            cron[3] = n.monthValue || '*';
+          }
         }
 
         return cron.join(' ');
