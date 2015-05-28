@@ -25,7 +25,7 @@ describe('AngularCronJobs', function() {
     it("cron should be set for every minute", function() {
         var scope = $rootScope.$new();
         var view = createView(scope);
-        scope.myFrequency = {base: 1};
+        scope.myFrequency = {base: '1'};
         scope.cron = cronService.setCron(scope.myFrequency);
         $rootScope.$digest();
         expect(scope.cron).toEqual('* * * * *');
@@ -34,7 +34,7 @@ describe('AngularCronJobs', function() {
     it("cron should be set for every hour at 10 past", function() {
         var scope = $rootScope.$new();
         var view = createView(scope);
-        scope.myFrequency = {base: 2, minuteValue: 10};
+        scope.myFrequency = {base: '2', minuteValue: 10};
         scope.cron = cronService.setCron(scope.myFrequency);
         $rootScope.$digest();
         expect(scope.cron).toEqual('10 * * * *');
@@ -43,7 +43,7 @@ describe('AngularCronJobs', function() {
     it("cron should be set for every day at 4:30 AM", function() {
         var scope = $rootScope.$new();
         var view = createView(scope);
-        scope.myFrequency = {base: 3, hourValue: 4, minuteValue: 30};
+        scope.myFrequency = {base: '3', hourValue: 4, minuteValue: 30};
         scope.cron = cronService.setCron(scope.myFrequency);
         $rootScope.$digest();
         expect(scope.cron).toEqual('30 4 * * *');
@@ -52,7 +52,7 @@ describe('AngularCronJobs', function() {
     it("cron should be set for every week on Monday at 12:45 PM", function() {
         var scope = $rootScope.$new();
         var view = createView(scope);
-        scope.myFrequency = {base: 4, hourValue: 12, minuteValue: 45, dayValue: 1};
+        scope.myFrequency = {base: '4', hourValue: 12, minuteValue: 45, dayValue: 1};
         scope.cron = cronService.setCron(scope.myFrequency);
         $rootScope.$digest();
         expect(scope.cron).toEqual('45 12 * * 1');
@@ -61,7 +61,7 @@ describe('AngularCronJobs', function() {
     it("cron should be set for every month on the 3rd at 6:55 PM", function() {
         var scope = $rootScope.$new();
         var view = createView(scope);
-        scope.myFrequency = {base: 5, hourValue: 18, minuteValue: 55, dayOfMonthValue: 3};
+        scope.myFrequency = {base: '5', hourValue: 18, minuteValue: 55, dayOfMonthValue: 3};
         scope.cron = cronService.setCron(scope.myFrequency);
         $rootScope.$digest();
         expect(scope.cron).toEqual('55 18 3 * *');
@@ -70,7 +70,7 @@ describe('AngularCronJobs', function() {
     it("cron should be set for every year on the 5th of May at 4:10 AM", function() {
         var scope = $rootScope.$new();
         var view = createView(scope);
-        scope.myFrequency = {base: 6, hourValue: 4, minuteValue: 10, dayOfMonthValue: 5, monthValue: 5};
+        scope.myFrequency = {base: '6', hourValue: 4, minuteValue: 10, dayOfMonthValue: 5, monthValue: 5};
         scope.cron = cronService.setCron(scope.myFrequency);
         $rootScope.$digest();
         expect(scope.cron).toEqual('10 4 5 5 *');
