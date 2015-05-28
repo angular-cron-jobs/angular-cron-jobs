@@ -35,7 +35,7 @@ The directive takes an optional attribute of `config`
 This is an object in your controller you can use to remove options from the user.  For example if you would like the user to be able to set Minute, Hour, and Day but not Week, Month, and Year you would create the following object in your controller:
 
     $scope.myConfig = {
-        option: {
+        options: {
             allowWeek : false,
             allowMonth : false,
             allowYear : false
