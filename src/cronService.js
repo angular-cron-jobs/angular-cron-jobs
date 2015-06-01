@@ -14,7 +14,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
             cron[1] = n.hourValue || '*';
         }
 
-        if(n && n.base && n.base === '4') {
+        if(n && n.base && n.base == '4') {
             cron[4] = n.dayValue;
         }
 
@@ -22,7 +22,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
             cron[2] = n.dayOfMonthValue || '*';
         }
 
-        if(n && n.base && n.base === '6') {
+        if(n && n.base && n.base == '6') {
             cron[3] = n.monthValue || '*';
         }
 
