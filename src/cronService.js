@@ -25,7 +25,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         if(n && n.base && n.base === '6') {
             cron[3] = typeof n.monthValue !== undefined ? n.monthValue : '*';
         }
-        
+
         return cron.join(' ');
     };
 
