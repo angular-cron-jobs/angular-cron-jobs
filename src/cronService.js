@@ -6,7 +6,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
     service.setCron = function(n) {
         var cron = ['*', '*', '*',  '*',  '*'];
 
-         if(n && n.base && n.base >= '2') {
+        if(n && n.base && n.base >= '2') {
             cron[0] = typeof n.minuteValue !== undefined ? n.minuteValue : '*';
         }
 
