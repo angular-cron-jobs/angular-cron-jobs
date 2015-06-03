@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v1.1.0 - 2015-05-31 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v1.2.0 - 2015-06-02 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -155,11 +155,11 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         var cron = ['*', '*', '*',  '*',  '*'];
 
         if(n && n.base && n.base >= '2') {
-            cron[0] = n.minuteValue || '*';
+            cron[0] = typeof n.minuteValue !== undefined ? n.minuteValue : '*';
         }
 
         if(n && n.base && n.base >= '3') {
-            cron[1] = n.hourValue || '*';
+            cron[1] = typeof n.hourValue !== undefined ? n.hourValue  : '*';
         }
 
         if(n && n.base && n.base === '4') {
@@ -167,11 +167,11 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         }
 
         if(n && n.base && n.base >= '5') {
-            cron[2] = n.dayOfMonthValue || '*';
+            cron[2] = typeof n.dayOfMonthValue !== undefined ? n.dayOfMonthValue : '*';
         }
 
         if(n && n.base && n.base === '6') {
-            cron[3] = n.monthValue || '*';
+            cron[3] = typeof n.monthValue !== undefined ? n.monthValue : '*';
         }
 
         return cron.join(' ');
