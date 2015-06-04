@@ -73,6 +73,20 @@ This is a string in your controller of cron syntax that was recieved from your s
     
 Thew directive will properly build out the UI to reflect this data.
 
+##Setting Cron after directive load
+
+The directive takes an optional attribute of `reset`
+
+    <cron-selection output="myOutput" config="myConfig" init="serverData" reset="{{myReset}}"></cron-selection>
+
+This is an expression paired with a value in your controller.  Whenever the value changes (or is set for the first time) and passed the `angular.isDefined()` method the cron will reset itself to match that value
+
+    $timeout(function(){
+       $scope.myReset = "0 0 * * *"
+    }, 3000);
+    
+The directive will properly build out the UI to reflect this data.
+
 ##Contributors
 
 [@wowo](https://github.com/wowo)
