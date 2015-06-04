@@ -91,6 +91,11 @@ The directive will properly build out the UI to reflect this data.
 
 [@wowo](https://github.com/wowo)
 
+[@immertreu] (https://github.com/immertreu)
+
+[@TSteele27] (https://github.com/TSteele27)
+
+
 ##Coming Soon:
 
 The next big to-do's on my list include:
