@@ -75,14 +75,14 @@ Thew directive will properly build out the UI to reflect this data.
 
 ##Setting Cron after directive load
 
-The directive takes an optional attribute of `reset`
+The `init` attribute also works as a reset attribute
 
-    <cron-selection output="myOutput" config="myConfig" init="serverData" reset="{{myReset}}"></cron-selection>
+    <cron-selection output="myOutput" config="myConfig" init="serverData"></cron-selection>
 
 This is an expression paired with a value in your controller.  Whenever the value changes (or is set for the first time) and passed the `angular.isDefined()` method the cron will reset itself to match that value
 
     $timeout(function(){
-       $scope.myReset = "0 0 * * *"
+       $scope.serverData = "0 0 * * *"
     }, 3000);
     
 The directive will properly build out the UI to reflect this data.
