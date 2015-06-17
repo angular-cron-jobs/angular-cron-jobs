@@ -22,25 +22,44 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             var originalInit = undefined;
             var initChanged = false;
 
-            $scope.frequency = {
-                1: 'Minute',
-                2: 'Hour',
-                3: 'Day',
-                4: 'Week',
-                5: 'Month',
-                6: 'Year'
-            };
+            $scope.frequency = [
+                {
+                  value : 1,
+                  label : 'Minute'  
+                },
+                {
+                  value : 2,
+                  label : 'Hour'  
+                },
+                {
+                  value : 3,
+                  label : 'Day'  
+                },
+                {
+                  value : 4,
+                  label : 'Week'  
+                },
+                {
+                  value : 5,
+                  label : 'Month'  
+                },
+                {
+                  value : 6,
+                  label : 'Year'  
+                }
+            ];
+            
 
 
 
             if (angular.isDefined($scope.init)) {
-                console.log('init value found: ', $scope.init);
+                //console.log('init value found: ', $scope.init);
                 originalInit = angular.copy($scope.init);
                 $scope.myFrequency = cronService.fromCron($scope.init);
             }
 
             $scope.$watch('init', function(newValue){
-                console.log('watch on init fired!', newValue, originalInit);
+                //console.log('watch on init fired!', newValue, originalInit);
                 if(angular.isDefined(newValue) && newValue && (newValue !== originalInit)){
                     initChanged = true;
                     $scope.myFrequency = cronService.fromCron(newValue);
@@ -69,26 +88,29 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             $scope.monthValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
             $scope.$watch('myFrequency', function(n, o){
-                console.log('myFrequency changed: ', n, initChanged);
+                //console.log('myFrequency changed: ', n, initChanged);
                 if(n && (!o || n.base !== o.base) && !initChanged){
-                    console.log('base changed!', n, o);
-                    if(n && n.base && n.base >= '2') {
+                    //console.log('base changed!', n, o);
+                    if(n && n.base){
+                        n.base = parseInt(n.base);
+                    }
+                    if(n && n.base && n.base >= 2) {
                         n.minuteValue = $scope.minuteValue[0];
                     }
 
-                    if(n && n.base && n.base >= '3') {
+                    if(n && n.base && n.base >= 3) {
                         n.hourValue = $scope.hourValue[0];
                     }
 
-                    if(n && n.base && n.base === '4') {
+                    if(n && n.base && n.base === 4) {
                         n.dayValue = $scope.dayValue[0];
                     }
 
-                    if(n && n.base && n.base >= '5') {
+                    if(n && n.base && n.base >= 5) {
                         n.dayOfMonthValue = $scope.dayOfMonthValue[0];
                     }
 
-                    if(n && n.base && n.base === '6') {
+                    if(n && n.base && n.base === 6) {
                         n.monthValue = $scope.monthValue[0];
                     }
                 } else if(n && n.base && o && o.base){

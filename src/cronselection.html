@@ -1,6 +1,6 @@
 <div class="cron-wrap">
 <span>Every: </span>
-	<select class="cron-select" ng-model="myFrequency.base" ng-options="value as text for (value,text) in frequency"></select>
+	<select class="cron-select" ng-model="myFrequency.base" ng-options="item.value as item.label for item in frequency"></select>
 
 	<div class="select-options">
 		<span ng-show="myFrequency.base == 4">on </span>
