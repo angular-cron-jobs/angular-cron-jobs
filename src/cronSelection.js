@@ -73,8 +73,8 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                     var originalKey = optionsKeyArray[i];
                     if(!$scope.config.options[originalKey]){
                         for(var b in $scope.frequency){
-                            if($scope.frequency[b] === currentKey){
-                                delete $scope.frequency[b];
+                            if($scope.frequency[b].label === currentKey){
+                                $scope.frequency.splice(b, 1);
                             }
                         }
                     }
