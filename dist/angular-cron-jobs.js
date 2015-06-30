@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v1.3.2 - 2015-06-16 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v1.3.3 - 2015-06-30 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -251,7 +251,9 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
        var cron = value.replace(/\s+/g, ' ').split(' ');
        var frequency = {base: '1'}; // default: every minute
 
-       if(cron[1] === '*' && cron[2] === '*' && cron[3] === '*'  && cron[4] === '*') {
+       if(cron[0] === '*' && cron[1] === '*' && cron[2] === '*' && cron[3] === '*'  && cron[4] === '*') {
+           frequency.base = 1; // every minute
+       } else if(cron[1] === '*' && cron[2] === '*' && cron[3] === '*'  && cron[4] === '*') {
            frequency.base = 2; // every hour
        } else if(cron[2] === '*' && cron[3] === '*'  && cron[4] === '*') {
            frequency.base = 3; // every day
