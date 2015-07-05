@@ -131,6 +131,14 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                 return '2nd';
             case 3:
                 return '3rd';
+            case 21:
+                return '21st';
+            case 22:
+                return '22nd';
+            case 23:
+                return '23rd';
+            case 31:
+                return '31st';
             case null:
                 return null;
             default:
