@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v1.3.3 - 2015-07-05 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v1.4.0 - 2015-08-26 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -108,8 +108,8 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                     var originalKey = optionsKeyArray[i];
                     if(!$scope.config.options[originalKey]){
                         for(var b in $scope.frequency){
-                            if($scope.frequency[b] === currentKey){
-                                delete $scope.frequency[b];
+                            if($scope.frequency[b].label === currentKey){
+                                $scope.frequency.splice(b, 1);
                             }
                         }
                     }
