@@ -4,11 +4,11 @@
 
 	<div class="select-options">
 		<span ng-show="myFrequency.base == 4">on </span>
-		<select ng-show="myFrequency.base == 4" class="cron-select day-value" ng-model="myFrequency.dayValue" ng-options="(value | dayName) for value in dayValue"></select>
+		<select ng-show="myFrequency.base == 4" class="cron-select day-value" ng-model="myFrequency.dayValue" ng-options="(value | cronDayName) for value in dayValue"></select>
 		<span ng-show="myFrequency.base >= 5">on the </span>
-		<select ng-show="myFrequency.base >= 5" class="cron-select day-of-month-value" ng-model="myFrequency.dayOfMonthValue" ng-options="(value | numeral) for value in dayOfMonthValue"></select>
+		<select ng-show="myFrequency.base >= 5" class="cron-select day-of-month-value" ng-model="myFrequency.dayOfMonthValue" ng-options="(value | cronNumeral) for value in dayOfMonthValue"></select>
 		<span ng-show="myFrequency.base == 6">of </span>
-		<select ng-show="myFrequency.base == 6" class="cron-select month-value" ng-model="myFrequency.monthValue" ng-options="(value | monthName) for value in monthValue"></select>
+		<select ng-show="myFrequency.base == 6" class="cron-select month-value" ng-model="myFrequency.monthValue" ng-options="(value | cronMonthName) for value in monthValue"></select>
 		<span ng-show="myFrequency.base >= 2">at </span>
 		<select ng-show="myFrequency.base >= 3" class="cron-select hour-value" ng-model="myFrequency.hourValue" ng-options="value for value in hourValue"></select>
 		<span ng-show="myFrequency.base >= 3"> : </span>
