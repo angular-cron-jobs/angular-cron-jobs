@@ -122,7 +122,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
         
         }
     };
-}]).filter('numeral', function() {
+}]).filter('cronNumeral', function() {
     return function(input) {
         switch (input) {
             case 1:
@@ -145,7 +145,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                 return input + 'th';
         }
     };
-}).filter('monthName', function() {
+}).filter('cronMonthName', function() {
     return function(input) {
         var months = {
             1: 'January',
@@ -168,7 +168,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             return null;
         }
     };
-}).filter('dayName', function() {
+}).filter('cronDayName', function() {
     return function(input) {
         var days = {
             0: 'Sunday',
