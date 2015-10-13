@@ -25,30 +25,30 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             $scope.frequency = [
                 {
                   value : 1,
-                  label : 'Minute'  
+                  label : 'Minute'
                 },
                 {
                   value : 2,
-                  label : 'Hour'  
+                  label : 'Hour'
                 },
                 {
                   value : 3,
-                  label : 'Day'  
+                  label : 'Day'
                 },
                 {
                   value : 4,
-                  label : 'Week'  
+                  label : 'Week'
                 },
                 {
                   value : 5,
-                  label : 'Month'  
+                  label : 'Month'
                 },
                 {
                   value : 6,
-                  label : 'Year'  
+                  label : 'Year'
                 }
             ];
-            
+
 
 
 
@@ -63,6 +63,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                 if(angular.isDefined(newValue) && newValue && (newValue !== originalInit)){
                     initChanged = true;
                     $scope.myFrequency = cronService.fromCron(newValue);
+                    initChanged = false;
                 }
             });
 
@@ -119,7 +120,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                 $scope.output = cronService.setCron(n);
             }, true);
 
-        
+
         }
     };
 }]).filter('numeral', function() {
