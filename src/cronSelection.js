@@ -97,24 +97,25 @@
                             //console.log('base changed!', n, o);
                             if (n && n.base) {
                                 n.base = parseInt(n.base, 10);
+
                                 if (n.base >= cronFrequency.EVERY_HOUR) {
                                     n.minuteValue = $scope.multiMode ? [$scope.minuteValue[0]] : $scope.minuteValue[0];
                                 }
 
                                 if (n.base >= cronFrequency.EVERY_DAY) {
-                                    n.hourValue = scope.multiMode ? [$scope.hourValue[0]] : $scope.hourValue[0];
+                                    n.hourValue = $scope.multiMode ? [$scope.hourValue[0]] : $scope.hourValue[0];
                                 }
 
                                 if (n.base === cronFrequency.EVERY_WEEK) {
-                                    n.dayValue = scope.multiMode ? [$scope.dayValue[0]] : $scope.dayValue[0];
+                                    n.dayValue = $scope.multiMode ? [$scope.dayValue[0]] : $scope.dayValue[0];
                                 }
 
                                 if (n.base >= cronFrequency.EVERY_MONTH) {
-                                    n.dayOfMonthValue = scope.multiMode ? [$scope.dayOfMonthValue[0]]: $scope.dayOfMonthValue[0];
+                                    n.dayOfMonthValue = $scope.multiMode ? [$scope.dayOfMonthValue[0]] : $scope.dayOfMonthValue[0];
                                 }
 
                                 if (n.base === cronFrequency.EVERY_YEAR) {
-                                    n.monthValue = $scope.monthValue[0] ? [$scope.monthValue[0]] : $scope.monthValue[0];
+                                    n.monthValue = $scope.multiMode ? [$scope.monthValue[0]] : $scope.monthValue[0];
                                 }
                             }
                         } else if (n && n.base && o && o.base) {
