@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="CronDemo">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Application</title>
+    <link rel="stylesheet" href="dist/angular-cron-jobs.css"/>
+    <script src="lib/angular/angular.js"></script>
+    <!--<script src="dist/angular-cron-jobs.js"></script>-->
+    <script src="src/angular-cron-jobs.tpls.js"></script>
+    <script src="src/angularModule.js"></script>
+    <script src="src/cronConstant.js"></script>
+    <script src="src/cronService.js"></script>
+    <script src="src/cronSelection.js"></script>
+    <script>
+        angular.module('CronDemo', ['angular-cron-jobs'])
+                .controller('CronCtrl', function ($scope) {
+                    $scope.cron = "40 * 3 5 *";
+                    $scope.config = {
+                        options: {
+                            allowHour: false,
+                            allowMinute: false
+                        }
+                    };
+                })
+        ;
+    </script>
+</head>
+<body>
+<div ng-controller="CronCtrl" ng-cloak="">
+    <cron-selection output="myOutput" multi-mode="false" init="cron" config="config"></cron-selection>
+    <br/>
+    <div>
+        <strong>{{myOutput}}</strong>
+    </div>
+
+
+    <cron-selection output="myOutput2" multi-mode="true" init="cron" config="config"></cron-selection>
+    <br/>
+    <div>
+        <strong>{{myOutput2}}</strong>
+    </div>
+</div>
+</body>
+</html>

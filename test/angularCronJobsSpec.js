@@ -96,10 +96,24 @@ describe('AngularCronJobs', function() {
         expect(cronService.fromCron('35 23 29 4 *')).toEqual({base: 6, minuteValue: 35, hourValue: 23, dayOfMonthValue: 29, monthValue: 4});
     });
 
+    it("cron with init '35 23 29 4 *' should have minutes and hours set and base mode 6. values should be array in multimode", function() {
+        expect(cronService.fromCron('35 23 29 4 *', true)).toEqual({base: 6, minuteValue: [35], hourValue: [23], dayOfMonthValue: [29], monthValue: [4]});
+    });
+
+    it("cron with init '35,40,55 23 29 4 *' should have minutes (35, 40 & 55) and hours set and base mode 6", function() {
+        expect(cronService.fromCron('35,40,55 23 29 4 *', true)).toEqual({base: 6, minuteValue: [35, 40, 55], hourValue: [23], dayOfMonthValue: [29], monthValue: [4]});
+    });
+
+    it('CRON generation for MultiMode', function(){
+        expect(cronService.setCron({base: 3, minuteValue: 0, hourValue: [5,10,15]},true)).toEqual('0 5,10,15 * * *');
+    });
+
     it("cron should disallow minute if set in config", function() {
         var scope = $rootScope.$new();
         var view = createView(scope);
         var isolateScope = view.isolateScope();
         expect(isolateScope.frequency[0].label).toEqual('Hour');
     });
+
+
 });
