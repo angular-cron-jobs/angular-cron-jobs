@@ -50,7 +50,7 @@
 
             service.fromCron = function (value, isMultiMode) {
                 //  console.log('set cron fired!');
-                var cron = value.replace(/\s+/g, ' ').split(' ');
+                var cron = value ? value.replace(/\s+/g, ' ').split(' ') : [];
                 var frequency = {base: '1'}; // default: every minute
 
                 //cron must be of length 5
