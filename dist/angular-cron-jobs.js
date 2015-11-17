@@ -162,25 +162,25 @@ angular.module('angular-cron-jobs', ['templates-angularcronjobs']);
                         if (n && (!o || n.base !== o.base) && !initChanged) {
                             //console.log('base changed!', n, o);
                             if (n && n.base) {
-                                n.base = parseInt(n.base);
+                                n.base = parseInt(n.base, 10);
                                 if (n.base >= cronFrequency.EVERY_HOUR) {
-                                    n.minuteValue = $scope.minuteValue[0];
+                                    n.minuteValue = $scope.multiMode ? [$scope.minuteValue[0]] : $scope.minuteValue[0];
                                 }
 
                                 if (n.base >= cronFrequency.EVERY_DAY) {
-                                    n.hourValue = $scope.hourValue[0];
+                                    n.hourValue = scope.multiMode ? [$scope.hourValue[0]] : $scope.hourValue[0];
                                 }
 
                                 if (n.base === cronFrequency.EVERY_WEEK) {
-                                    n.dayValue = $scope.dayValue[0];
+                                    n.dayValue = scope.multiMode ? [$scope.dayValue[0]] : $scope.dayValue[0];
                                 }
 
                                 if (n.base >= cronFrequency.EVERY_MONTH) {
-                                    n.dayOfMonthValue = $scope.dayOfMonthValue[0];
+                                    n.dayOfMonthValue = scope.multiMode ? [$scope.dayOfMonthValue[0]]: $scope.dayOfMonthValue[0];
                                 }
 
                                 if (n.base === cronFrequency.EVERY_YEAR) {
-                                    n.monthValue = $scope.monthValue[0];
+                                    n.monthValue = $scope.monthValue[0] ? [$scope.monthValue[0]] : $scope.monthValue[0];
                                 }
                             }
                         } else if (n && n.base && o && o.base) {
@@ -309,7 +309,6 @@ angular.module('angular-cron-jobs', ['templates-angularcronjobs']);
                     }
                 }
                 //  console.log('cron after setCron ', cron.join(' '));
-                console.log('Cron', cron);
                 return cron.join(' ');
             };
 
