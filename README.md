@@ -87,13 +87,27 @@ This is an expression paired with a value in your controller.  Whenever the valu
     
 The directive will properly build out the UI to reflect this data.
 
+
+##Allowing Selection of Multiple Values
+
+The `multi-mode` attribute can be used to specify that a CRON schedule component can be multiple value. When set to
+`true`, the select boxes will be rendered with `multiple` attribute set to true, multiple selected values will be
+concatenated with `,`
+
+    <cron-selection output="myOutput" multi-mode="true" config="myConfig" init="serverData"></cron-selection>
+
+As an example, if `serverData` is set to `30 2,5 4 * *`, when the directive is rendered, both 2 & 5 will be selected
+in the hour select field.
+
 ##Contributors
 
 [@wowo](https://github.com/wowo)
 
-[@immertreu] (https://github.com/immertreu)
+[@immertreu](https://github.com/immertreu)
 
-[@TSteele27] (https://github.com/TSteele27)
+[@TSteele27](https://github.com/TSteele27)
+
+[@logbon72](https://github.com/logbon72)
 
 
 ##Coming Soon:

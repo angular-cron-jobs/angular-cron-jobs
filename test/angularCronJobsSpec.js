@@ -108,6 +108,11 @@ describe('AngularCronJobs', function() {
         expect(cronService.setCron({base: 3, minuteValue: 0, hourValue: [5,10,15]},true)).toEqual('0 5,10,15 * * *');
     });
 
+
+    it('Empty Array should resolve to * in multimode', function(){
+        expect(cronService.setCron({base: 2, minuteValue: 0, hourValue: []},true)).toEqual('0 * * * *');
+    });
+
     it("cron should disallow minute if set in config", function() {
         var scope = $rootScope.$new();
         var view = createView(scope);

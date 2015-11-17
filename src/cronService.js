@@ -15,7 +15,7 @@
                     }
 
                     if (isMultiMode && angular.isArray(val)) {
-                        return val.join(',');
+                        return val.length > 0 ? val.join(',') : '*';
                     }
 
                     return val;
