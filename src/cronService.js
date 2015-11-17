@@ -44,7 +44,6 @@
                     }
                 }
                 //  console.log('cron after setCron ', cron.join(' '));
-                console.log('Cron', cron);
                 return cron.join(' ');
             };
 
