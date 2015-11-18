@@ -10,6 +10,9 @@
   "dependencies": {
     "angular": "*"
   },
+  "devDependencies": {
+    "angular-mocks": "*"
+  },
   "ignore": [
     "node_modules",
     "components",
