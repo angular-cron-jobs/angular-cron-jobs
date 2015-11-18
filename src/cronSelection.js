@@ -131,10 +131,7 @@
         },
         bindToController: true,
         controllerAs: 'cron',
-        controller: 'CronJobInputController',
-        link: function ($scope) {
-          console.log('Passed in: ', JSON.stringify($scope.cron));
-        }
+        controller: 'CronJobInputController'
       };
     }])
     .filter('cronNumeral', function () {
