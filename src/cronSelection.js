@@ -12,7 +12,8 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
         scope: {
             config : '=',
             output : '=?',
-            init   : '=?'
+            init   : '=?',
+            isreadonly : '=?'
         },
         templateUrl: function(element, attributes) {
           return attributes.template || 'cronselection.html';
@@ -48,9 +49,6 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                   label : 'Year'  
                 }
             ];
-            
-
-
 
             if (angular.isDefined($scope.init)) {
                 //console.log('init value found: ', $scope.init);
@@ -118,8 +116,6 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                 }
                 $scope.output = cronService.setCron(n);
             }, true);
-
-        
         }
     };
 }]).filter('numeral', function() {
@@ -177,11 +173,28 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             3: 'Wednesday',
             4: 'Thursday',
             5: 'Friday',
-            6: 'Saturday',
+            6: 'Saturday'
         };
 
         if (input !== null && angular.isDefined(days[input])) {
             return days[input];
+        } else {
+            return null;
+        }
+    };
+}).filter('baseName', function() {
+    return function(input) {
+        var frequency = {
+            1: 'minute',
+            2: 'hour',
+            3: 'day',
+            4: 'week',
+            5: 'month',
+            6: 'year'
+        };
+
+        if (input !== null && angular.isDefined(frequency[input])) {
+            return frequency[input];
         } else {
             return null;
         }
