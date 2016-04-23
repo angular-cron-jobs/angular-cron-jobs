@@ -1,5 +1,8 @@
-.cron-select {
+.cron-select-wrap {
   display: inline-block;
+}
+
+.cron-select-wrap .cron-select {
   width: 150px;
   height: 34px;
   padding: 6px 12px;

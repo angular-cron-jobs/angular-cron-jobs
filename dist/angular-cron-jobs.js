@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v1.4.1 - 2015-08-31 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v1.4.1 - 2016-04-23 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -9,20 +9,32 @@ angular.module('templates-angularcronjobs', ['cronselection.html']);
 angular.module("cronselection.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("cronselection.html",
     "<div class=\"cron-wrap\">\n" +
-    "<span>Every: </span>\n" +
-    "	<select class=\"cron-select\" ng-model=\"myFrequency.base\" ng-options=\"item.value as item.label for item in frequency\"></select>\n" +
+    "    <span>Every: </span>\n" +
+    "    <div class=\"cron-select-wrap\">\n" +
+    "        <select class=\"cron-select\" ng-model=\"myFrequency.base\" ng-options=\"item.value as item.label for item in frequency\"></select>\n" +
+    "    </div>\n" +
     "\n" +
     "	<div class=\"select-options\">\n" +
     "		<span ng-show=\"myFrequency.base == 4\">on </span>\n" +
-    "		<select ng-show=\"myFrequency.base == 4\" class=\"cron-select day-value\" ng-model=\"myFrequency.dayValue\" ng-options=\"(value | dayName) for value in dayValue\"></select>\n" +
+    "        <div ng-show=\"myFrequency.base == 4\" class=\"cron-select-wrap\">\n" +
+    "            <select class=\"cron-select day-value\" ng-model=\"myFrequency.dayValue\" ng-options=\"(value | cronDayName) for value in dayValue\"></select>\n" +
+    "        </div>\n" +
     "		<span ng-show=\"myFrequency.base >= 5\">on the </span>\n" +
-    "		<select ng-show=\"myFrequency.base >= 5\" class=\"cron-select day-of-month-value\" ng-model=\"myFrequency.dayOfMonthValue\" ng-options=\"(value | numeral) for value in dayOfMonthValue\"></select>\n" +
+    "        <div ng-show=\"myFrequency.base >= 5\" class=\"cron-select-wrap\">\n" +
+    "            <select class=\"cron-select day-of-month-value\" ng-model=\"myFrequency.dayOfMonthValue\" ng-options=\"(value | cronNumeral) for value in dayOfMonthValue\"></select>\n" +
+    "        </div>\n" +
     "		<span ng-show=\"myFrequency.base == 6\">of </span>\n" +
-    "		<select ng-show=\"myFrequency.base == 6\" class=\"cron-select month-value\" ng-model=\"myFrequency.monthValue\" ng-options=\"(value | monthName) for value in monthValue\"></select>\n" +
+    "        <div ng-show=\"myFrequency.base == 6\" class=\"cron-select-wrap\">\n" +
+    "            <select class=\"cron-select month-value\" ng-model=\"myFrequency.monthValue\" ng-options=\"(value | cronMonthName) for value in monthValue\"></select>\n" +
+    "        </div>\n" +
     "		<span ng-show=\"myFrequency.base >= 2\">at </span>\n" +
-    "		<select ng-show=\"myFrequency.base >= 3\" class=\"cron-select hour-value\" ng-model=\"myFrequency.hourValue\" ng-options=\"value for value in hourValue\"></select>\n" +
+    "        <div ng-show=\"myFrequency.base >= 3\" class=\"cron-select-wrap\">\n" +
+    "            <select class=\"cron-select hour-value\" ng-model=\"myFrequency.hourValue\" ng-options=\"value for value in hourValue\"></select>\n" +
+    "        </div>\n" +
     "		<span ng-show=\"myFrequency.base >= 3\"> : </span>\n" +
-    "		<select ng-show=\"myFrequency.base >= 2\" class=\"cron-select minute-value\" ng-model=\"myFrequency.minuteValue\" ng-options=\"value for value in minuteValue\"></select>\n" +
+    "        <div ng-show=\"myFrequency.base >= 2\" class=\"cron-select-wrap\">\n" +
+    "            <select class=\"cron-select minute-value\" ng-model=\"myFrequency.minuteValue\" ng-options=\"value for value in minuteValue\"></select>\n" +
+    "        </div>\n" +
     "		<span ng-show=\"myFrequency.base == 2\"> past the hour</span>\n" +
     "	</div>\n" +
     "</div>\n" +
@@ -157,7 +169,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
         
         }
     };
-}]).filter('numeral', function() {
+}]).filter('cronNumeral', function() {
     return function(input) {
         switch (input) {
             case 1:
@@ -180,7 +192,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                 return input + 'th';
         }
     };
-}).filter('monthName', function() {
+}).filter('cronMonthName', function() {
     return function(input) {
         var months = {
             1: 'January',
@@ -203,7 +215,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             return null;
         }
     };
-}).filter('dayName', function() {
+}).filter('cronDayName', function() {
     return function(input) {
         var days = {
             0: 'Sunday',
@@ -222,6 +234,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
         }
     };
 });
+
 'use strict';
 
 angular.module('angular-cron-jobs').factory('cronService', function() {
