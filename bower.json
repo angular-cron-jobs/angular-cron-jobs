@@ -1,6 +1,6 @@
 {
   "name": "angular-cron-jobs",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "main": "./dist/angular-cron-jobs.min.js",
   "description": "UI Component For Creating Cron Job Syntax To Send To Server",
   "repository": {

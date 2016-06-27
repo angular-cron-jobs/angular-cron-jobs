@@ -1,7 +1,7 @@
 {
   "name": "angular-cron-jobs",
   "description": "UI Component For Creating Cron Job Syntax To Send To Server",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "filename": "angular-cron-jobs.min.js",
   "main": "./dist/angular-cron-jobs.min.js",
   "homepage": "https://github.com/jacobscarter/angular-cron-jobs",
@@ -41,7 +41,8 @@
     "karma-chrome-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.2",
     "karma-phantomjs-launcher": "^0.1.4",
-    "grunt-contrib-jshint": "~0.11.1"
+    "grunt-contrib-jshint": "~0.11.1",
+    "karma": "*"
   },
   "license": "MIT"
 }
