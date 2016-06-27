@@ -53,13 +53,30 @@ Currently the config object accepts an options property with an object of allowe
 
 Setting the keys as booleans will turn the selection on and off.
 
+You can also set whether or not you want to allow a user to select multiple calues for a cron:
+
+    $scope.myConfig = {
+        allowMultiple: true
+    }
+
+Setting allowMultiple to either true or false will toggle the ability.
+
+A complete config object may look like the following:
+
+    $scope.myConfig = {
+        allowMultiple: true,
+        options: {
+            allowWeek : false,
+            allowMonth : false,
+            allowYear : false
+        }
+    }
+
 ##Custom Templates:
 
-As noted by [TimotheeJeannin](https://github.com/TimotheeJeannin) you can use custom template by adding the following attribute to the directive DDO:
+As noted by [TimotheeJeannin](https://github.com/TimotheeJeannin) you can use custom template by setting the template attribute on your cron DOM element:
 
-    templateUrl: function(element, attributes) {
-        return attributes.template || 'cronselection.html';
-    },
+    <cron-selection template="path/to/my/template.html"></cron-selection>
 
 ##Initializing UI with data from server
 
@@ -100,4 +117,4 @@ The directive will properly build out the UI to reflect this data.
 
 The next big to-do's on my list include:
 
-* creating a customize button that will toggle a much more complicated UI to allow for very specific and unique cron jobs.
+* Support generlized selections such as a one button click for "Every Five Minutes" or "Last Thursday of Every Month"
