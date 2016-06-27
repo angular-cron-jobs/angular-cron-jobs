@@ -203,14 +203,14 @@ a {
   background-color: #eff0f1;
   border: 0; }
 
-@media screen and (min-width: 64em) {
+@media screen and (min-width: 75em) {
   .main-content {
-    max-width: 64rem;
+    max-width: 75rem;
     padding: 2rem 6rem;
     margin: 0 auto;
     font-size: 1.1rem; } }
 
-@media screen and (min-width: 42em) and (max-width: 64em) {
+@media screen and (min-width: 42em) and (max-width: 75em) {
   .main-content {
     padding: 2rem 4rem;
     font-size: 1.1rem; } }

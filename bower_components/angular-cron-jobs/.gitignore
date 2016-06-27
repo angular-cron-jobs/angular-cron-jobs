@@ -1,0 +1,37 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+lib
+node_modules
+components
+bower_components
+npm-debug.log
+src/*.tpls.js
+.idea/
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+Icon
+
+
+._*
+
+.Spotlight-V100
+.Trashes
+
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk

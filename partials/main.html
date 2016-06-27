@@ -1,0 +1,40 @@
+<h2>DEMO BASIC:</h2>
+<br>
+<cron-selection output="output"></cron-selection>
+<br>
+<br>
+<p><strong>OUTPUT:</strong> {{output}}</p>
+<br>
+
+<h2>DEMO WITH CONFIG:</h2>
+<br>
+<pre>$scope.myConfig = {
+  options : {
+    allowMonth : false,
+    allowYear : false
+  }
+}</pre>
+<cron-selection output="myOutput" config="config"></cron-selection>
+<br>
+<br>
+<p><strong>OUTPUT:</strong> {{myOutput}}</p>
+<br>
+
+<h2>DEMO WITH MULTI SELECT:</h2>
+<br>
+<pre>$scope.myConfig = {
+  allowMultiple: true
+}</pre>
+<cron-selection output="myThirdOutput" config="config2"></cron-selection>
+<br>
+<br>
+<p><strong>OUTPUT:</strong> {{myThirdOutput}}</p>
+<br>
+
+<h2>DEMO WITH INIT:</h2>
+<br>
+<pre>$scope.serverData = {{serverData}}</pre>
+<cron-selection output="mySecondOutput" init="serverData" config="config2"></cron-selection>
+<br>
+<br>
+<p><strong>OUTPUT:</strong> {{mySecondOutput}}</p>
