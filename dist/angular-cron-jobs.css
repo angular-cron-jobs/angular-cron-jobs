@@ -21,6 +21,10 @@
           transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+.cron-select-wrap select[multiple] {
+  height: 140px;
+}
+
 .select-options {
   display: inline-block;
 }
