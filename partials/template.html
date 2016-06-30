@@ -1,23 +1,28 @@
-<div class="wrapper">
-    <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(0) >= 0}" ng-click="$parent.selectDay(0)">
-        Sun.
+<div>
+    <div class="cron-select-wrap">
+        <select class="cron-select" ng-model="myFrequency.base" ng-options="item.value as item.label for item in frequency"></select>
     </div>
-    <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(1) >= 0}" ng-click="$parent.selectDay(1)">
-        Mon.
-    </div>
-    <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(2) >= 0}" ng-click="$parent.selectDay(2)">
-        Tues.
-    </div>
-    <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(3) >= 0}" ng-click="$parent.selectDay(3)">
-        Wed.
-    </div>
-    <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(4) >= 0}" ng-click="$parent.selectDay(4)">
-        Thur.
-    </div>
-    <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(5) >= 0}" ng-click="$parent.selectDay(5)">
-        Fri.
-    </div>
-    <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(6) >= 0}" ng-click="$parent.selectDay(6)">
-        Sat.
+    <div class="wrapper" ng-show="myFrequency.base == 4">
+        <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(0) >= 0}" ng-click="selectDay(0)">
+            Sun.
+        </div>
+        <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(1) >= 0}" ng-click="$parent.selectDay(1)">
+            Mon.
+        </div>
+        <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(2) >= 0}" ng-click="$parent.selectDay(2)">
+            Tues.
+        </div>
+        <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(3) >= 0}" ng-click="$parent.selectDay(3)">
+            Wed.
+        </div>
+        <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(4) >= 0}" ng-click="$parent.selectDay(4)">
+            Thur.
+        </div>
+        <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(5) >= 0}" ng-click="$parent.selectDay(5)">
+            Fri.
+        </div>
+        <div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(6) >= 0}" ng-click="$parent.selectDay(6)">
+            Sat.
+        </div>
     </div>
 </div>

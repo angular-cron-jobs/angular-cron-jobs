@@ -261,7 +261,7 @@ a {
 
 .wrapper {
   display:block;
-  margin-bottom: 30px;
+  margin: 30px 0;
   clear: both;
   overflow: auto;
 }

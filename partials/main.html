@@ -43,3 +43,31 @@
 <br>
 <cron-selection output="myThirdOutput" config="config3" template="partials/template.html" frequency="myLocalFrequency"></cron-selection>
 <p><strong>OUTPUT:</strong> {{myThirdOutput}}</p>
+<br>
+<p>In your controller:</p>
+<pre>$scope.myLocalFrequency = null;
+
+$scope.selectDay = function(day) {
+  if ($scope.myLocalFrequency.dayValue.indexOf(day) >= 0) {
+    $scope.myLocalFrequency.dayValue.splice($scope.myLocalFrequency.dayValue.indexOf(day), 1);
+  } else {
+    $scope.myLocalFrequency.dayValue.push(day);
+  }
+};
+</pre>
+<p>In template.html</p>
+<pre>&lt;div&gt;
+ &lt;div class="cron-select-wrap"&gt;
+  &lt;select class="cron-select" ng-model="myFrequency.base" ng-options="item.value as item.label for item in frequency"&gt;&lt;/select&gt;
+ &lt;/div&gt;
+ &lt;div class="wrapper" ng-show="myFrequency.base == 4"&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(0) &gt;= 0}" ng-click="selectDay(0)"&gt; Sun. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(1) &gt;= 0}" ng-click="$parent.selectDay(1)"&gt; Mon. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(2) &gt;= 0}" ng-click="$parent.selectDay(2)"&gt; Tues. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(3) &gt;= 0}" ng-click="$parent.selectDay(3)"&gt; Wed. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(4) &gt;= 0}" ng-click="$parent.selectDay(4)"&gt; Thur. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(5) &gt;= 0}" ng-click="$parent.selectDay(5)"&gt; Fri. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(6) &gt;= 0}" ng-click="$parent.selectDay(6)"&gt; Sat. &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+</pre>

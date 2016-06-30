@@ -54,7 +54,7 @@ var boilerPlateApp = angular.module('boilerPlateApp', ['ui.router', 'angular-cro
 
   $scope.selectDay = function(day) {
     if ($scope.myLocalFrequency.dayValue.indexOf(day) >= 0) {
-      $scope.myLocalFrequency.dayValue.splice(1, $scope.myLocalFrequency.dayValue.indexOf(day));
+      $scope.myLocalFrequency.dayValue.splice($scope.myLocalFrequency.dayValue.indexOf(day), 1);
     } else {
       $scope.myLocalFrequency.dayValue.push(day);
     }
