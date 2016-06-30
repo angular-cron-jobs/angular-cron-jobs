@@ -2,8 +2,6 @@
 
 angular.module('angular-cron-jobs', ['templates-angularcronjobs']);
 
-'use strict';
-
 angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', function(cronService) {
     return {
         restrict: 'EA',
@@ -12,7 +10,8 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
         scope: {
             config: '=',
             output: '=?',
-            init: '=?'
+            init: '=?',
+            myFrequency: '=?frequency'
         },
         templateUrl: function(element, attributes) {
             return attributes.template || 'cronselection.html';

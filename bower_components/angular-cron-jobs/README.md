@@ -1,7 +1,7 @@
 # angular-cron-jobs
 UI Component For Creating Cron Job Syntax To Send To Server
 
-##[DEMO](http://jacobscarter.github.io/angular-cron-jobs/#/)
+##[Demo](http://jacobscarter.github.io/angular-cron-jobs/#/)
 ##Installation
 
 Install using bower:
@@ -104,6 +104,24 @@ This is an expression paired with a value in your controller.  Whenever the valu
     
 The directive will properly build out the UI to reflect this data.
 
+##Utilized Exposed $scope.myFrequency:
+
+the `frequency` attribute grants you exposure to the `$scope.myFrequency` object inside the directive.  It is two way bound so you can manipulate it from outside the directive as well.
+
+  <cron-selection output="myOutput" config="myConfig" init="serverData" frequency="cronData"></cron-selection>
+
+Properties you now have access to via `frequency` attribute include:
+
+* **base** `{number}` 1-6 (minute thru year)
+* **minuteValue** `{number|Array.<number>}` 0-55 (increments of 5)
+* **hourValue** `{number|Array.<number>}` 1-23
+* **dayOfMonthValue** `{number|Array.<number>}` 0-6 (Sunday thru Saturday)
+* **monthValue** `{number|Array.<number>}` 1-12
+
+###You can get away from using select inputs in your custom temple using the `frequency` attribute.
+
+####[Demo Without Using Selects](http://jacobscarter.github.io/angular-cron-jobs/#/#noSelectSample)
+
 ##Contributors
 
 [@wowo](https://github.com/wowo)
@@ -112,9 +130,12 @@ The directive will properly build out the UI to reflect this data.
 
 [@TSteele27] (https://github.com/TSteele27)
 
+[@DmitryEfimenki] (https://github.com/DmitryEfimenko)
+
 
 ##Coming Soon:
 
 The next big to-do's on my list include:
 
 * Support generlized selections such as a one button click for "Every Five Minutes" or "Last Thursday of Every Month"
+* Combine input and output attributes to a two way bound ngModel style attribute

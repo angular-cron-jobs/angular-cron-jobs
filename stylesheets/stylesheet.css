@@ -243,3 +243,25 @@ a {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.9rem; } }
+
+.day-block {
+  border: 2px solid black;
+  display: inline-block;
+  float: left;
+  margin-right: 30px;
+  width: 100px;
+  padding: 35px 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.day-block.active {
+  border-color: red;
+}
+
+.wrapper {
+  display:block;
+  margin-bottom: 30px;
+  clear: both;
+  overflow: auto;
+}
