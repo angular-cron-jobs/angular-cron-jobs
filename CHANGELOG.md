@@ -1,3 +1,10 @@
+<a name="2.1.1"></a>
+# 2.1.1 (2016-06-30)
+
+## Updates
+
+- Correcting build file error.
+
 
 <a name="2.1.0"></a>
 # 2.1.0 (2016-06-30)
@@ -14,8 +21,8 @@
 
 - new major version because tempaltes built to work with 1.4.2 will not work with this version.
 - added new config propert of `allowMultiple` which will allow for multiple cron options (e.g '* * 1,3,4 * *').
-- update README.md with new multiselect feature and template instructions
-- updated gh-pages demo
+- update README.md with new multiselect feature and template instructions.
+- updated gh-pages demo.
 
 
 <a name="1.4.2"></a>
