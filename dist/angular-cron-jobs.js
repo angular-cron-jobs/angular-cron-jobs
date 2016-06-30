@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v2.0.0 - 2016-06-29 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v2.0.0 - 2016-06-27 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -96,6 +96,12 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
 
 angular.module('angular-cron-jobs', ['templates-angularcronjobs']);
 
+'use strict';
+
+angular.module('angular-cron-jobs', ['templates-angularcronjobs']);
+
+'use strict';
+
 angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', function(cronService) {
     return {
         restrict: 'EA',
@@ -104,8 +110,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
         scope: {
             config: '=',
             output: '=?',
-            init: '=?',
-            myFrequency: '=?frequency'
+            init: '=?'
         },
         templateUrl: function(element, attributes) {
             return attributes.template || 'cronselection.html';
