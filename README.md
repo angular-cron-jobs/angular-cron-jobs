@@ -104,7 +104,7 @@ This is an expression paired with a value in your controller.  Whenever the valu
     
 The directive will properly build out the UI to reflect this data.
 
-##Utilized Exposed $scope.myFrequency:
+##Utilize Exposed $scope.myFrequency:
 
 the `frequency` attribute grants you exposure to the `$scope.myFrequency` object inside the directive.  It is two way bound so you can manipulate it from outside the directive as well.
 
