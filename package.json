@@ -27,6 +27,11 @@
       "website": "http://strangemilk.com"
     }
   ],
+  "scripts": {
+    "grunt": "./node_modules/.bin/grunt",
+    "karma": "./node_modules/.bin/karma",
+    "test": "node ./node_modules/karma/bin/karma start karma.conf.js --single-run"
+  },
   "dependencies": {},
   "devDependencies": {
     "codacy-coverage": "*",
