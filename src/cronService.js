@@ -53,7 +53,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.minuteValue = tempArray;
             } else {
-                frequency.minuteValue = [parseInt(cron[0])];
+                frequency.minuteValue = parseInt(cron[0]);
             }
         }
         if (cron[1] !== '*') {
@@ -63,7 +63,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.hourValue = tempArray;
             } else {
-                frequency.hourValue = [parseInt(cron[1])];
+                frequency.hourValue = parseInt(cron[1]);
             }
         }
         if (cron[2] !== '*') {
@@ -73,7 +73,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.dayOfMonthValue = tempArray;
             } else {
-                frequency.dayOfMonthValue = [parseInt(cron[2])];
+                frequency.dayOfMonthValue = parseInt(cron[2]);
             }
         }
         if (cron[3] !== '*') {
@@ -83,7 +83,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.monthValue = tempArray;
             } else {
-                frequency.monthValue = [parseInt(cron[3])];
+                frequency.monthValue = parseInt(cron[3]);
             }
         }
         if (cron[4] !== '*') {
@@ -93,7 +93,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.dayValue = tempArray;
             } else {
-                frequency.dayValue = [parseInt(cron[4])];
+                frequency.dayValue = parseInt(cron[4]);
             }
         }
         return frequency;

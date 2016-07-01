@@ -17,11 +17,51 @@ describe('AngularCronJobs', function() {
                 allowMinute : false
             }
         };
-        var element = angular.element('<cron-selection config="config"></cron-selection>');
+        var element = angular.element('<cron-selection ng-model="cron" config="config"></cron-selection>');
         var elementCompiled = $compile(element)(scope);
         $rootScope.$digest();
         return elementCompiled;
     }
+
+    it("cronService.fromCron: '15 * * * *' should have minutes set and base mode 2", function() {
+        expect(cronService.fromCron('15 * * * *')).toEqual({base: 2, minuteValue: 15});
+    });
+
+    it("cronService.fromCron: '20 19 * * *' should have minutes and hours set and base mode 3", function() {
+        expect(cronService.fromCron('20 19 * * *')).toEqual({base: 3, minuteValue: 20, hourValue: 19});
+    });
+
+    it("cronService.fromCron: '25 1 * * 3' should have minutes and hours set and base mode 4", function() {
+        expect(cronService.fromCron('25 1 * * 3')).toEqual({base: 4, minuteValue: 25, hourValue: 1, dayValue: 3});
+    });
+
+    it("cronService.fromCron: '30 10 7 * *' should have minutes and hours set and base mode 5", function() {
+        expect(cronService.fromCron('30 10 7 * *')).toEqual({base: 5, minuteValue: 30, hourValue: 10, dayOfMonthValue: 7});
+    });
+
+    it("cronService.fromCron: '35 23 29 4 *' should have minutes and hours set and base mode 6", function() {
+        expect(cronService.fromCron('35 23 29 4 *')).toEqual({base: 6, minuteValue: 35, hourValue: 23, dayOfMonthValue: 29, monthValue: 4});
+    });
+
+    it("cronService.fromCron: '10,15 * * * *' should have minutes set and base mode 2", function() {
+        expect(cronService.fromCron('10,15 * * * *')).toEqual({base: 2, minuteValue: [10,15]});
+    });
+
+    it("cronService.fromCron: '15,20 18,19 * * *' should have minutes and hours set and base mode 3", function() {
+        expect(cronService.fromCron('15,20 18,19 * * *')).toEqual({base: 3, minuteValue: [15,20], hourValue: [18,19]});
+    });
+
+    it("cronService.fromCron: '20,25 1 * * 3' should have minutes and hours set and base mode 4", function() {
+        expect(cronService.fromCron('20,25 1 * * 2,3')).toEqual({base: 4, minuteValue: [20,25], hourValue: 1, dayValue: [2,3]});
+    });
+
+    it("cronService.fromCron: '25,30 9,10 6,7 * *' should have minutes and hours set and base mode 5", function() {
+        expect(cronService.fromCron('25,30 9,10 6,7 * *')).toEqual({base: 5, minuteValue: [25,30], hourValue: [9,10], dayOfMonthValue: [6,7]});
+    });
+
+    it("cronService.fromCron: '35 23 29 3,4 *' should have minutes and hours set and base mode 6", function() {
+        expect(cronService.fromCron('35 23 29 3,4 *')).toEqual({base: 6, minuteValue: 35, hourValue: 23, dayOfMonthValue: 29, monthValue: [3,4]});
+    });
 
     it("cron should be set for every minute", function() {
         var scope = $rootScope.$new();
@@ -86,25 +126,6 @@ describe('AngularCronJobs', function() {
         expect(scope.cron).toEqual('10 4 5,6 5,6 *');
     });
 
-    it("cron with init '15 * * * *' should have minutes set and base mode 2", function() {
-        expect(cronService.fromCron('15 * * * *')).toEqual({base: 2, minuteValue: [15]});
-    });
-
-    it("cron with init '20 19 * * *' should have minutes and hours set and base mode 3", function() {
-        expect(cronService.fromCron('20 19 * * *')).toEqual({base: 3, minuteValue: [20], hourValue: [19]});
-    });
-
-    it("cron with init '25 1 * * 3' should have minutes and hours set and base mode 4", function() {
-        expect(cronService.fromCron('25 1 * * 3')).toEqual({base: 4, minuteValue: [25], hourValue: [1], dayValue: [3]});
-    });
-
-    it("cron with init '30 10 7 * *' should have minutes and hours set and base mode 5", function() {
-        expect(cronService.fromCron('30 10 7 * *')).toEqual({base: 5, minuteValue: [30], hourValue: [10], dayOfMonthValue: [7]});
-    });
-
-    it("cron with init '35 23 29 4 *' should have minutes and hours set and base mode 6", function() {
-        expect(cronService.fromCron('35 23 29 4 *')).toEqual({base: 6, minuteValue: [35], hourValue: [23], dayOfMonthValue: [29], monthValue: [4]});
-    });
 
     it("cron should disallow minute if set in config", function() {
         var scope = $rootScope.$new();
