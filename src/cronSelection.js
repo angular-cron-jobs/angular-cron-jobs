@@ -2,7 +2,7 @@
 
 angular.module('angular-cron-jobs', ['templates-angularcronjobs']);
 
-angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', function(cronService) {
+angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', 'baseFrequency', function(cronService, baseFrequency) {
     return {
         restrict: 'EA',
         replace: true,
@@ -20,6 +20,8 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
 
             var originalInit = undefined;
             var initChanged = false;
+            
+            $scope.baseFrequency = baseFrequency;
 
             $scope.frequency = [{
                 value: 1,
@@ -86,23 +88,23 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                     if (n && n.base) {
                         n.base = parseInt(n.base);
                     }
-                    if (n && n.base && n.base >= 2) {
+                    if (n && n.base && n.base >= baseFrequency.hour) {
                         n.minuteValue = $scope.minuteValue[0];
                     }
 
-                    if (n && n.base && n.base >= 3) {
+                    if (n && n.base && n.base >= baseFrequency.day) {
                         n.hourValue = $scope.hourValue[0];
                     }
 
-                    if (n && n.base && n.base === 4) {
+                    if (n && n.base && n.base === baseFrequency.week) {
                         n.dayValue = $scope.dayValue[0];
                     }
 
-                    if (n && n.base && n.base >= 5) {
+                    if (n && n.base && n.base >= baseFrequency.month) {
                         n.dayOfMonthValue = $scope.dayOfMonthValue[0];
                     }
 
-                    if (n && n.base && n.base === 6) {
+                    if (n && n.base && n.base === baseFrequency.year) {
                         n.monthValue = $scope.monthValue[0];
                     }
                 } else if (n && n.base && o && o.base) {
@@ -176,6 +178,22 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             return days[input];
         } else {
             return null;
+        }
+    };
+}).directive('ngMultiple', function() {
+    return {
+        restrict: 'A',
+        scope: {
+            ngMultiple: '='
+        },
+        link: function (scope, element) {
+            var unwatch = scope.$watch('ngMultiple', function(newValue) {
+                if (newValue) {
+                    element.attr('multiple', 'multiple');
+                } else {
+                    element.removeAttr('multiple');
+                }
+            });
         }
     };
 });
