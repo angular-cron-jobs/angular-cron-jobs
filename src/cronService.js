@@ -1,28 +1,38 @@
 'use strict';
 
-angular.module('angular-cron-jobs').factory('cronService', function() {
+angular.module('angular-cron-jobs')
+.value('baseFrequency', {
+    minute: 1,
+    hour: 2,
+    day: 3,
+    week: 4,
+    month: 5,
+    year: 6
+})
+.factory('cronService', ['baseFrequency', function(baseFrequency) {
     var service = {};
 
     service.setCron = function(n) {
+        // minute, hour, day, week, month, year
         var cron = ['*', '*', '*', '*', '*'];
 
-        if (n && n.base && n.base >= 2) {
+        if (n && n.base && n.base >= baseFrequency.hour) {
             cron[0] = typeof n.minuteValues !== 'undefined' ? n.minuteValues : '*';
         }
 
-        if (n && n.base && n.base >= 3) {
+        if (n && n.base && n.base >= baseFrequency.day) {
             cron[1] = typeof n.hourValues !== 'undefined' ? n.hourValues : '*';
         }
 
-        if (n && n.base && n.base === 4) {
+        if (n && n.base && n.base === baseFrequency.week) {
             cron[4] = n.dayValues;
         }
 
-        if (n && n.base && n.base >= 5) {
+        if (n && n.base && n.base >= baseFrequency.month) {
             cron[2] = typeof n.dayOfMonthValues !== 'undefined' ? n.dayOfMonthValues : '*';
         }
 
-        if (n && n.base && n.base === 6) {
+        if (n && n.base && n.base === baseFrequency.year) {
             cron[3] = typeof n.monthValues !== 'undefined' ? n.monthValues : '*';
         }
         return cron.join(' ');
@@ -33,17 +43,17 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         var frequency = { base: '1' }; // default: every minute
 
         if (cron[0] === '*' && cron[1] === '*' && cron[2] === '*' && cron[3] === '*' && cron[4] === '*') {
-            frequency.base = 1; // every minute
+            frequency.base = baseFrequency.minute; // every minute
         } else if (cron[1] === '*' && cron[2] === '*' && cron[3] === '*' && cron[4] === '*') {
-            frequency.base = 2; // every hour
+            frequency.base = baseFrequency.hour; // every hour
         } else if (cron[2] === '*' && cron[3] === '*' && cron[4] === '*') {
-            frequency.base = 3; // every day
+            frequency.base = baseFrequency.day; // every day
         } else if (cron[2] === '*' && cron[3] === '*') {
-            frequency.base = 4; // every week
+            frequency.base = baseFrequency.week; // every week
         } else if (cron[3] === '*' && cron[4] === '*') {
-            frequency.base = 5; // every month
+            frequency.base = baseFrequency.month; // every month
         } else if (cron[4] === '*') {
-            frequency.base = 6; // every year
+            frequency.base = baseFrequency.year; // every year
         }
 
         if (cron[0] !== '*') {
@@ -99,4 +109,4 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         return frequency;
     };
     return service;
-});
+}]);
