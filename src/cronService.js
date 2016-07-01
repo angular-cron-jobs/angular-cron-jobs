@@ -1,28 +1,37 @@
 'use strict';
 
-angular.module('angular-cron-jobs').factory('cronService', function() {
+angular.module('angular-cron-jobs')
+.value('baseFrequency', {
+    minute: 1,
+    hour: 2,
+    day: 3,
+    week: 4,
+    month: 5,
+    year: 6
+})
+.factory('cronService', ['baseFrequency', function(baseFrequency) {
     var service = {};
 
     service.setCron = function(n) {
         var cron = ['*', '*', '*', '*', '*'];
 
-        if (n && n.base && n.base >= 2) {
+        if (n && n.base && n.base >= baseFrequency.hour) {
             cron[0] = typeof n.minuteValue !== undefined ? n.minuteValue : '*';
         }
 
-        if (n && n.base && n.base >= 3) {
+        if (n && n.base && n.base >= baseFrequency.day) {
             cron[1] = typeof n.hourValue !== undefined ? n.hourValue : '*';
         }
 
-        if (n && n.base && n.base === 4) {
+        if (n && n.base && n.base === baseFrequency.week) {
             cron[4] = n.dayValue;
         }
 
-        if (n && n.base && n.base >= 5) {
+        if (n && n.base && n.base >= baseFrequency.month) {
             cron[2] = typeof n.dayOfMonthValue !== undefined ? n.dayOfMonthValue : '*';
         }
 
-        if (n && n.base && n.base === 6) {
+        if (n && n.base && n.base === baseFrequency.year) {
             cron[3] = typeof n.monthValue !== undefined ? n.monthValue : '*';
         }
         return cron.join(' ');
@@ -99,4 +108,4 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         return frequency;
     };
     return service;
-});
+}]);
