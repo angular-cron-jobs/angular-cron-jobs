@@ -7,23 +7,23 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         var cron = ['*', '*', '*', '*', '*'];
 
         if (n && n.base && n.base >= 2) {
-            cron[0] = typeof n.minuteValue !== undefined ? n.minuteValue : '*';
+            cron[0] = typeof n.minuteValues !== 'undefined' ? n.minuteValues : '*';
         }
 
         if (n && n.base && n.base >= 3) {
-            cron[1] = typeof n.hourValue !== undefined ? n.hourValue : '*';
+            cron[1] = typeof n.hourValues !== 'undefined' ? n.hourValues : '*';
         }
 
         if (n && n.base && n.base === 4) {
-            cron[4] = n.dayValue;
+            cron[4] = n.dayValues;
         }
 
         if (n && n.base && n.base >= 5) {
-            cron[2] = typeof n.dayOfMonthValue !== undefined ? n.dayOfMonthValue : '*';
+            cron[2] = typeof n.dayOfMonthValues !== 'undefined' ? n.dayOfMonthValues : '*';
         }
 
         if (n && n.base && n.base === 6) {
-            cron[3] = typeof n.monthValue !== undefined ? n.monthValue : '*';
+            cron[3] = typeof n.monthValues !== 'undefined' ? n.monthValues : '*';
         }
         return cron.join(' ');
     };
@@ -51,9 +51,9 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
             if (cron[0].indexOf(',') >= 0) {
                 var tempArray = cron[0].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
-                frequency.minuteValue = tempArray;
+                frequency.minuteValues = tempArray;
             } else {
-                frequency.minuteValue = parseInt(cron[0]);
+                frequency.minuteValues = [parseInt(cron[0])];
             }
         }
         if (cron[1] !== '*') {
@@ -61,9 +61,9 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
             if (cron[1].indexOf(',') >= 0) {
                 var tempArray = cron[1].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
-                frequency.hourValue = tempArray;
+                frequency.hourValues = tempArray;
             } else {
-                frequency.hourValue = parseInt(cron[1]);
+                frequency.hourValues = [parseInt(cron[1])];
             }
         }
         if (cron[2] !== '*') {
@@ -71,9 +71,9 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
             if (cron[2].indexOf(',') >= 0) {
                 var tempArray = cron[2].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
-                frequency.dayOfMonthValue = tempArray;
+                frequency.dayOfMonthValues = tempArray;
             } else {
-                frequency.dayOfMonthValue = parseInt(cron[2]);
+                frequency.dayOfMonthValues = [parseInt(cron[2])];
             }
         }
         if (cron[3] !== '*') {
@@ -81,9 +81,9 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
             if (cron[3].indexOf(',') >= 0) {
                 var tempArray = cron[3].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
-                frequency.monthValue = tempArray;
+                frequency.monthValues = tempArray;
             } else {
-                frequency.monthValue = parseInt(cron[3]);
+                frequency.monthValues = [parseInt(cron[3])];
             }
         }
         if (cron[4] !== '*') {
@@ -91,9 +91,9 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
             if (cron[4].indexOf(',') >= 0) {
                 var tempArray = cron[4].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
-                frequency.dayValue = tempArray;
+                frequency.dayValues = tempArray;
             } else {
-                frequency.dayValue = parseInt(cron[4]);
+                frequency.dayValues = [parseInt(cron[4])];
             }
         }
         return frequency;

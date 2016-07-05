@@ -94,23 +94,23 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                 freq.base = parseInt(freq.base);
 
                 if (freq.base >= 2) {
-                    freq.minuteValue = $scope.minuteValues[0];
+                    freq.minuteValues = $scope.minuteValues[0];
                 }
 
                 if (freq.base >= 3) {
-                    freq.hourValue = $scope.hourValues[0];
+                    freq.hourValues = $scope.hourValues[0];
                 }
 
                 if (freq.base === 4) {
-                    freq.dayValue = $scope.dayValues[0];
+                    freq.dayValues = $scope.dayValues[0];
                 }
 
                 if (freq.base >= 5) {
-                    freq.dayOfMonthValue = $scope.dayOfMonthValues[0];
+                    freq.dayOfMonthValues = $scope.dayOfMonthValues[0];
                 }
 
                 if (freq.base === 6) {
-                    freq.monthValue = $scope.monthValues[0];
+                    freq.monthValues = $scope.monthValues[0];
                 }
             }
         }
