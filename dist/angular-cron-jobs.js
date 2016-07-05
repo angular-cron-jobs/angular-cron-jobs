@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v2.1.1 - 2016-06-30 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v2.1.1 - 2016-07-05 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -108,11 +108,6 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
         scope: {
             ngModel: '=',
             config: '=',
-<<<<<<< HEAD
-=======
-            output: '=?',
-            init: '=?',
->>>>>>> merger
             myFrequency: '=?frequency'
         },
         templateUrl: function(element, attributes) {
@@ -145,7 +140,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             $scope.$watch('ngModel', function (newValue) {
                 if (angular.isDefined(newValue) && newValue) {
                     modelChanged = true;
-                    $scope.myFrequency = cronService.fromCron(newValue);
+                    $scope.myFrequency = cronService.fromCron(newValue, $scope.config.allowMultiple);
                 } else if (newValue === '') {
                     $scope.myFrequency = undefined;
                 }
@@ -313,7 +308,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         return cron.join(' ');
     };
 
-    service.fromCron = function(value) {
+    service.fromCron = function(value, allowMultiple) {
         var cron = value.replace(/\s+/g, ' ').split(' ');
         var frequency = { base: '1' }; // default: every minute
 
@@ -333,7 +328,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
 
         if (cron[0] !== '*') {
             //preparing to handle multiple minutes
-            if (cron[0].indexOf(',') >= 0) {
+            if (allowMultiple) {
                 var tempArray = cron[0].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.minuteValues = tempArray;
@@ -343,17 +338,17 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         }
         if (cron[1] !== '*') {
             //preparing to handle multiple hours
-            if (cron[1].indexOf(',') >= 0) {
+            if (allowMultiple) {
                 var tempArray = cron[1].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.hourValues = tempArray;
             } else {
-                frequency.hourValues = [parseInt(cron[1])];
+                frequency.hourValues = parseInt(cron[1]);
             }
         }
         if (cron[2] !== '*') {
             //preparing to handle multiple days of the month
-            if (cron[2].indexOf(',') >= 0) {
+            if (allowMultiple) {
                 var tempArray = cron[2].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.dayOfMonthValues = tempArray;
@@ -363,7 +358,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         }
         if (cron[3] !== '*') {
             //preparing to handle multiple months
-            if (cron[3].indexOf(',') >= 0) {
+            if (allowMultiple) {
                 var tempArray = cron[3].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.monthValues = tempArray;
@@ -373,7 +368,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
         }
         if (cron[4] !== '*') {
             //preparing to handle multiple days of the week
-            if (cron[4].indexOf(',') >= 0) {
+            if (allowMultiple) {
                 var tempArray = cron[4].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.dayValues = tempArray;

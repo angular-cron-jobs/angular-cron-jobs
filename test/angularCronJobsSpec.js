@@ -23,44 +23,48 @@ describe('AngularCronJobs', function() {
         return elementCompiled;
     }
 
-    it("cronService.fromCron: '15 * * * *' should have minutes set and base mode 2", function() {
-        expect(cronService.fromCron('15 * * * *')).toEqual({base: 2, minuteValues: [15]});
+    it("cronService.fromCron: '15 * * * *' should have minutes set and base mode 2 with multiple false", function() {
+        expect(cronService.fromCron('15 * * * *', false)).toEqual({base: 2, minuteValues: 15});
+    });
+
+    it("cronService.fromCron: '15 * * * *' should have minutes set and base mode 2 with multiple true", function() {
+        expect(cronService.fromCron('15 * * * *', true)).toEqual({base: 2, minuteValues: 15});
     });
 
     it("cronService.fromCron: '20 19 * * *' should have minutes and hours set and base mode 3", function() {
-        expect(cronService.fromCron('20 19 * * *')).toEqual({base: 3, minuteValues: [20], hourValues: [19]});
+        expect(cronService.fromCron('20 19 * * *')).toEqual({base: 3, minuteValues: 20, hourValues: 19});
     });
 
     it("cronService.fromCron: '25 1 * * 3' should have minutes and hours set and base mode 4", function() {
-        expect(cronService.fromCron('25 1 * * 3')).toEqual({base: 4, minuteValues: [25], hourValues: [1], dayValues: [3]});
+        expect(cronService.fromCron('25 1 * * 3')).toEqual({base: 4, minuteValues: 25, hourValues: 1, dayValues: 3});
     });
 
     it("cronService.fromCron: '30 10 7 * *' should have minutes and hours set and base mode 5", function() {
-        expect(cronService.fromCron('30 10 7 * *')).toEqual({base: 5, minuteValues: [30], hourValues: [10], dayOfMonthValues: [7]});
+        expect(cronService.fromCron('30 10 7 * *', true)).toEqual({base: 5, minuteValues: [30], hourValues: [10], dayOfMonthValues: [7]});
     });
 
     it("cronService.fromCron: '35 23 29 4 *' should have minutes and hours set and base mode 6", function() {
-        expect(cronService.fromCron('35 23 29 4 *')).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [4]});
+        expect(cronService.fromCron('35 23 29 4 *', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [4]});
     });
 
     it("cronService.fromCron: '10,15 * * * *' should have minutes set and base mode 2", function() {
-        expect(cronService.fromCron('10,15 * * * *')).toEqual({base: 2, minuteValues: [10,15]});
+        expect(cronService.fromCron('10,15 * * * *', true)).toEqual({base: 2, minuteValues: [10,15]});
     });
 
     it("cronService.fromCron: '15,20 18,19 * * *' should have minutes and hours set and base mode 3", function() {
-        expect(cronService.fromCron('15,20 18,19 * * *')).toEqual({base: 3, minuteValues: [15,20], hourValues: [18,19]});
+        expect(cronService.fromCron('15,20 18,19 * * *', true)).toEqual({base: 3, minuteValues: [15,20], hourValues: [18,19]});
     });
 
     it("cronService.fromCron: '20,25 1 * * 3' should have minutes and hours set and base mode 4", function() {
-        expect(cronService.fromCron('20,25 1 * * 2,3')).toEqual({base: 4, minuteValues: [20,25], hourValues: [1], dayValues: [2,3]});
+        expect(cronService.fromCron('20,25 1 * * 2,3', true)).toEqual({base: 4, minuteValues: [20,25], hourValues: [1], dayValues: [2,3]});
     });
 
     it("cronService.fromCron: '25,30 9,10 6,7 * *' should have minutes and hours set and base mode 5", function() {
-        expect(cronService.fromCron('25,30 9,10 6,7 * *')).toEqual({base: 5, minuteValues: [25,30], hourValues: [9,10], dayOfMonthValues: [6,7]});
+        expect(cronService.fromCron('25,30 9,10 6,7 * *', true)).toEqual({base: 5, minuteValues: [25,30], hourValues: [9,10], dayOfMonthValues: [6,7]});
     });
 
     it("cronService.fromCron: '35 23 29 3,4 *' should have minutes and hours set and base mode 6", function() {
-        expect(cronService.fromCron('35 23 29 3,4 *')).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [3,4]});
+        expect(cronService.fromCron('35 23 29 3,4 *', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [3,4]});
     });
 
     it("cron should be set for every minute", function() {
