@@ -13,7 +13,7 @@ module.exports = function(config) {
     files: [
       'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular.js',
       'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular-mocks.js',
-      'dist/*.js',
+      'dist/angular-cron-jobs.js',
       'test/*.js'
     ],
 
