@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v2.1.1 - 2016-07-05 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v2.1.1 - 2016-07-07 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -333,7 +333,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.minuteValues = tempArray;
             } else {
-                frequency.minuteValues = [parseInt(cron[0])];
+                frequency.minuteValues = parseInt(cron[0]);
             }
         }
         if (cron[1] !== '*') {
@@ -353,7 +353,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.dayOfMonthValues = tempArray;
             } else {
-                frequency.dayOfMonthValues = [parseInt(cron[2])];
+                frequency.dayOfMonthValues = parseInt(cron[2]);
             }
         }
         if (cron[3] !== '*') {
@@ -363,7 +363,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.monthValues = tempArray;
             } else {
-                frequency.monthValues = [parseInt(cron[3])];
+                frequency.monthValues = parseInt(cron[3]);
             }
         }
         if (cron[4] !== '*') {
@@ -373,7 +373,7 @@ angular.module('angular-cron-jobs').factory('cronService', function() {
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.dayValues = tempArray;
             } else {
-                frequency.dayValues = [parseInt(cron[4])];
+                frequency.dayValues = parseInt(cron[4]);
             }
         }
         return frequency;

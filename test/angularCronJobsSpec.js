@@ -28,7 +28,7 @@ describe('AngularCronJobs', function() {
     });
 
     it("cronService.fromCron: '15 * * * *' should have minutes set and base mode 2 with multiple true", function() {
-        expect(cronService.fromCron('15 * * * *', true)).toEqual({base: 2, minuteValues: 15});
+        expect(cronService.fromCron('15 * * * *', true)).toEqual({base: 2, minuteValues: [15]});
     });
 
     it("cronService.fromCron: '20 19 * * *' should have minutes and hours set and base mode 3", function() {

@@ -107,7 +107,7 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js'
       },
       build: {
-        singleRun: false,
+        singleRun: true,
         autoWatch: false
       },
       dev: {
