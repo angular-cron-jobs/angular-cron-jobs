@@ -83,6 +83,7 @@ describe('AngularCronJobs', function() {
         scope.cron = cronService.setCron(scope.myFrequency);
         $rootScope.$digest();
         expect(scope.cron).toEqual('10 * * * *');
+        expect(view.html()).toContain('<option ng-repeat="value in minuteValues" ng-selected="myFrequency.minuteValues.indexOf(value) >= 0" value="10" class="ng-scope ng-binding" selected="selected">');
     });
 
     it("cron should be set for every day at 4:30 AM", function() {

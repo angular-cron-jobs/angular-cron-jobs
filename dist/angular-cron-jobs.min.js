@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v2.1.1 - 2016-07-07 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v2.1.1 - 2016-07-12 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
