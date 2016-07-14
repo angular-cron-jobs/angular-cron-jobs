@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v2.1.1 - 2016-07-12 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v2.1.1 - 2016-07-14 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jacob@ieksolutions.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -24,7 +24,7 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
     "            </select>\n" +
     "            <!-- If Multiple is not Enabled -->\n" +
     "            <select class=\"cron-select day-value\" ng-model=\"myFrequency.dayValues\" ng-if=\"!allowMultiple\">\n" +
-    "                <option ng-repeat=\"value in dayValues\" ng-selected=\"myFrequency.dayValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
+    "                <option ng-repeat=\"value in dayValues\" value=\"{{value}}\">\n" +
     "                    {{value | cronDayName}}\n" +
     "                </option>\n" +
     "            </select>\n" +
@@ -39,7 +39,7 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
     "            </select>\n" +
     "            <!-- If Multiple is not Enabled -->\n" +
     "            <select class=\"cron-select day-of-month-value\" ng-model=\"myFrequency.dayOfMonthValues\" ng-if=\"!allowMultiple\">\n" +
-    "                <option ng-repeat=\"value in dayOfMonthValues\" ng-selected=\"myFrequency.dayOfMonthValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
+    "                <option ng-repeat=\"value in dayOfMonthValues\" value=\"{{value}}\">\n" +
     "                    {{value | cronNumeral}}\n" +
     "                </option>\n" +
     "            </select>\n" +
@@ -54,7 +54,7 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
     "            </select>\n" +
     "            <!-- If Multiple is not Enabled -->\n" +
     "            <select class=\"cron-select month-value\" ng-model=\"myFrequency.monthValues\" ng-if=\"!allowMultiple\">\n" +
-    "                <option ng-repeat=\"value in monthValues\" ng-selected=\"myFrequency.monthValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
+    "                <option ng-repeat=\"value in monthValues\" value=\"{{value}}\">\n" +
     "                    {{value | cronMonthName}}\n" +
     "                </option>\n" +
     "            </select>\n" +
@@ -69,7 +69,7 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
     "            </select>\n" +
     "            <!-- If Multiple is not Enabled -->\n" +
     "            <select class=\"cron-select hour-value\" ng-model=\"myFrequency.hourValues\" ng-if=\"!allowMultiple\">\n" +
-    "                <option ng-repeat=\"value in hourValues\" ng-selected=\"myFrequency.hourValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
+    "                <option ng-repeat=\"value in hourValues\" value=\"{{value}}\">\n" +
     "                    {{value}}\n" +
     "                </option>\n" +
     "            </select>\n" +
@@ -84,7 +84,7 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
     "            </select>\n" +
     "            <!-- If Multiple is not Enabled -->\n" +
     "            <select class=\"cron-select minute-value\" ng-model=\"myFrequency.minuteValues\" ng-if=\"!allowMultiple\">\n" +
-    "                <option ng-repeat=\"value in minuteValues\" ng-selected=\"myFrequency.minuteValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
+    "                <option ng-repeat=\"value in minuteValues\" value=\"{{value}}\">\n" +
     "                    {{value}}\n" +
     "                </option>\n" +
     "            </select>\n" +

@@ -14,7 +14,7 @@
             </select>
             <!-- If Multiple is not Enabled -->
             <select class="cron-select day-value" ng-model="myFrequency.dayValues" ng-if="!allowMultiple">
-                <option ng-repeat="value in dayValues" ng-selected="myFrequency.dayValues.indexOf(value) >= 0" value="{{value}}">
+                <option ng-repeat="value in dayValues" value="{{value}}">
                     {{value | cronDayName}}
                 </option>
             </select>
@@ -29,7 +29,7 @@
             </select>
             <!-- If Multiple is not Enabled -->
             <select class="cron-select day-of-month-value" ng-model="myFrequency.dayOfMonthValues" ng-if="!allowMultiple">
-                <option ng-repeat="value in dayOfMonthValues" ng-selected="myFrequency.dayOfMonthValues.indexOf(value) >= 0" value="{{value}}">
+                <option ng-repeat="value in dayOfMonthValues" value="{{value}}">
                     {{value | cronNumeral}}
                 </option>
             </select>
@@ -44,7 +44,7 @@
             </select>
             <!-- If Multiple is not Enabled -->
             <select class="cron-select month-value" ng-model="myFrequency.monthValues" ng-if="!allowMultiple">
-                <option ng-repeat="value in monthValues" ng-selected="myFrequency.monthValues.indexOf(value) >= 0" value="{{value}}">
+                <option ng-repeat="value in monthValues" value="{{value}}">
                     {{value | cronMonthName}}
                 </option>
             </select>
@@ -59,7 +59,7 @@
             </select>
             <!-- If Multiple is not Enabled -->
             <select class="cron-select hour-value" ng-model="myFrequency.hourValues" ng-if="!allowMultiple">
-                <option ng-repeat="value in hourValues" ng-selected="myFrequency.hourValues.indexOf(value) >= 0" value="{{value}}">
+                <option ng-repeat="value in hourValues" value="{{value}}">
                     {{value}}
                 </option>
             </select>
@@ -74,7 +74,7 @@
             </select>
             <!-- If Multiple is not Enabled -->
             <select class="cron-select minute-value" ng-model="myFrequency.minuteValues" ng-if="!allowMultiple">
-                <option ng-repeat="value in minuteValues" ng-selected="myFrequency.minuteValues.indexOf(value) >= 0" value="{{value}}">
+                <option ng-repeat="value in minuteValues" value="{{value}}">
                     {{value}}
                 </option>
             </select>
