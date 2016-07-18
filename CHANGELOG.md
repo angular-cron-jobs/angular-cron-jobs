@@ -1,3 +1,11 @@
+<a name="3.0.1"></a>
+# 3.0.1 (2016-07-18)
+
+## Updates
+
+- Bug fixes in default tempalte.
+- Bug fix with allowMultiple reference inside directive.
+
 <a name="3.0.0"></a>
 # 3.0.0 (2016-07-18)
 
