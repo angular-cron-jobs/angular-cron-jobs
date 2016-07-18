@@ -1,7 +1,7 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v2.1.1 - 2016-07-14 * @link https://github.com/jacobscarter/angular-cron-jobs
- * @author Jacob Carter <jacob@ieksolutions.com>
+ * @version v3.0.0 - 2016-07-18 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @author Jacob Carter <jc@jacobcarter.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 angular.module('templates-angularcronjobs', ['cronselection.html']);
