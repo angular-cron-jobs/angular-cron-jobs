@@ -7,19 +7,18 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
         restrict: 'EA',
         replace: true,
         transclude: true,
+        require: 'ngModel',
         scope: {
+            ngModel: '=',
             config: '=',
-            output: '=?',
-            init: '=?',
             myFrequency: '=?frequency'
         },
         templateUrl: function(element, attributes) {
             return attributes.template || 'cronselection.html';
         },
-        link: function($scope) {
+        link: function($scope, $el, $attr, $ngModel) {
 
-            var originalInit = undefined;
-            var initChanged = false;
+            var modelChanged = false;
 
             $scope.frequency = [{
                 value: 1,
@@ -41,15 +40,12 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                 label: 'Year'
             }];
 
-            if (angular.isDefined($scope.init)) {
-                originalInit = angular.copy($scope.init);
-                $scope.myFrequency = cronService.fromCron($scope.init);
-            }
-
-            $scope.$watch('init', function(newValue) {
-                if (angular.isDefined(newValue) && newValue && (newValue !== originalInit)) {
-                    initChanged = true;
-                    $scope.myFrequency = cronService.fromCron(newValue);
+            $scope.$watch('ngModel', function (newValue) {
+                if (angular.isDefined(newValue) && newValue) {
+                    modelChanged = true;
+                    $scope.myFrequency = cronService.fromCron(newValue, $scope.config.allowMultiple);
+                } else if (newValue === '') {
+                    $scope.myFrequency = undefined;
                 }
             });
 
@@ -75,43 +71,48 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
                 }
             }
 
-            $scope.minuteValue = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
-            $scope.hourValue = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-            $scope.dayOfMonthValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-            $scope.dayValue = [0, 1, 2, 3, 4, 5, 6];
-            $scope.monthValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+            $scope.minuteValues = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+            $scope.hourValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+            $scope.dayOfMonthValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+            $scope.dayValues = [0, 1, 2, 3, 4, 5, 6];
+            $scope.monthValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-            $scope.$watch('myFrequency', function(n, o) {
-                if (n && (!o || n.base !== o.base) && !initChanged) {
-                    if (n && n.base) {
-                        n.base = parseInt(n.base);
-                    }
-                    if (n && n.base && n.base >= 2) {
-                        n.minuteValue = $scope.minuteValue[0];
-                    }
-
-                    if (n && n.base && n.base >= 3) {
-                        n.hourValue = $scope.hourValue[0];
+            $scope.$watch('myFrequency', function (n, o) {
+                if (n !== undefined) {
+                    if (n && n.base && (!o || n.base !== o.base) && !modelChanged) {
+                        setInitialValuesForBase(n);
+                    } else if (n && n.base && o && o.base) {
+                        modelChanged = false;
                     }
 
-                    if (n && n.base && n.base === 4) {
-                        n.dayValue = $scope.dayValue[0];
-                    }
-
-                    if (n && n.base && n.base >= 5) {
-                        n.dayOfMonthValue = $scope.dayOfMonthValue[0];
-                    }
-
-                    if (n && n.base && n.base === 6) {
-                        n.monthValue = $scope.monthValue[0];
-                    }
-                } else if (n && n.base && o && o.base) {
-                    initChanged = false;
+                    var newVal = cronService.setCron(n);
+                    $ngModel.$setViewValue(newVal);
                 }
-                $scope.output = cronService.setCron(n);
             }, true);
 
+            function setInitialValuesForBase(freq) {
+                freq.base = parseInt(freq.base);
 
+                if (freq.base >= 2) {
+                    freq.minuteValues = $scope.minuteValues[0];
+                }
+
+                if (freq.base >= 3) {
+                    freq.hourValues = $scope.hourValues[0];
+                }
+
+                if (freq.base === 4) {
+                    freq.dayValues = $scope.dayValues[0];
+                }
+
+                if (freq.base >= 5) {
+                    freq.dayOfMonthValues = $scope.dayOfMonthValues[0];
+                }
+
+                if (freq.base === 6) {
+                    freq.monthValues = $scope.monthValues[0];
+                }
+            }
         }
     };
 }]).filter('cronNumeral', function() {
