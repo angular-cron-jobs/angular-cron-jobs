@@ -110,13 +110,15 @@ the `frequency` attribute grants you exposure to the `$scope.myFrequency` object
 
   <cron-selection ng-model="myOutput" config="myConfig" frequency="cronData"></cron-selection>
 
+The type of `{number|Array.<number>}` depends on the following: number if `allowMultiple` is `false` and Array if `allowMultiple` is `true`
+
 Properties you now have access to via `frequency` attribute include:
 
 * **base** `{number}` 1-6 (minute thru year)
-* **minuteValue** `{number|Array.<number>}` 0-55 (increments of 5) - (number if `allowMultiple` is `false` and Array if `allowMultiple` is `true`)
-* **hourValue** `{number|Array.<number>}` 1-23 - (number if `allowMultiple` is `false` and Array if `allowMultiple` is `true`)
-* **dayOfMonthValue** `{number|Array.<number>}` 0-6 (Sunday thru Saturday) - (number if `allowMultiple` is `false` and Array if `allowMultiple` is `true`)
-* **monthValue** `{number|Array.<number>}` 1-12 - (number if `allowMultiple` is `false` and Array if `allowMultiple` is `true`)
+* **minuteValue** `{number|Array.<number>}` 0-55 (increments of 5)
+* **hourValue** `{number|Array.<number>}` 1-23
+* **dayOfMonthValue** `{number|Array.<number>}` 0-6 (Sunday thru Saturday)
+* **monthValue** `{number|Array.<number>}` 1-12
 
 ###You can get away from using select inputs in your custom temple using the `frequency` attribute.
 
