@@ -1,3 +1,12 @@
+<a name="3.0.0"></a>
+# 3.0.0 (2016-07-18)
+
+## Updates
+
+- Combined `init` and `output` to use Angular's `ngModel`.
+- Updated variable names to make more sense.
+- Updates to single vs. multiple config, `$scope.frequency` now has numbers for single and array for multiple.
+
 <a name="2.1.1"></a>
 # 2.1.1 (2016-06-30)
 

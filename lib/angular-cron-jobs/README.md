@@ -16,9 +16,9 @@ Include the component in your application:
 
 Insert the directive where you would like it to appear in your application:
 
-    <cron-selection output="myOutput"></cron-selection>
+    <cron-selection ng-model="myOutput"></cron-selection>
 
-By setting the output attribute equal to a value in your controller (i.e. `$scope.myOutput` in the example above) you have access to the cron syntax output.  
+By setting the ng-model attribute equal to a value in your controller (i.e. `$scope.myOutput` in the example above) you have access to the cron syntax output.  
 
 For example, a job selected to run every month on the 11th at 4:10 AM would output the follow:
 
@@ -30,7 +30,7 @@ as a string.
 
 The directive takes an optional attribute of `config`
 
-    <cron-selection output="myOutput" config="myConfig"></cron-selection>
+    <cron-selection ng-model="myOutput" config="myConfig"></cron-selection>
 
 This is an object in your controller you can use to remove options from the user.  For example if you would like the user to be able to set Minute, Hour, and Day but not Week, Month, and Year you would create the following object in your controller:
 
@@ -80,43 +80,43 @@ As noted by [TimotheeJeannin](https://github.com/TimotheeJeannin) you can use cu
 
 ##Initializing UI with data from server
 
-The directive takes an optional attribute of `init`
+The directive takes an attribute of `ng-model` used for init and output data.
 
-    <cron-selection output="myOutput" config="myConfig" init="serverData"></cron-selection>
+    <cron-selection ng-model="myOutput" config="myConfig"></cron-selection>
 
 This is a string in your controller of cron syntax that was recieved from your server or any other source:
 
-    $scope.serverData = "30 2 4 * *"
+    $scope.myOutput = "30 2 4 * *"
     
 Thew directive will properly build out the UI to reflect this data.
 
 ##Setting Cron after directive load
 
-The `init` attribute also works as a reset attribute
+The `ng-model` attribute also works as a reset attribute
 
-    <cron-selection output="myOutput" config="myConfig" init="serverData"></cron-selection>
+    <cron-selection ng-model="myOutput" config="myConfig"></cron-selection>
 
 This is an expression paired with a value in your controller.  Whenever the value changes (or is set for the first time) and passed the `angular.isDefined()` method the cron will reset itself to match that value
 
     $timeout(function(){
-       $scope.serverData = "0 0 * * *"
+       $scope.myOutput = "0 0 * * *"
     }, 3000);
     
 The directive will properly build out the UI to reflect this data.
 
-##Utilized Exposed $scope.myFrequency:
+##Utilize Exposed $scope.myFrequency:
 
 the `frequency` attribute grants you exposure to the `$scope.myFrequency` object inside the directive.  It is two way bound so you can manipulate it from outside the directive as well.
 
-  <cron-selection output="myOutput" config="myConfig" init="serverData" frequency="cronData"></cron-selection>
+  <cron-selection ng-model="myOutput" config="myConfig" frequency="cronData"></cron-selection>
 
 Properties you now have access to via `frequency` attribute include:
 
 * **base** `{number}` 1-6 (minute thru year)
-* **minuteValue** `{number|Array.<number>}` 0-55 (increments of 5)
-* **hourValue** `{number|Array.<number>}` 1-23
-* **dayOfMonthValue** `{number|Array.<number>}` 0-6 (Sunday thru Saturday)
-* **monthValue** `{number|Array.<number>}` 1-12
+* **minuteValue** `{number|Array.<number>}` 0-55 (increments of 5) - (number if `allowMultiple` is `false` and Array if `allowMultiple` is `true`)
+* **hourValue** `{number|Array.<number>}` 1-23 - (number if `allowMultiple` is `false` and Array if `allowMultiple` is `true`)
+* **dayOfMonthValue** `{number|Array.<number>}` 0-6 (Sunday thru Saturday) - (number if `allowMultiple` is `false` and Array if `allowMultiple` is `true`)
+* **monthValue** `{number|Array.<number>}` 1-12 - (number if `allowMultiple` is `false` and Array if `allowMultiple` is `true`)
 
 ###You can get away from using select inputs in your custom temple using the `frequency` attribute.
 
@@ -138,4 +138,3 @@ Properties you now have access to via `frequency` attribute include:
 The next big to-do's on my list include:
 
 * Support generlized selections such as a one button click for "Every Five Minutes" or "Last Thursday of Every Month"
-* Combine input and output attributes to a two way bound ngModel style attribute

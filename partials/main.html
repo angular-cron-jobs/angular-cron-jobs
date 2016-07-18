@@ -1,6 +1,6 @@
 <h2>DEMO BASIC:</h2>
 <br>
-<cron-selection output="output"></cron-selection>
+<cron-selection ng-model="output"></cron-selection>
 <br>
 <br>
 <p><strong>OUTPUT:</strong> {{output}}</p>
@@ -14,7 +14,7 @@
     allowYear : false
   }
 }</pre>
-<cron-selection output="myOutput" config="config"></cron-selection>
+<cron-selection ng-model="myOutput" config="config"></cron-selection>
 <br>
 <br>
 <p><strong>OUTPUT:</strong> {{myOutput}}</p>
@@ -25,7 +25,7 @@
 <pre>$scope.myConfig = {
   allowMultiple: true
 }</pre>
-<cron-selection output="myThirdOutput" config="config2"></cron-selection>
+<cron-selection ng-model="myThirdOutput" config="config2"></cron-selection>
 <br>
 <br>
 <p><strong>OUTPUT:</strong> {{myThirdOutput}}</p>
@@ -34,24 +34,24 @@
 <h2>DEMO WITH INIT:</h2>
 <br>
 <pre>$scope.serverData = {{serverData}}</pre>
-<cron-selection output="mySecondOutput" init="serverData" config="config2"></cron-selection>
+<cron-selection ng-model="serverData" config="config2"></cron-selection>
 <br>
 <br>
 <p><strong>OUTPUT:</strong> {{mySecondOutput}}</p>
 
 <h2 id="noSelectSample">DEMO WITHOUT SELECTS</h2>
 <br>
-<cron-selection output="myThirdOutput" config="config3" template="partials/template.html" frequency="myLocalFrequency"></cron-selection>
+<cron-selection ng-model="myThirdOutput" config="config3" template="partials/template.html" frequency="myLocalFrequency"></cron-selection>
 <p><strong>OUTPUT:</strong> {{myThirdOutput}}</p>
 <br>
 <p>In your controller:</p>
 <pre>$scope.myLocalFrequency = null;
 
 $scope.selectDay = function(day) {
-  if ($scope.myLocalFrequency.dayValue.indexOf(day) >= 0) {
-    $scope.myLocalFrequency.dayValue.splice($scope.myLocalFrequency.dayValue.indexOf(day), 1);
+  if ($scope.myLocalFrequency.dayValues.indexOf(day) >= 0) {
+    $scope.myLocalFrequency.dayValues.splice($scope.myLocalFrequency.dayValues.indexOf(day), 1);
   } else {
-    $scope.myLocalFrequency.dayValue.push(day);
+    $scope.myLocalFrequency.dayValues.push(day);
   }
 };
 </pre>
@@ -61,13 +61,13 @@ $scope.selectDay = function(day) {
   &lt;select class="cron-select" ng-model="myFrequency.base" ng-options="item.value as item.label for item in frequency"&gt;&lt;/select&gt;
  &lt;/div&gt;
  &lt;div class="wrapper" ng-show="myFrequency.base == 4"&gt;
-  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(0) &gt;= 0}" ng-click="selectDay(0)"&gt; Sun. &lt;/div&gt;
-  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(1) &gt;= 0}" ng-click="$parent.selectDay(1)"&gt; Mon. &lt;/div&gt;
-  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(2) &gt;= 0}" ng-click="$parent.selectDay(2)"&gt; Tues. &lt;/div&gt;
-  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(3) &gt;= 0}" ng-click="$parent.selectDay(3)"&gt; Wed. &lt;/div&gt;
-  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(4) &gt;= 0}" ng-click="$parent.selectDay(4)"&gt; Thur. &lt;/div&gt;
-  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(5) &gt;= 0}" ng-click="$parent.selectDay(5)"&gt; Fri. &lt;/div&gt;
-  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValue.indexOf(6) &gt;= 0}" ng-click="$parent.selectDay(6)"&gt; Sat. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValues.indexOf(0) &gt;= 0}" ng-click="selectDay(0)"&gt; Sun. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValues.indexOf(1) &gt;= 0}" ng-click="$parent.selectDay(1)"&gt; Mon. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValues.indexOf(2) &gt;= 0}" ng-click="$parent.selectDay(2)"&gt; Tues. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValues.indexOf(3) &gt;= 0}" ng-click="$parent.selectDay(3)"&gt; Wed. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValues.indexOf(4) &gt;= 0}" ng-click="$parent.selectDay(4)"&gt; Thur. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValues.indexOf(5) &gt;= 0}" ng-click="$parent.selectDay(5)"&gt; Fri. &lt;/div&gt;
+  &lt;div class="day-block" ng-class="{'active': myFrequency.dayValues.indexOf(6) &gt;= 0}" ng-click="$parent.selectDay(6)"&gt; Sat. &lt;/div&gt;
  &lt;/div&gt;
 &lt;/div&gt;
 </pre>

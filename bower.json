@@ -1,6 +1,7 @@
 {
 	"name" : "angular-cron-jobs-demo-page",
   "dependencies": {
+  	"angular": "*",
     "angular-cron-jobs": "*",
     "ui-router": "*"
   }
