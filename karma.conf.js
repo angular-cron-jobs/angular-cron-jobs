@@ -17,12 +17,20 @@ module.exports = function(config) {
       'test/*.js'
     ],
 
+    plugins: [
+      'karma-phantomjs-launcher',
+      'karma-jasmine',
+      'karma-coverage'
+    ],
 
     // list of files to exclude
     exclude: [
 
     ],
 
+    preprocessors: {
+      'test/*.js': ['coverage']
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
