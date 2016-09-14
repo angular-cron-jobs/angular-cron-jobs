@@ -19,37 +19,36 @@
     "angular",
     "cron",
     "cron-job",
-    "corn job"
+    "cron job"
   ],
   "maintainers": [
     {
       "name": "Jacob Carter",
-      "website": "http://strangemilk.com/"
+      "website": "http://strangemilk.com"
     }
   ],
   "dependencies": {},
   "devDependencies": {
-    "codacy-coverage": "2.0.0",
-    "coveralls": "2.11.12",
-    "grunt": "~0.4.1",
+    "codacy-coverage": "*",
+    "coveralls": "*",
+    "grunt": "*",
     "grunt-bower": "*",
     "grunt-bower-task": "*",
-    "grunt-bump": "0.0.6",
-    "grunt-contrib-clean": "~0.4.1",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-conventional-changelog": "~0.1.1",
-    "grunt-html2js": "~0.1.3",
-    "grunt-karma": "~0.8",
-    "grunt-recess": "~0.3.0",
-    "grunt-zip": "*",
-    "jasmine-core": "^2.1.3",
-    "karma-chrome-launcher": "^0.1.7",
-    "karma-jasmine": "^0.3.2",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "grunt-contrib-jshint": "~0.11.1",
-    "karma": "~0.12.0"
+    "grunt-bump": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-conventional-changelog": "*",
+    "grunt-html2js": "*",
+    "grunt-karma": "*",
+    "grunt-recess": "*",
+    "jasmine-core": "*",
+    "karma-coverage": "*",
+    "karma-jasmine": "*",
+    "karma-phantomjs-launcher": "*",
+    "grunt-contrib-jshint": "*",
+    "karma": "*"
   },
   "license": "MIT"
 }
