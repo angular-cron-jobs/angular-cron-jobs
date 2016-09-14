@@ -3,7 +3,10 @@ node_js:
   - "4.2.4"
 
 before_script:
-  - npm install
+  - echo "Using firefox version `firefox --version`"
+  - npm install 
+  - npm install -g grunt
+  - npm install -g bower
   - bower install
 
 script:
