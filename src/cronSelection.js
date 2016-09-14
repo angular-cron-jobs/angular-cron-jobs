@@ -1,20 +1,20 @@
-'use strict';
+"use strict";
 
-angular.module('angular-cron-jobs', ['templates-angularcronjobs']);
+angular.module("angular-cron-jobs", ["templates-angularcronjobs"]);
 
-angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', function(cronService) {
+angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", function(cronService) {
     return {
-        restrict: 'EA',
+        restrict: "EA",
         replace: true,
         transclude: true,
-        require: 'ngModel',
+        require: "ngModel",
         scope: {
-            ngModel: '=',
-            config: '=',
-            myFrequency: '=?frequency'
+            ngModel: "=",
+            config: "=",
+            myFrequency: "=?frequency"
         },
         templateUrl: function(element, attributes) {
-            return attributes.template || 'cronselection.html';
+            return attributes.template || "cronselection.html";
         },
         link: function($scope, $el, $attr, $ngModel) {
 
@@ -22,38 +22,38 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
 
             $scope.frequency = [{
                 value: 1,
-                label: 'Minute'
+                label: "Minute"
             }, {
                 value: 2,
-                label: 'Hour'
+                label: "Hour"
             }, {
                 value: 3,
-                label: 'Day'
+                label: "Day"
             }, {
                 value: 4,
-                label: 'Week'
+                label: "Week"
             }, {
                 value: 5,
-                label: 'Month'
+                label: "Month"
             }, {
                 value: 6,
-                label: 'Year'
+                label: "Year"
             }];
 
-            $scope.$watch('ngModel', function (newValue) {
+            $scope.$watch("ngModel", function (newValue) {
                 if (angular.isDefined(newValue) && newValue) {
                     modelChanged = true;
                     $scope.myFrequency = cronService.fromCron(newValue, $scope.allowMultiple);
-                } else if (newValue === '') {
+                } else if (newValue === "") {
                     $scope.myFrequency = undefined;
                 }
             });
 
-            if (typeof $scope.config === 'object' && !$scope.config.length) {
-                if (typeof $scope.config.options === 'object') {
+            if (typeof $scope.config === "object" && !$scope.config.length) {
+                if (typeof $scope.config.options === "object") {
                     var optionsKeyArray = Object.keys($scope.config.options);
                     for (var i in optionsKeyArray) {
-                        var currentKey = optionsKeyArray[i].replace(/^allow/, '');
+                        var currentKey = optionsKeyArray[i].replace(/^allow/, "");
                         var originalKey = optionsKeyArray[i];
                         if (!$scope.config.options[originalKey]) {
                             for (var b in $scope.frequency) {
@@ -77,7 +77,7 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             $scope.dayValues = [0, 1, 2, 3, 4, 5, 6];
             $scope.monthValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-            $scope.$watch('myFrequency', function (n, o) {
+            $scope.$watch("myFrequency", function (n, o) {
                 if (n !== undefined) {
                     if (n && n.base && (!o || n.base !== o.base) && !modelChanged) {
                         setInitialValuesForBase(n);
@@ -115,44 +115,44 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             }
         }
     };
-}]).filter('cronNumeral', function() {
+}]).filter("cronNumeral", function() {
     return function(input) {
         switch (input) {
             case 1:
-                return '1st';
+                return "1st";
             case 2:
-                return '2nd';
+                return "2nd";
             case 3:
-                return '3rd';
+                return "3rd";
             case 21:
-                return '21st';
+                return "21st";
             case 22:
-                return '22nd';
+                return "22nd";
             case 23:
-                return '23rd';
+                return "23rd";
             case 31:
-                return '31st';
+                return "31st";
             case null:
                 return null;
             default:
-                return input + 'th';
+                return input + "th";
         }
     };
-}).filter('cronMonthName', function() {
+}).filter("cronMonthName", function() {
     return function(input) {
         var months = {
-            1: 'January',
-            2: 'February',
-            3: 'March',
-            4: 'April',
-            5: 'May',
-            6: 'June',
-            7: 'July',
-            8: 'August',
-            9: 'September',
-            10: 'October',
-            11: 'November',
-            12: 'December'
+            1: "January",
+            2: "February",
+            3: "March",
+            4: "April",
+            5: "May",
+            6: "June",
+            7: "July",
+            8: "August",
+            9: "September",
+            10: "October",
+            11: "November",
+            12: "December"
         };
 
         if (input !== null && angular.isDefined(months[input])) {
@@ -161,16 +161,16 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             return null;
         }
     };
-}).filter('cronDayName', function() {
+}).filter("cronDayName", function() {
     return function(input) {
         var days = {
-            0: 'Sunday',
-            1: 'Monday',
-            2: 'Tuesday',
-            3: 'Wednesday',
-            4: 'Thursday',
-            5: 'Friday',
-            6: 'Saturday',
+            0: "Sunday",
+            1: "Monday",
+            2: "Tuesday",
+            3: "Wednesday",
+            4: "Thursday",
+            5: "Friday",
+            6: "Saturday",
         };
 
         if (input !== null && angular.isDefined(days[input])) {
