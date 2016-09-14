@@ -1,6 +1,6 @@
 {
   "name": "angular-cron-jobs",
-  "version": "3.0.2",
+  "version": "3.0.4",
   "main": [
     "dist/angular-cron-jobs.js",
     "dist/angular-cron-jobs.css"
