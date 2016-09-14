@@ -19,6 +19,7 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
         link: function($scope, $el, $attr, $ngModel) {
 
             var modelChanged = false;
+            var setInitialValuesForBase = setInitialValuesForBase_;
 
             $scope.frequency = [{
                 value: 1,
@@ -90,7 +91,7 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
                 }
             }, true);
 
-            function setInitialValuesForBase(freq) {
+            function setInitialValuesForBase_(freq) {
                 freq.base = parseInt(freq.base);
 
                 if (freq.base >= 2) {
