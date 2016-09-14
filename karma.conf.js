@@ -1,27 +1,27 @@
 module.exports = function(config) {
-  'use strict';
+  "use strict";
 
   config.set({
 
     // base path, that will be used to resolve files and exclude
-    basePath: '',
+    basePath: "",
 
     frameworks: ["jasmine"],
 
     files: [
       // components
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular.js',
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular-mocks.js',
+      "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular.js",
+      "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular-mocks.js",
 
       // source files
-      'src/*.js',
-      'test/*.js'
+      "src/*.js",
+      "test/*.js"
     ],
 
     plugins: [
-      'karma-phantomjs-launcher',
-      'karma-jasmine',
-      'karma-coverage'
+      "karma-phantomjs-launcher",
+      "karma-jasmine",
+      "karma-coverage"
     ],
 
     // list of files to exclude
@@ -30,20 +30,20 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/*.js': ['coverage']
+      "src/*.js": ["coverage"]
     },
 
     // optionally, configure the reporter
     coverageReporter: {
-      dir : 'coverage/',
+      dir : "coverage/",
       reporters: [
-        {type: 'lcov', subdir: 'lcov'}
+        {type: "lcov", subdir: "lcov"}
       ]
     },
 
     // test results reporter to use
-    // possible values: 'dots', 'progress', 'junit'
-    reporters: ['dots', 'coverage'],
+    // possible values: "dots", "progress", "junit"
+    reporters: ["dots", "coverage"],
 
 
     // web server port
@@ -75,7 +75,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['PhantomJS'],
+    browsers: ["PhantomJS"],
 
 
     // If browser does not capture in given timeout [ms], kill it
