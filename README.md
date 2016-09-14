@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/31435876fa31464b8fb495de9b7f49c2)](https://www.codacy.com/app/jc_2/angular-cron-jobs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=angular-cron-jobs/angular-cron-jobs&amp;utm_campaign=Badge_Grade)
 # angular-cron-jobs
 UI Component For Creating Cron Job Syntax To Send To Server
 
