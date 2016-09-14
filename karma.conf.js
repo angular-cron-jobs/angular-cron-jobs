@@ -1,7 +1,6 @@
-// Karma configuration
-// Generated on Fri Aug 09 2013 14:14:35 GMT-0500 (CDT)
-
 module.exports = function(config) {
+  'use strict';
+
   config.set({
 
     // base path, that will be used to resolve files and exclude
@@ -9,11 +8,13 @@ module.exports = function(config) {
 
     frameworks: ["jasmine"],
 
-    // list of files / patterns to load in the browser
     files: [
+      // components
       'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular.js',
       'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular-mocks.js',
-      'dist/angular-cron-jobs.js',
+
+      // source files
+      'src/*.js',
       'test/*.js'
     ],
 
@@ -42,7 +43,7 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
-    reporters: ['progress', 'coverage'],
+    reporters: ['dots', 'coverage'],
 
 
     // web server port
