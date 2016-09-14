@@ -11,6 +11,7 @@ pids
 logs
 results
 lib
+coverage
 node_modules
 components
 bower_components
