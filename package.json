@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git://github.com/jacobscarter/angular-cron-jobs.git"
   },
+  "scripts": {
+    "test": "grunt build",
+    "coveralls": "cat ./coverage/lcov/lcov.info | coveralls",
+    "codacy": "cat ./coverage/lcov/lcov.info | codacy-coverage --verbose"
+  },
   "keywords": [
     "angular",
     "cron",
@@ -24,6 +29,8 @@
   ],
   "dependencies": {},
   "devDependencies": {
+    "codacy-coverage": "2.0.0",
+    "coveralls": "2.11.12",
     "grunt": "~0.4.1",
     "grunt-bower": "*",
     "grunt-bower-task": "*",
@@ -42,7 +49,7 @@
     "karma-jasmine": "^0.3.2",
     "karma-phantomjs-launcher": "^0.1.4",
     "grunt-contrib-jshint": "~0.11.1",
-    "karma": "*"
+    "karma": "~0.12.0"
   },
   "license": "MIT"
 }
