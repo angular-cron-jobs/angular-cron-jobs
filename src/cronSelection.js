@@ -95,13 +95,24 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
                 } else {
                     $scope.allowMultiple = false;
                 }
+                if (angular.isDefined($scope.config.quartz)) {
+                    $scope.cronStyle = "quartz";
+                    cronService.setOptions({ cronStyle: "quartz" })    
+                } else {
+                    $scope.cronStyle = "default"
+                }
+                   
             }
-
+            
             $scope.minuteValues = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
             $scope.hourValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
             $scope.dayOfMonthValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
             $scope.dayValues = [0, 1, 2, 3, 4, 5, 6];
             $scope.monthValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+            if($scope.cronStyle === "quartz") {
+                $scope.dayValues = [1, 2, 3, 4, 5, 6, 7];
+            }
 
             $scope.$watch("myFrequency", function (n, o) {
                 if (n !== null && n && n.base && (!o || n.base !== o.base) && !modelChanged) {

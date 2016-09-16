@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v3.0.4 - 2016-09-14 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v3.0.4 - 2016-09-16 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jc@jacobcarter.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -114,8 +114,33 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
         },
         link: function($scope, $el, $attr, $ngModel) {
 
+            //Declare Variables
             var modelChanged = false;
-            var setInitialValuesForBase = setInitialValuesForBase_;
+
+            //Declare functions
+            function setInitialValuesForBase(freq) {
+                freq.base = parseInt(freq.base);
+
+                if (freq.base >= 2) {
+                    freq.minuteValues = $scope.minuteValues[0];
+                }
+
+                if (freq.base >= 3) {
+                    freq.hourValues = $scope.hourValues[0];
+                }
+
+                if (freq.base === 4) {
+                    freq.dayValues = $scope.dayValues[0];
+                }
+
+                if (freq.base >= 5) {
+                    freq.dayOfMonthValues = $scope.dayOfMonthValues[0];
+                }
+
+                if (freq.base === 6) {
+                    freq.monthValues = $scope.monthValues[0];
+                }
+            }
 
             $scope.frequency = [{
                 value: 1,
@@ -142,7 +167,7 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
                     modelChanged = true;
                     $scope.myFrequency = cronService.fromCron(newValue, $scope.allowMultiple);
                 } else if (newValue === "") {
-                    $scope.myFrequency = undefined;
+                    $scope.myFrequency = null;
                 }
             });
 
@@ -166,50 +191,35 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
                 } else {
                     $scope.allowMultiple = false;
                 }
+                if (angular.isDefined($scope.config.quartz)) {
+                    $scope.cronStyle = "quartz";
+                    cronService.setOptions({ cronStyle: "quartz" })    
+                } else {
+                    $scope.cronStyle = "default"
+                }
+                   
             }
-
+            
             $scope.minuteValues = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
             $scope.hourValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
             $scope.dayOfMonthValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
             $scope.dayValues = [0, 1, 2, 3, 4, 5, 6];
             $scope.monthValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-            $scope.$watch("myFrequency", function (n, o) {
-                if (n !== undefined) {
-                    if (n && n.base && (!o || n.base !== o.base) && !modelChanged) {
-                        setInitialValuesForBase(n);
-                    } else if (n && n.base && o && o.base) {
-                        modelChanged = false;
-                    }
+            if($scope.cronStyle === "quartz") {
+                $scope.dayValues = [1, 2, 3, 4, 5, 6, 7];
+            }
 
+            $scope.$watch("myFrequency", function (n, o) {
+                if (n !== null && n && n.base && (!o || n.base !== o.base) && !modelChanged) {
+                    setInitialValuesForBase(n);
+                } else if (n !== null && n && n.base && o && o.base) {
+                    modelChanged = false;
+                } else if (n !== null) {
                     var newVal = cronService.setCron(n);
                     $ngModel.$setViewValue(newVal);
                 }
             }, true);
-
-            function setInitialValuesForBase_(freq) {
-                freq.base = parseInt(freq.base);
-
-                if (freq.base >= 2) {
-                    freq.minuteValues = $scope.minuteValues[0];
-                }
-
-                if (freq.base >= 3) {
-                    freq.hourValues = $scope.hourValues[0];
-                }
-
-                if (freq.base === 4) {
-                    freq.dayValues = $scope.dayValues[0];
-                }
-
-                if (freq.base >= 5) {
-                    freq.dayOfMonthValues = $scope.dayOfMonthValues[0];
-                }
-
-                if (freq.base === 6) {
-                    freq.monthValues = $scope.monthValues[0];
-                }
-            }
         }
     };
 }]).filter("cronNumeral", function() {
@@ -282,8 +292,47 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
 
 angular.module("angular-cron-jobs").factory("cronService", function() {
     var service = {};
+    
+    // default options
+    var options = {
+        cronType: "default"
+    }
 
     service.setCron = function(n) {
+        if(options.cronType === "quartz") {
+            return this.setQuartzCron(n);
+        } else {
+            return this.setDefaultCron(n);
+        }
+    };
+
+    service.setQuartzCron = function(n){
+        var cron = ['0', '*', '*',  '*',  '*', '?'];
+        if(n && n.base && n.base >= 2) {
+            cron[1] = typeof n.minuteValues !== "undefined" ? n.minuteValues : '0';
+        }
+
+        if(n && n.base && n.base >= 3) {
+            cron[2] = typeof n.hourValues !== "undefined" ? n.hourValues  : '*';
+        }
+
+        if(n && n.base && n.base === 4) {
+            cron[3] = "?";
+            cron[5] = n.dayValues;
+        }
+
+        if(n && n.base && n.base >= 5) {
+            cron[3] = typeof n.dayOfMonthValues !== "undefined" ? n.dayOfMonthValues : '?';
+        }
+
+        if(n && n.base && n.base === 6) {
+            cron[4] = typeof n.monthValues !== "undefined" ? n.monthValues : '*';
+        }
+
+        return cron.join(" ");
+    }
+
+    service.setDefaultCron = function(n){
         var cron = ["*", "*", "*", "*", "*"];
 
         if (n && n.base && n.base >= 2) {
@@ -305,8 +354,9 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         if (n && n.base && n.base === 6) {
             cron[3] = typeof n.monthValues !== "undefined" ? n.monthValues : "*";
         }
+
         return cron.join(" ");
-    };
+    }
 
     service.fromCron = function(value, allowMultiple) {
         var cron = value.replace(/\s+/g, " ").split(" ");
@@ -379,5 +429,15 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         }
         return frequency;
     };
+
+    service.setOptions = function(userOptions){
+        var keys;
+        if(userOptions && (keys = Object.keys(userOptions)).length != 0) {
+            keys.forEach(function(key){
+                options[key] = userOptions[key];
+            })
+        }
+    };
+
     return service;
 });

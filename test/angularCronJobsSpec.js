@@ -143,4 +143,59 @@ describe('AngularCronJobs', function() {
         var isolateScope = view.isolateScope();
         expect(isolateScope.allowMultiple).toEqual(true);
     });
+
+    it("quartz cron should be set for every hour at 10 past", function() {
+        var scope = $rootScope.$new();
+        var view = createView(scope);
+        scope.myFrequency = {base: 2, minuteValues: [10, 15]};
+        scope.cron = cronService.setQuartzCron(scope.myFrequency);
+        $rootScope.$digest();
+        expect(scope.cron).toEqual('0 10,15 * * * ?');
+    });
+
+    it("quartz cron should be set for every day at 4:30 AM", function() {
+        var scope = $rootScope.$new();
+        var view = createView(scope);
+        scope.myFrequency = {base: 3, hourValues: [4], minuteValues: [30]};
+        scope.cron = cronService.setQuartzCron(scope.myFrequency);
+        $rootScope.$digest();
+        expect(scope.cron).toEqual('0 30 4 * * ?');
+    });
+
+    it("quartz cron should be set for every week on Monday at 12:45 PM", function() {
+        var scope = $rootScope.$new();
+        var view = createView(scope);
+        scope.myFrequency = {base: 4, hourValues: [12], minuteValues: [45], dayValues: [1]};
+        scope.cron = cronService.setQuartzCron(scope.myFrequency);
+        $rootScope.$digest();
+        expect(scope.cron).toEqual('0 45 12 ? * 1');
+    });
+
+    it("quartz cron should be set for every month on the 3rd at 6:55 PM", function() {
+        var scope = $rootScope.$new();
+        var view = createView(scope);
+        scope.myFrequency = {base: 5, hourValues: [18], minuteValues: [55], dayOfMonthValues: [3]};
+        scope.cron = cronService.setQuartzCron(scope.myFrequency);
+        $rootScope.$digest();
+        expect(scope.cron).toEqual('0 55 18 3 * ?');
+    });
+
+    it("quartz cron should be set for every year on the 5th of May at 4:10 AM", function() {
+        var scope = $rootScope.$new();
+        var view = createView(scope);
+        scope.myFrequency = {base: 6, hourValues: [4], minuteValues: [10], dayOfMonthValues: [5], monthValues: [5]};
+        scope.cron = cronService.setQuartzCron(scope.myFrequency);
+        $rootScope.$digest();
+        expect(scope.cron).toEqual('0 10 4 5 5 ?');
+    });
+
+    it("quartz cron should be set for every year on the 5th and 6th of May and June at 4:10 AM", function() {
+        var scope = $rootScope.$new();
+        var view = createView(scope);
+        scope.myFrequency = {base: 6, hourValues: [4], minuteValues: [10], dayOfMonthValues: [5,6], monthValues: [5,6]};
+        scope.cron = cronService.setQuartzCron(scope.myFrequency);
+        $rootScope.$digest();
+        expect(scope.cron).toEqual('0 10 4 5,6 5,6 ?');
+    });
+
 });

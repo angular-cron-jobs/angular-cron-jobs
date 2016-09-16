@@ -2,8 +2,47 @@
 
 angular.module("angular-cron-jobs").factory("cronService", function() {
     var service = {};
+    
+    // default options
+    var options = {
+        cronType: "default"
+    }
 
     service.setCron = function(n) {
+        if(options.cronType === "quartz") {
+            return this.setQuartzCron(n);
+        } else {
+            return this.setDefaultCron(n);
+        }
+    };
+
+    service.setQuartzCron = function(n){
+        var cron = ['0', '*', '*',  '*',  '*', '?'];
+        if(n && n.base && n.base >= 2) {
+            cron[1] = typeof n.minuteValues !== "undefined" ? n.minuteValues : '0';
+        }
+
+        if(n && n.base && n.base >= 3) {
+            cron[2] = typeof n.hourValues !== "undefined" ? n.hourValues  : '*';
+        }
+
+        if(n && n.base && n.base === 4) {
+            cron[3] = "?";
+            cron[5] = n.dayValues;
+        }
+
+        if(n && n.base && n.base >= 5) {
+            cron[3] = typeof n.dayOfMonthValues !== "undefined" ? n.dayOfMonthValues : '?';
+        }
+
+        if(n && n.base && n.base === 6) {
+            cron[4] = typeof n.monthValues !== "undefined" ? n.monthValues : '*';
+        }
+
+        return cron.join(" ");
+    }
+
+    service.setDefaultCron = function(n){
         var cron = ["*", "*", "*", "*", "*"];
 
         if (n && n.base && n.base >= 2) {
@@ -25,8 +64,9 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         if (n && n.base && n.base === 6) {
             cron[3] = typeof n.monthValues !== "undefined" ? n.monthValues : "*";
         }
+
         return cron.join(" ");
-    };
+    }
 
     service.fromCron = function(value, allowMultiple) {
         var cron = value.replace(/\s+/g, " ").split(" ");
@@ -99,5 +139,15 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         }
         return frequency;
     };
+
+    service.setOptions = function(userOptions){
+        var keys;
+        if(userOptions && (keys = Object.keys(userOptions)).length != 0) {
+            keys.forEach(function(key){
+                options[key] = userOptions[key];
+            })
+        }
+    };
+
     return service;
 });
