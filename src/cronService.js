@@ -2,14 +2,9 @@
 
 angular.module("angular-cron-jobs").factory("cronService", function() {
     var service = {};
-    
-    // default options
-    var options = {
-        cronType: "default"
-    }
 
-    service.setCron = function(n) {
-        if(options.cronType === "quartz") {
+    service.setCron = function(n, cronType) {
+        if(cronType === "quartz") {
             return this.setQuartzCron(n);
         } else {
             return this.setDefaultCron(n);
@@ -68,8 +63,8 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         return cron.join(" ");
     };
 
-    service.fromCron = function(value, allowMultiple) {
-        if(options.cronType === "quartz") {
+    service.fromCron = function(value, allowMultiple, cronType) {
+        if(cronType === "quartz") {
             return this.fromQuartzCron(value, allowMultiple);
         } else {
             return this.fromDefaultCron(value, allowMultiple);
@@ -219,15 +214,6 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         }
 
         return frequency;
-    };
-
-    service.setOptions = function(userOptions){
-        var keys;
-        if(userOptions && (keys = Object.keys(userOptions)).length != 0) {
-            keys.forEach(function(key){
-                options[key] = userOptions[key];
-            })
-        }
     };
 
     return service;
