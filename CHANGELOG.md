@@ -1,5 +1,14 @@
+<a name="3.1.1"></a>
+# 3.1.1 (2016-09-17)
+
+## Updates
+
+- Revert HTML Tempalte
+
 <a name="3.1.0"></a>
 # 3.1.0 (2016-09-17)
+
+## Updates
 
 - Add scripts section to package.json.
 - Add ngMultiple directive to reduce template duplication.
