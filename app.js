@@ -50,6 +50,8 @@ var boilerPlateApp = angular.module('boilerPlateApp', ['ui.router', 'angular-cro
 
   $scope.myThirdOutput;
 
+  $scope.myFourthOutput;
+
   $scope.myLocalFrequency = null;
 
   $scope.selectDay = function(day) {
