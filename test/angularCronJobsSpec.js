@@ -10,13 +10,19 @@ describe('AngularCronJobs', function() {
         cronService = _cronService_;
     }));
 
-    function createView(scope) {
+    function createView(scope, config) {
+        // default config for tests
         scope.config = {
             allowMultiple: true,
             options : {
                 allowMinute : false
             }
         };
+
+        if(config){
+            scope.config = config;
+        }
+
         var element = angular.element('<cron-selection ng-model="cron" config="config"></cron-selection>');
         var elementCompiled = $compile(element)(scope);
         $rootScope.$digest();
@@ -190,7 +196,14 @@ describe('AngularCronJobs', function() {
 
     it("quartz cron should be set for every hour at 10 past", function() {
         var scope = $rootScope.$new();
-        var view = createView(scope);
+        var config = {
+            allowMultiple: true,
+            options : {
+                allowMinute : false
+            },
+            quartz: true
+        };
+        var view = createView(scope, config);
         scope.myFrequency = {base: 2, minuteValues: [10, 15]};
         scope.cron = cronService.setQuartzCron(scope.myFrequency);
         $rootScope.$digest();
@@ -199,7 +212,14 @@ describe('AngularCronJobs', function() {
 
     it("quartz cron should be set for every day at 4:30 AM", function() {
         var scope = $rootScope.$new();
-        var view = createView(scope);
+        var config = {
+            allowMultiple: true,
+            options : {
+                allowMinute : false
+            },
+            quartz: true
+        };
+        var view = createView(scope, config);
         scope.myFrequency = {base: 3, hourValues: [4], minuteValues: [30]};
         scope.cron = cronService.setQuartzCron(scope.myFrequency);
         $rootScope.$digest();
@@ -208,7 +228,14 @@ describe('AngularCronJobs', function() {
 
     it("quartz cron should be set for every week on Monday at 12:45 PM", function() {
         var scope = $rootScope.$new();
-        var view = createView(scope);
+        var config = {
+            allowMultiple: true,
+            options : {
+                allowMinute : false
+            },
+            quartz: true
+        };
+        var view = createView(scope, config);
         scope.myFrequency = {base: 4, hourValues: [12], minuteValues: [45], dayValues: [1]};
         scope.cron = cronService.setQuartzCron(scope.myFrequency);
         $rootScope.$digest();
@@ -217,7 +244,14 @@ describe('AngularCronJobs', function() {
 
     it("quartz cron should be set for every month on the 3rd at 6:55 PM", function() {
         var scope = $rootScope.$new();
-        var view = createView(scope);
+        var config = {
+            allowMultiple: true,
+            options : {
+                allowMinute : false
+            },
+            quartz: true
+        };
+        var view = createView(scope, config);
         scope.myFrequency = {base: 5, hourValues: [18], minuteValues: [55], dayOfMonthValues: [3]};
         scope.cron = cronService.setQuartzCron(scope.myFrequency);
         $rootScope.$digest();
@@ -226,7 +260,14 @@ describe('AngularCronJobs', function() {
 
     it("quartz cron should be set for every year on the 5th of May at 4:10 AM", function() {
         var scope = $rootScope.$new();
-        var view = createView(scope);
+        var config = {
+            allowMultiple: true,
+            options : {
+                allowMinute : false
+            },
+            quartz: true
+        };
+        var view = createView(scope, config);
         scope.myFrequency = {base: 6, hourValues: [4], minuteValues: [10], dayOfMonthValues: [5], monthValues: [5]};
         scope.cron = cronService.setQuartzCron(scope.myFrequency);
         $rootScope.$digest();
@@ -235,7 +276,14 @@ describe('AngularCronJobs', function() {
 
     it("quartz cron should be set for every year on the 5th and 6th of May and June at 4:10 AM", function() {
         var scope = $rootScope.$new();
-        var view = createView(scope);
+        var config = {
+            allowMultiple: true,
+            options : {
+                allowMinute : false
+            },
+            quartz: true
+        };
+        var view = createView(scope, config);
         scope.myFrequency = {base: 6, hourValues: [4], minuteValues: [10], dayOfMonthValues: [5,6], monthValues: [5,6]};
         scope.cron = cronService.setQuartzCron(scope.myFrequency);
         $rootScope.$digest();

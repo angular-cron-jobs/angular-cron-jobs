@@ -33,7 +33,7 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         if(n && n.base && n.base === 6) {
             cron[4] = typeof n.monthValues !== "undefined" ? n.monthValues : "*";
         }
-
+        
         return cron.join(" ");
     };
 
@@ -70,7 +70,7 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         }
     };
 
-    service.fromCron = function(value, allowMultiple) {
+    service.fromDefaultCron = function(value, allowMultiple) {
         var cron = value.replace(/\s+/g, ' ').split(' ');
         var frequency = { base: '1' }; // default: every minute
 

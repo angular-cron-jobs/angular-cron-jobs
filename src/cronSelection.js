@@ -40,7 +40,7 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
                 label: "Year"
             }];
 
-            $scope.$watch("ngModel", function (newValue) {                
+            $scope.$watch("ngModel", function (newValue) {             
                 if (angular.isDefined(newValue) && newValue) {
                     modelChanged = true;
                     $scope.myFrequency = cronService.fromCron(newValue, $scope.allowMultiple, $scope.cronStyle);
@@ -87,14 +87,14 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
                 $scope.dayValues = [1, 2, 3, 4, 5, 6, 7];
             }
 
-            $scope.$watch('myFrequency', function (n, o) {
+            $scope.$watch("myFrequency", function (n, o) {
                 if (n !== undefined) {
                     if (n && n.base && (!o || n.base !== o.base) && !modelChanged) {
                         setInitialValuesForBase(n);
                     } else if (n && n.base && o && o.base) {
                         modelChanged = false;
                     }
-
+                    
                     var newVal = cronService.setCron(n, $scope.cronStyle);
                     $ngModel.$setViewValue(newVal);
                 }
