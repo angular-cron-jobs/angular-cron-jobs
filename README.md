@@ -2,7 +2,7 @@
 # angular-cron-jobs
 UI Component For Creating Cron Job Syntax To Send To Server
 
-##[Demo](http://jacobscarter.github.io/angular-cron-jobs/#/)
+##[Demo](http://angular-cron-jobs.github.io/angular-cron-jobs/#/)
 ##Installation
 
 Install using bower:
@@ -123,7 +123,7 @@ Properties you now have access to via `frequency` attribute include:
 
 ###You can get away from using select inputs in your custom temple using the `frequency` attribute.
 
-####[Demo Without Using Selects](http://jacobscarter.github.io/angular-cron-jobs/#/#noSelectSample)
+####[Demo Without Using Selects](http://angular-cron-jobs.github.io/angular-cron-jobs/#/#noSelectSample)
 
 ##Contributors
 
