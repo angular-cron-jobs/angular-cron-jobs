@@ -99,7 +99,7 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
                 if (angular.isDefined($scope.config.quartz) && $scope.config.quartz) {
                     $scope.cronStyle = "quartz";
                 } else {
-                    $scope.cronStyle = "default"
+                    $scope.cronStyle = "default";
                 }
             }
             
