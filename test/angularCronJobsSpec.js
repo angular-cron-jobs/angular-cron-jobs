@@ -17,7 +17,7 @@ describe('AngularCronJobs', function() {
                 allowMinute : false
             }
         };
-        var element = angular.element('<cron-selection ng-model="cron" config="config"></cron-selection>');
+        var element = angular.element('<cron-selection ng-model="cron" config="config" frequency="externalFrequency"></cron-selection>');
         var elementCompiled = $compile(element)(scope);
         $rootScope.$digest();
         return elementCompiled;
@@ -143,4 +143,16 @@ describe('AngularCronJobs', function() {
         var isolateScope = view.isolateScope();
         expect(isolateScope.allowMultiple).toEqual(true);
     });
+    
+    it("frequency atribute should be two-way bound", function() {     
+        var scope = $rootScope.$new();
+        scope.externalFrequency = {base: 2, minuteValues: [10]};
+        scope.cron = null;
+        var view = createView(scope);
+        expect(scope.cron).toEqual('10 * * * *');
+        scope.externalFrequency = {base: 2, minuteValues: [15]};
+        $rootScope.$digest();
+        expect(scope.cron).toEqual('15 * * * *');
+    });
+    
 });

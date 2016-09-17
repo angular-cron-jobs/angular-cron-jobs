@@ -2,7 +2,7 @@
 
 angular.module('angular-cron-jobs', ['templates-angularcronjobs']);
 
-angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', function(cronService) {
+angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', 'baseFrequency', function(cronService, baseFrequency) {
     return {
         restrict: 'EA',
         replace: true,
@@ -19,6 +19,8 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
         link: function($scope, $el, $attr, $ngModel) {
 
             var modelChanged = false;
+            
+            $scope.baseFrequency = baseFrequency;
 
             $scope.frequency = [{
                 value: 1,
@@ -93,23 +95,23 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             function setInitialValuesForBase(freq) {
                 freq.base = parseInt(freq.base);
 
-                if (freq.base >= 2) {
+                if (freq.base >= baseFrequency.hour) {
                     freq.minuteValues = $scope.minuteValues[0];
                 }
 
-                if (freq.base >= 3) {
+                if (freq.base >= baseFrequency.day) {
                     freq.hourValues = $scope.hourValues[0];
                 }
 
-                if (freq.base === 4) {
+                if (freq.base === baseFrequency.week) {
                     freq.dayValues = $scope.dayValues[0];
                 }
 
-                if (freq.base >= 5) {
+                if (freq.base >= baseFrequency.month) {
                     freq.dayOfMonthValues = $scope.dayOfMonthValues[0];
                 }
 
-                if (freq.base === 6) {
+                if (freq.base === baseFrequency.year) {
                     freq.monthValues = $scope.monthValues[0];
                 }
             }
@@ -177,6 +179,22 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', f
             return days[input];
         } else {
             return null;
+        }
+    };
+}).directive('ngMultiple', function() {
+    return {
+        restrict: 'A',
+        scope: {
+            ngMultiple: '='
+        },
+        link: function (scope, element) {
+            var unwatch = scope.$watch('ngMultiple', function(newValue) {
+                if (newValue) {
+                    element.attr('multiple', 'multiple');
+                } else {
+                    element.removeAttr('multiple');
+                }
+            });
         }
     };
 });
