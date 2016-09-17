@@ -210,15 +210,11 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
             }
 
             $scope.$watch("myFrequency", function (n, o) {
-                console.log("freq ", n, o);
                 if (n !== null && n && n.base && (!o || n.base !== o.base) && !modelChanged) {
-                    console.log("1");
                     setInitialValuesForBase(n);
                 } else if (n !== null && n && n.base && o && o.base) {
-                    console.log("2");
                     modelChanged = false;
                 } else if (n !== null) {
-                    console.log("3");
                     var newVal = cronService.setCron(n, $scope.cronStyle);
                     $ngModel.$setViewValue(newVal);
                 }
