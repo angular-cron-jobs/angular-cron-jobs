@@ -1,3 +1,10 @@
+<a name="3.0.5"></a>
+# 3.0.5 (2016-09-17)
+
+## Updates
+
+- Revert cleanup because of unexpected breaks.
+
 <a name="3.0.4"></a>
 # 3.0.4 (2016-09-14)
 
