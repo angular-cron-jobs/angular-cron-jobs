@@ -59,11 +59,10 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         if (n && n.base && n.base === 6) {
             cron[3] = typeof n.monthValues !== "undefined" ? n.monthValues : "*";
         }
-
         return cron.join(" ");
     };
 
-    service.fromCron = function(value, allowMultiple, cronType) {
+	service.fromCron = function(value, allowMultiple, cronType) {
         if(cronType === "quartz") {
             return this.fromQuartzCron(value, allowMultiple);
         } else {
@@ -71,10 +70,9 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         }
     };
 
-    service.fromDefaultCron = function(value, allowMultiple) {
-        var cron = value.replace(/\s+/g, " ").split(" ");
-        var frequency = { base: "1" }; // default: every minute
-        var tempArray = [];
+    service.fromCron = function(value, allowMultiple) {
+        var cron = value.replace(/\s+/g, ' ').split(' ');
+        var frequency = { base: '1' }; // default: every minute
 
         if (cron[0] === "*" && cron[1] === "*" && cron[2] === "*" && cron[3] === "*" && cron[4] === "*") {
             frequency.base = 1; // every minute
@@ -93,47 +91,47 @@ angular.module("angular-cron-jobs").factory("cronService", function() {
         if (cron[0] !== "*") {
             //preparing to handle multiple minutes
             if (allowMultiple) {
-                tempArray = cron[0].split(",");
+                var tempArray = cron[0].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.minuteValues = tempArray;
             } else {
                 frequency.minuteValues = parseInt(cron[0]);
             }
         }
-        if (cron[1] !== "*") {
+        if (cron[1] !== '*') {
             //preparing to handle multiple hours
             if (allowMultiple) {
-                tempArray = cron[1].split(",");
+                var tempArray = cron[1].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.hourValues = tempArray;
             } else {
                 frequency.hourValues = parseInt(cron[1]);
             }
         }
-        if (cron[2] !== "*") {
+        if (cron[2] !== '*') {
             //preparing to handle multiple days of the month
             if (allowMultiple) {
-                tempArray = cron[2].split(",");
+                var tempArray = cron[2].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.dayOfMonthValues = tempArray;
             } else {
                 frequency.dayOfMonthValues = parseInt(cron[2]);
             }
         }
-        if (cron[3] !== "*") {
+        if (cron[3] !== '*') {
             //preparing to handle multiple months
             if (allowMultiple) {
-                tempArray = cron[3].split(",");
+                var tempArray = cron[3].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.monthValues = tempArray;
             } else {
                 frequency.monthValues = parseInt(cron[3]);
             }
         }
-        if (cron[4] !== "*") {
+        if (cron[4] !== '*') {
             //preparing to handle multiple days of the week
             if (allowMultiple) {
-                tempArray = cron[4].split(",");
+                var tempArray = cron[4].split(',');
                 for (var i = 0; i < tempArray.length; i++) { tempArray[i] = +tempArray[i]; }
                 frequency.dayValues = tempArray;
             } else {
