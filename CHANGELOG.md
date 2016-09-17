@@ -1,3 +1,14 @@
+<a name="3.1.0"></a>
+# 3.1.0 (2016-09-17)
+
+- Add scripts section to package.json.
+- Add ngMultiple directive to reduce template duplication.
+- Add baseFrequency value object to reduce dependency on hard-coded numbers.
+
+## Updates
+
+- Revert cleanup because of unexpected breaks.
+
 <a name="3.0.5"></a>
 # 3.0.5 (2016-09-17)
 
