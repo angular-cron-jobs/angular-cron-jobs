@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v3.0.5 - 2016-09-18 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v3.1.1 - 2016-09-18 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jc@jacobcarter.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -63,7 +63,7 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
     "                </option>\n" +
     "            </select>\n" +
     "        </div>\n" +
-    "        <span ng-show=\"myFrequency.base == baseFrequency.hour\"> past the hour</span>\n" +
+    "        <span ng-show=\"myFrequency.base == 2\"> past the hour</span>\n" +
     "    </div>\n" +
     "</div>");
 }]);
