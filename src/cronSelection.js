@@ -186,13 +186,12 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', '
         terminal: true,
         priority: 10000,
         restrict: 'A',
-        compile: function compile(element, attrs) {
-            element.removeAttr("ng-multiple"); //remove the attribute to avoid indefinite loop
+        compile: function compile(element) {
+            element.removeAttr('ng-multiple'); //remove the attribute to avoid indefinite loop
 
             return {
-                post: function preLink(scope, iElement, iAttrs, controller) {  },
-                pre: function postLink(scope, iElement, iAttrs, controller) { 
-                    if(scope.config.allowMultiple == true) {
+                pre: function postLink(scope, iElement) { 
+                    if(scope.config.allowMultiple === true) {
                         iElement[0].setAttribute('multiple', 'true'); //set the multiple directive
                     }
                     $compile(iElement)(scope);
