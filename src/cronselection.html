@@ -7,50 +7,50 @@
         <span ng-show="myFrequency.base == baseFrequency.week">on </span>
 
         <div ng-show="myFrequency.base == baseFrequency.week" class="cron-select-wrap">
-            <select class="cron-select day-value" ng-model="myFrequency.dayValues" ng-multiple="allowMultiple" convert-to-number>
-                <option ng-repeat="value in dayValues" ng-selected="myFrequency.dayValues.indexOf(value) >= 0" value="{{value}}">
-                    {{value | cronDayName}}
-                </option>
+            <select class="cron-select day-value"
+                    ng-model="myFrequency.dayValues"
+                    ng-multiple="allowMultiple"
+                    ng-options="value as (value | cronDayName) for value in dayValues">
             </select>
         </div>
         
         <span ng-show="myFrequency.base >= baseFrequency.month">on the </span>
 
         <div ng-show="myFrequency.base >= baseFrequency.month" class="cron-select-wrap">
-            <select class="cron-select day-of-month-value" ng-model="myFrequency.dayOfMonthValues" ng-multiple="allowMultiple" convert-to-number>
-                <option ng-repeat="value in dayOfMonthValues" ng-selected="myFrequency.dayOfMonthValues.indexOf(value) >= 0" value="{{value}}">
-                    {{value | cronNumeral}}
-                </option>
+            <select class="cron-select day-of-month-value"
+                    ng-model="myFrequency.dayOfMonthValues"
+                    ng-multiple="allowMultiple"
+                    ng-options="value as (value | cronNumeral) for value in dayOfMonthValues">
             </select>
         </div>
 
         <span ng-show="myFrequency.base == baseFrequency.year">of </span>
 
         <div ng-show="myFrequency.base == baseFrequency.year" class="cron-select-wrap">
-            <select class="cron-select month-value" ng-model="myFrequency.monthValues" ng-multiple="allowMultiple" convert-to-number>
-                <option ng-repeat="value in monthValues" ng-selected="myFrequency.monthValues.indexOf(value) >= 0" value="{{value}}">
-                    {{value | cronMonthName}}
-                </option>
+            <select class="cron-select month-value"
+                    ng-model="myFrequency.monthValues"
+                    ng-multiple="allowMultiple"
+                    ng-options="value as (value | cronMonthName) for value in monthValues">
             </select>
         </div>
 
         <span ng-show="myFrequency.base >= baseFrequency.hour">at </span>
 
         <div ng-show="myFrequency.base >= baseFrequency.day" class="cron-select-wrap">
-            <select class="cron-select hour-value" ng-model="myFrequency.hourValues" ng-multiple="allowMultiple" convert-to-number>
-                <option ng-repeat="value in hourValues" ng-selected="myFrequency.hourValues.indexOf(value) >= 0" value="{{value}}">
-                    {{value}}
-                </option>
+            <select class="cron-select hour-value"
+                    ng-model="myFrequency.hourValues"
+                    ng-multiple="allowMultiple"
+                    ng-options="value as value for value in hourValues">
             </select>
         </div>
 
         <span ng-show="myFrequency.base >= baseFrequency.day"> : </span>
 
         <div ng-show="myFrequency.base >= baseFrequency.hour" class="cron-select-wrap">
-            <select class="cron-select minute-value" ng-model="myFrequency.minuteValues"  ng-multiple="allowMultiple" convert-to-number>
-                <option ng-repeat="value in minuteValues" ng-selected="myFrequency.minuteValues.indexOf(value) >= 0" value="{{value}}">
-                    {{value}}
-                </option>
+            <select class="cron-select minute-value"
+                    ng-model="myFrequency.minuteValues" 
+                    ng-multiple="allowMultiple"
+                    ng-options="value as value for value in minuteValues">
             </select>
         </div>
         <span ng-show="myFrequency.base == 2"> past the hour</span>

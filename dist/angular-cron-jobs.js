@@ -17,50 +17,50 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
     "        <span ng-show=\"myFrequency.base == baseFrequency.week\">on </span>\n" +
     "\n" +
     "        <div ng-show=\"myFrequency.base == baseFrequency.week\" class=\"cron-select-wrap\">\n" +
-    "            <select class=\"cron-select day-value\" ng-model=\"myFrequency.dayValues\" ng-multiple=\"allowMultiple\" convert-to-number>\n" +
-    "                <option ng-repeat=\"value in dayValues\" ng-selected=\"myFrequency.dayValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
-    "                    {{value | cronDayName}}\n" +
-    "                </option>\n" +
+    "            <select class=\"cron-select day-value\"\n" +
+    "                    ng-model=\"myFrequency.dayValues\"\n" +
+    "                    ng-multiple=\"allowMultiple\"\n" +
+    "                    ng-options=\"value as (value | cronDayName) for value in dayValues\">\n" +
     "            </select>\n" +
     "        </div>\n" +
     "        \n" +
     "        <span ng-show=\"myFrequency.base >= baseFrequency.month\">on the </span>\n" +
     "\n" +
     "        <div ng-show=\"myFrequency.base >= baseFrequency.month\" class=\"cron-select-wrap\">\n" +
-    "            <select class=\"cron-select day-of-month-value\" ng-model=\"myFrequency.dayOfMonthValues\" ng-multiple=\"allowMultiple\" convert-to-number>\n" +
-    "                <option ng-repeat=\"value in dayOfMonthValues\" ng-selected=\"myFrequency.dayOfMonthValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
-    "                    {{value | cronNumeral}}\n" +
-    "                </option>\n" +
+    "            <select class=\"cron-select day-of-month-value\"\n" +
+    "                    ng-model=\"myFrequency.dayOfMonthValues\"\n" +
+    "                    ng-multiple=\"allowMultiple\"\n" +
+    "                    ng-options=\"value as (value | cronNumeral) for value in dayOfMonthValues\">\n" +
     "            </select>\n" +
     "        </div>\n" +
     "\n" +
     "        <span ng-show=\"myFrequency.base == baseFrequency.year\">of </span>\n" +
     "\n" +
     "        <div ng-show=\"myFrequency.base == baseFrequency.year\" class=\"cron-select-wrap\">\n" +
-    "            <select class=\"cron-select month-value\" ng-model=\"myFrequency.monthValues\" ng-multiple=\"allowMultiple\" convert-to-number>\n" +
-    "                <option ng-repeat=\"value in monthValues\" ng-selected=\"myFrequency.monthValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
-    "                    {{value | cronMonthName}}\n" +
-    "                </option>\n" +
+    "            <select class=\"cron-select month-value\"\n" +
+    "                    ng-model=\"myFrequency.monthValues\"\n" +
+    "                    ng-multiple=\"allowMultiple\"\n" +
+    "                    ng-options=\"value as (value | cronMonthName) for value in monthValues\">\n" +
     "            </select>\n" +
     "        </div>\n" +
     "\n" +
     "        <span ng-show=\"myFrequency.base >= baseFrequency.hour\">at </span>\n" +
     "\n" +
     "        <div ng-show=\"myFrequency.base >= baseFrequency.day\" class=\"cron-select-wrap\">\n" +
-    "            <select class=\"cron-select hour-value\" ng-model=\"myFrequency.hourValues\" ng-multiple=\"allowMultiple\" convert-to-number>\n" +
-    "                <option ng-repeat=\"value in hourValues\" ng-selected=\"myFrequency.hourValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
-    "                    {{value}}\n" +
-    "                </option>\n" +
+    "            <select class=\"cron-select hour-value\"\n" +
+    "                    ng-model=\"myFrequency.hourValues\"\n" +
+    "                    ng-multiple=\"allowMultiple\"\n" +
+    "                    ng-options=\"value as value for value in hourValues\">\n" +
     "            </select>\n" +
     "        </div>\n" +
     "\n" +
     "        <span ng-show=\"myFrequency.base >= baseFrequency.day\"> : </span>\n" +
     "\n" +
     "        <div ng-show=\"myFrequency.base >= baseFrequency.hour\" class=\"cron-select-wrap\">\n" +
-    "            <select class=\"cron-select minute-value\" ng-model=\"myFrequency.minuteValues\"  ng-multiple=\"allowMultiple\" convert-to-number>\n" +
-    "                <option ng-repeat=\"value in minuteValues\" ng-selected=\"myFrequency.minuteValues.indexOf(value) >= 0\" value=\"{{value}}\">\n" +
-    "                    {{value}}\n" +
-    "                </option>\n" +
+    "            <select class=\"cron-select minute-value\"\n" +
+    "                    ng-model=\"myFrequency.minuteValues\" \n" +
+    "                    ng-multiple=\"allowMultiple\"\n" +
+    "                    ng-options=\"value as value for value in minuteValues\">\n" +
     "            </select>\n" +
     "        </div>\n" +
     "        <span ng-show=\"myFrequency.base == 2\"> past the hour</span>\n" +
@@ -251,36 +251,26 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', '
             return null;
         }
     };
-}).directive('ngMultiple', function() {
+}).directive('ngMultiple', ['$compile', function($compile) {
     return {
+        terminal: true,
+        priority: 10000,
         restrict: 'A',
-        scope: {
-            ngMultiple: '='
-        },
-        link: function (scope, element) {
-            var unwatch = scope.$watch('ngMultiple', function(newValue) {
-                if (newValue) {
-                    element.attr('multiple', 'multiple');
-                } else {
-                    element.removeAttr('multiple');
+        compile: function compile(element, attrs) {
+            element.removeAttr("ng-multiple"); //remove the attribute to avoid indefinite loop
+
+            return {
+                post: function preLink(scope, iElement, iAttrs, controller) {  },
+                pre: function postLink(scope, iElement, iAttrs, controller) { 
+                    if(scope.config.allowMultiple == true) {
+                        iElement[0].setAttribute('multiple', 'true'); //set the multiple directive
+                    }
+                    $compile(iElement)(scope);
                 }
-            });
-        }
+            };
+        },
     };
-})
-.directive('convertToNumber', function() {
-  return {
-    require: 'ngModel',
-    link: function(scope, element, attrs, ngModel) {
-      ngModel.$parsers.push(function(val) {
-        return parseInt(val, 10);
-      });
-      ngModel.$formatters.push(function(val) {
-        return '' + val;
-      });
-    }
-  };
-});
+}]);
 
 'use strict';
 
