@@ -181,20 +181,22 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', '
             return null;
         }
     };
-}).directive('ngMultiple', function() {
+}).directive('ngMultiple', ['$compile', function($compile) {
     return {
+        terminal: true,
+        priority: 10000,
         restrict: 'A',
-        scope: {
-            ngMultiple: '='
-        },
-        link: function (scope, element) {
-            var unwatch = scope.$watch('ngMultiple', function(newValue) {
-                if (newValue) {
-                    element.attr('multiple', 'multiple');
-                } else {
-                    element.removeAttr('multiple');
+        compile: function compile(element) {
+            element.removeAttr('ng-multiple'); //remove the attribute to avoid indefinite loop
+
+            return {
+                pre: function postLink(scope, iElement) { 
+                    if(scope.config.allowMultiple === true) {
+                        iElement[0].setAttribute('multiple', 'true'); //set the multiple directive
+                    }
+                    $compile(iElement)(scope);
                 }
-            });
-        }
+            };
+        },
     };
-});
+}]);
