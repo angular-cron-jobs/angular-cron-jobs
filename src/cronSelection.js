@@ -40,7 +40,7 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
                 label: "Year"
             }];
 
-            $scope.$watch("ngModel", function (newValue) {             
+            $scope.$watch("ngModel", function (newValue) {
                 if (angular.isDefined(newValue) && newValue) {
                     modelChanged = true;
                     $scope.myFrequency = cronService.fromCron(newValue, $scope.allowMultiple, $scope.cronStyle);
@@ -172,16 +172,30 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", f
         }
     };
 }).filter("cronDayName", function() {
-    return function(input) {
-        var days = {
-            0: "Sunday",
-            1: "Monday",
-            2: "Tuesday",
-            3: "Wednesday",
-            4: "Thursday",
-            5: "Friday",
-            6: "Saturday",
-        };
+    return function(input, cronType) {
+        var days;
+        if(cronType === "quartz") {
+            days = {
+                1: "Sunday",
+                2: "Monday",
+                3: "Tuesday",
+                4: "Wednesday",
+                5: "Thursday",
+                6: "Friday",
+                7: "Saturday",
+            };
+        } else {
+            days = {
+                0: "Sunday",
+                1: "Monday",
+                2: "Tuesday",
+                3: "Wednesday",
+                4: "Thursday",
+                5: "Friday",
+                6: "Saturday",
+            };
+        }
+        
 
         if (input !== null && angular.isDefined(days[input])) {
             return days[input];

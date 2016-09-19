@@ -236,10 +236,10 @@ describe('AngularCronJobs', function() {
             quartz: true
         };
         var view = createView(scope, config);
-        scope.myFrequency = {base: 4, hourValues: [12], minuteValues: [45], dayValues: [1]};
+        scope.myFrequency = {base: 4, hourValues: [12], minuteValues: [45], dayValues: [2]};
         scope.cron = cronService.setQuartzCron(scope.myFrequency);
         $rootScope.$digest();
-        expect(scope.cron).toEqual('0 45 12 ? * 1');
+        expect(scope.cron).toEqual('0 45 12 ? * 2');
     });
 
     it("quartz cron should be set for every month on the 3rd at 6:55 PM", function() {
