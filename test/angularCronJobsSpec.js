@@ -23,7 +23,7 @@ describe('AngularCronJobs', function() {
             scope.config = config;
         }
 
-        var element = angular.element('<cron-selection ng-model="cron" config="config"></cron-selection>');
+        var element = angular.element('<cron-selection ng-model="cron" config="config" frequency="externalFrequency"></cron-selection>');
         var elementCompiled = $compile(element)(scope);
         $rootScope.$digest();
         return elementCompiled;
@@ -290,4 +290,5 @@ describe('AngularCronJobs', function() {
         expect(scope.cron).toEqual('0 10 4 5,6 5,6 ?');
     });
 
+	
 });
