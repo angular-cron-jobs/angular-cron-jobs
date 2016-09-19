@@ -2,7 +2,7 @@
 
 angular.module("angular-cron-jobs", ["templates-angularcronjobs"]);
 
-angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', 'baseFrequency', function(cronService, baseFrequency) {
+angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "baseFrequency", function(cronService, baseFrequency) {
     return {
         restrict: "EA",
         replace: true,
@@ -205,18 +205,18 @@ angular.module('angular-cron-jobs').directive('cronSelection', ['cronService', '
             return null;
         }
     };
-}).directive('ngMultiple', function() {
+}).directive("ngMultiple", function() {
     return {
-        restrict: 'A',
+        restrict: "A",
         scope: {
-            ngMultiple: '='
+            ngMultiple: "="
         },
         link: function (scope, element) {
-            var unwatch = scope.$watch('ngMultiple', function(newValue) {
+            var unwatch = scope.$watch("ngMultiple", function(newValue) {
                 if (newValue) {
-                    element.attr('multiple', 'multiple');
+                    element.attr("multiple", "multiple");
                 } else {
-                    element.removeAttr('multiple');
+                    element.removeAttr("multiple");
                 }
             });
         }
