@@ -1,3 +1,11 @@
+<a name="3.2.0"></a>
+# 3.2.0 (2016-09-19)
+
+## Updates
+
+- Added `quartz` property to config to allow for [Quartz](https://github.com/quartz-scheduler/quartz) style output.
+- Address Issue [#24](https://github.com/angular-cron-jobs/angular-cron-jobs/issues/24).
+
 <a name="3.1.1"></a>
 # 3.1.1 (2016-09-17)
 
