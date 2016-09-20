@@ -11,8 +11,10 @@ pids
 logs
 results
 lib
+coverage
 node_modules
 components
+coverage
 bower_components
 npm-debug.log
 src/*.tpls.js

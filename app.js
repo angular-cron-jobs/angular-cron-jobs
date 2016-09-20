@@ -44,6 +44,10 @@ var boilerPlateApp = angular.module('boilerPlateApp', ['ui.router', 'angular-cro
       }
   };
 
+  $scope.config4 = {
+      quartz: true
+  };
+
   $scope.serverData = "40 5 * * 0,1";
 
   $scope.mySecondOutput;
@@ -51,6 +55,8 @@ var boilerPlateApp = angular.module('boilerPlateApp', ['ui.router', 'angular-cro
   $scope.myThirdOutput;
 
   $scope.myFourthOutput;
+
+  $scope.myFifthOutput;  
 
   $scope.myLocalFrequency = null;
 

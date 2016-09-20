@@ -1,7 +1,8 @@
+[![Build Status](https://travis-ci.org/angular-cron-jobs/angular-cron-jobs.svg?branch=master)](https://travis-ci.org/angular-cron-jobs/angular-cron-jobs)  [![Coverage Status](https://coveralls.io/repos/github/angular-cron-jobs/angular-cron-jobs/badge.svg?branch=master)](https://coveralls.io/github/angular-cron-jobs/angular-cron-jobs?branch=master)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/31435876fa31464b8fb495de9b7f49c2)](https://www.codacy.com/app/jc_2/angular-cron-jobs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=angular-cron-jobs/angular-cron-jobs&amp;utm_campaign=Badge_Grade)  [![npm version](https://badge.fury.io/js/angular-cron-jobs.svg)](https://badge.fury.io/js/angular-cron-jobs)
 # angular-cron-jobs
 UI Component For Creating Cron Job Syntax To Send To Server
 
-##[Demo](http://jacobscarter.github.io/angular-cron-jobs/#/)
+##[Demo](http://angular-cron-jobs.github.io/angular-cron-jobs/#/)
 ##Installation
 
 Install using bower:
@@ -61,6 +62,17 @@ You can also set whether or not you want to allow a user to select multiple calu
 
 Setting allowMultiple to either true or false will toggle the ability.
 
+By default, the cron expression generated is Unix Cron compatible. Incase you use the [Quartz Scheduler](https://github.com/quartz-scheduler/quartz), you would want to enable the `quartz` mode in the options.
+You can do so by passing that flag as `true` in the config object.
+
+    $scope.myConfig = {
+        quartz: true
+    }
+
+In case you are using a custom template, please be sure to pass an extra argument `cronStyle` to the `cronDayName` filter. So your code should look something like this:
+
+    value as (value | cronDayName: cronStyle) for value in dayValues
+
 A complete config object may look like the following:
 
     $scope.myConfig = {
@@ -69,7 +81,8 @@ A complete config object may look like the following:
             allowWeek : false,
             allowMonth : false,
             allowYear : false
-        }
+        },
+        quartz: true
     }
 
 ##Custom Templates:
@@ -122,7 +135,7 @@ Properties you now have access to via `frequency` attribute include:
 
 ###You can get away from using select inputs in your custom temple using the `frequency` attribute.
 
-####[Demo Without Using Selects](http://jacobscarter.github.io/angular-cron-jobs/#/#noSelectSample)
+####[Demo Without Using Selects](http://angular-cron-jobs.github.io/angular-cron-jobs/#/#noSelectSample)
 
 ##Contributors
 

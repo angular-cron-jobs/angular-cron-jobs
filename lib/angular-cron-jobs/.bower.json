@@ -1,14 +1,18 @@
 {
   "name": "angular-cron-jobs",
-  "version": "3.0.1",
-  "main": "./dist/angular-cron-jobs.min.js",
+  "version": "3.2.0",
+  "main": [
+    "dist/angular-cron-jobs.js",
+    "dist/angular-cron-jobs.css"
+  ],
   "description": "UI Component For Creating Cron Job Syntax To Send To Server",
   "repository": {
     "type": "git",
     "url": "git://github.com/jacobscarter/angular-cron-jobs.git"
   },
   "dependencies": {
-    "angular": "*"
+    "angular": "*",
+    "angular-mocks": "*"
   },
   "ignore": [
     "node_modules",
@@ -16,14 +20,13 @@
     "lib"
   ],
   "homepage": "https://github.com/jacobscarter/angular-cron-jobs",
-  "_release": "3.0.1",
+  "_release": "3.2.0",
   "_resolution": {
     "type": "version",
-    "tag": "v3.0.1",
-    "commit": "dc469f6dd0b2814b63065719ff26ff8a77b032a5"
+    "tag": "v3.2.0",
+    "commit": "e2667a7d6b96b3d66c6fe2ce268f27c99c07ae16"
   },
   "_source": "https://github.com/jacobscarter/angular-cron-jobs.git",
-  "_target": "~3.0.1",
-  "_originalSource": "angular-cron-jobs",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "angular-cron-jobs"
 }

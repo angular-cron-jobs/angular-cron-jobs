@@ -1,0 +1,20 @@
+nguage: node_js
+node_js:
+  - "4.2.4"
+
+before_script:
+  - npm install
+  - npm install -g bower
+  - npm install -g grunt
+
+script:
+  - npm test
+
+after_success:
+  - npm run coveralls
+  - npm run codacy
+
+notifications:
+  - email: false
+
+sudo: false

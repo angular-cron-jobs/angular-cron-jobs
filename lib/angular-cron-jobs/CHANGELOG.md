@@ -1,3 +1,46 @@
+<a name="3.2.0"></a>
+# 3.2.0 (2016-09-19)
+
+## Updates
+
+- Added `quartz` property to config to allow for [Quartz](https://github.com/quartz-scheduler/quartz) style output.
+- Address Issue [#24](https://github.com/angular-cron-jobs/angular-cron-jobs/issues/24).
+
+<a name="3.1.1"></a>
+# 3.1.1 (2016-09-17)
+
+## Updates
+
+- Revert HTML Tempalte
+
+<a name="3.1.0"></a>
+# 3.1.0 (2016-09-17)
+
+## Updates
+
+- Add scripts section to package.json.
+- Add ngMultiple directive to reduce template duplication.
+- Add baseFrequency value object to reduce dependency on hard-coded numbers.
+
+## Updates
+
+- Revert cleanup because of unexpected breaks.
+
+<a name="3.0.5"></a>
+# 3.0.5 (2016-09-17)
+
+## Updates
+
+- Revert cleanup because of unexpected breaks.
+
+<a name="3.0.4"></a>
+# 3.0.4 (2016-09-14)
+
+## Updates
+
+- Code cleanup
+
+
 <a name="3.0.1"></a>
 # 3.0.1 (2016-07-18)
 
