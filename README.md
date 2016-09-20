@@ -62,6 +62,17 @@ You can also set whether or not you want to allow a user to select multiple calu
 
 Setting allowMultiple to either true or false will toggle the ability.
 
+By default, the cron expression generated is Unix Cron compatible. Incase you use the [Quartz Scheduler](https://github.com/quartz-scheduler/quartz), you would want to enable the `quartz` mode in the options.
+You can do so by passing that flag as `true` in the config object.
+
+    $scope.myConfig = {
+        quartz: true
+    }
+
+In case you are using a custom template, please be sure to pass an extra argument `cronStyle` to the `cronDayName` filter. So your code should look something like this:
+
+    value as (value | cronDayName: cronStyle) for value in dayValues
+
 A complete config object may look like the following:
 
     $scope.myConfig = {
@@ -70,7 +81,8 @@ A complete config object may look like the following:
             allowWeek : false,
             allowMonth : false,
             allowYear : false
-        }
+        },
+        quartz: true
     }
 
 ##Custom Templates:
