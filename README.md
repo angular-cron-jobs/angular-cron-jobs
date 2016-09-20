@@ -32,6 +32,8 @@ as a string.
 The directive takes an optional attribute of `config`
 
     <cron-selection ng-model="myOutput" config="myConfig"></cron-selection>
+    
+###Options
 
 This is an object in your controller you can use to remove options from the user.  For example if you would like the user to be able to set Minute, Hour, and Day but not Week, Month, and Year you would create the following object in your controller:
 
@@ -54,6 +56,8 @@ Currently the config object accepts an options property with an object of allowe
 
 Setting the keys as booleans will turn the selection on and off.
 
+###allowMultiple
+
 You can also set whether or not you want to allow a user to select multiple calues for a cron:
 
     $scope.myConfig = {
@@ -61,6 +65,8 @@ You can also set whether or not you want to allow a user to select multiple calu
     }
 
 Setting allowMultiple to either true or false will toggle the ability.
+
+###Quartz by [RajanRastogi](https://github.com/RajanRastogi)
 
 By default, the cron expression generated is Unix Cron compatible. Incase you use the [Quartz Scheduler](https://github.com/quartz-scheduler/quartz), you would want to enable the `quartz` mode in the options.
 You can do so by passing that flag as `true` in the config object.
