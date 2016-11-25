@@ -92,8 +92,9 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
     "        <span ng-show=\"myFrequency.base == 2\"> past the hour</span>\n" +
     "        <!-- Custom Cron Expression -->\n" +
     "        <span ng-show=\"myFrequency.base == 0\"> Expression: </span>\n" +
+    "        <span style=\"color:red\" ng-show=\"customInput.$error.pattern\">Invalid Input</span>\n" +
     "        <div ng-show=\"myFrequency.base == 0\" class=\"cron-select-wrap\">\n" +
-    "            <input type=\"text\" class=\"cron-select custom-value\" value=\"myFrequency.custom\" ng-model=\"myFrequency.custom\">\n" +
+    "            <input name=\"customInput\" type=\"text\" class=\"cron-select custom-value\" value=\"myFrequency.custom\" ng-model=\"myFrequency.custom\" title=\"Insert valid cron expression\" pattern=\"^\\s*($|#|\\w+\\s*=|(\\?|\\*|(?:[0-5]?\\d)(?:(?:-|\\/|\\,)(?:[0-5]?\\d))?(?:,(?:[0-5]?\\d)(?:(?:-|\\/|\\,)(?:[0-5]?\\d))?)*)\\s+(\\?|\\*|(?:[0-5]?\\d)(?:(?:-|\\/|\\,)(?:[0-5]?\\d))?(?:,(?:[0-5]?\\d)(?:(?:-|\\/|\\,)(?:[0-5]?\\d))?)*)\\s+(\\?|\\*|(?:[01]?\\d|2[0-3])(?:(?:-|\\/|\\,)(?:[01]?\\d|2[0-3]))?(?:,(?:[01]?\\d|2[0-3])(?:(?:-|\\/|\\,)(?:[01]?\\d|2[0-3]))?)*)\\s+(\\?|\\*|(?:0?[1-9]|[12]\\d|3[01])(?:(?:-|\\/|\\,)(?:0?[1-9]|[12]\\d|3[01]))?(?:,(?:0?[1-9]|[12]\\d|3[01])(?:(?:-|\\/|\\,)(?:0?[1-9]|[12]\\d|3[01]))?)*)\\s+(\\?|\\*|(?:[1-9]|1[012])(?:(?:-|\\/|\\,)(?:[1-9]|1[012]))?(?:L|W)?(?:,(?:[1-9]|1[012])(?:(?:-|\\/|\\,)(?:[1-9]|1[012]))?(?:L|W)?)*|\\?|\\*|(?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)(?:(?:-)(?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC))?(?:,(?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)(?:(?:-)(?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC))?)*)\\s+(\\?|\\*|(?:[0-6])(?:(?:-|\\/|\\,|#)(?:[0-6]))?(?:L)?(?:,(?:[0-6])(?:(?:-|\\/|\\,|#)(?:[0-6]))?(?:L)?)*|\\?|\\*|(?:MON|TUE|WED|THU|FRI|SAT|SUN)(?:(?:-)(?:MON|TUE|WED|THU|FRI|SAT|SUN))?(?:,(?:MON|TUE|WED|THU|FRI|SAT|SUN)(?:(?:-)(?:MON|TUE|WED|THU|FRI|SAT|SUN))?)*)(|\\s)+(\\?|\\*|(?:|\\d{4})(?:(?:-|\\/|\\,)(?:|\\d{4}))?(?:,(?:|\\d{4})(?:(?:-|\\/|\\,)(?:|\\d{4}))?)*))$\">\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -152,8 +153,6 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
                 if (angular.isDefined(newValue) && newValue) {
                     modelChanged = true;
                     $scope.myFrequency = cronService.fromCron(newValue, $scope.allowMultiple, $scope.cronStyle, isCustom);
-                } else if (newValue === "") {
-                    $scope.myFrequency = undefined;
                 }
             });
 
