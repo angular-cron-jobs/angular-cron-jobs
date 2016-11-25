@@ -30,47 +30,47 @@ describe('AngularCronJobs', function() {
     }
 
     it("cronService.fromCron: '15 * * * *' should have minutes set and base mode 2 with multiple false", function() {
-        expect(cronService.fromCron('15 * * * *', false)).toEqual({base: 2, minuteValues: 15});
+        expect(cronService.fromCron('15 * * * *', false)).toEqual({base: 2, minuteValues: 15, custom: '15 * * * *'});
     });
 
     it("cronService.fromCron: '15 * * * *' should have minutes set and base mode 2 with multiple true", function() {
-        expect(cronService.fromCron('15 * * * *', true)).toEqual({base: 2, minuteValues: [15]});
+        expect(cronService.fromCron('15 * * * *', true)).toEqual({base: 2, minuteValues: [15], custom: '15 * * * *'});
     });
 
     it("cronService.fromCron: '20 19 * * *' should have minutes and hours set and base mode 3", function() {
-        expect(cronService.fromCron('20 19 * * *')).toEqual({base: 3, minuteValues: 20, hourValues: 19});
+        expect(cronService.fromCron('20 19 * * *')).toEqual({base: 3, minuteValues: 20, hourValues: 19, custom: '20 19 * * *'});
     });
 
     it("cronService.fromCron: '25 1 * * 3' should have minutes and hours set and base mode 4", function() {
-        expect(cronService.fromCron('25 1 * * 3')).toEqual({base: 4, minuteValues: 25, hourValues: 1, dayValues: 3});
+        expect(cronService.fromCron('25 1 * * 3')).toEqual({base: 4, minuteValues: 25, hourValues: 1, dayValues: 3, custom: '25 1 * * 3'});
     });
 
     it("cronService.fromCron: '30 10 7 * *' should have minutes and hours set and base mode 5", function() {
-        expect(cronService.fromCron('30 10 7 * *', true)).toEqual({base: 5, minuteValues: [30], hourValues: [10], dayOfMonthValues: [7]});
+        expect(cronService.fromCron('30 10 7 * *', true)).toEqual({base: 5, minuteValues: [30], hourValues: [10], dayOfMonthValues: [7], custom: '30 10 7 * *'});
     });
 
     it("cronService.fromCron: '35 23 29 4 *' should have minutes and hours set and base mode 6", function() {
-        expect(cronService.fromCron('35 23 29 4 *', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [4]});
+        expect(cronService.fromCron('35 23 29 4 *', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [4], custom: '35 23 29 4 *'});
     });
 
     it("cronService.fromCron: '10,15 * * * *' should have minutes set and base mode 2", function() {
-        expect(cronService.fromCron('10,15 * * * *', true)).toEqual({base: 2, minuteValues: [10,15]});
+        expect(cronService.fromCron('10,15 * * * *', true)).toEqual({base: 2, minuteValues: [10,15], custom: '10,15 * * * *'});
     });
 
     it("cronService.fromCron: '15,20 18,19 * * *' should have minutes and hours set and base mode 3", function() {
-        expect(cronService.fromCron('15,20 18,19 * * *', true)).toEqual({base: 3, minuteValues: [15,20], hourValues: [18,19]});
+        expect(cronService.fromCron('15,20 18,19 * * *', true)).toEqual({base: 3, minuteValues: [15,20], hourValues: [18,19], custom: '15,20 18,19 * * *'});
     });
 
     it("cronService.fromCron: '20,25 1 * * 3' should have minutes and hours set and base mode 4", function() {
-        expect(cronService.fromCron('20,25 1 * * 2,3', true)).toEqual({base: 4, minuteValues: [20,25], hourValues: [1], dayValues: [2,3]});
+        expect(cronService.fromCron('20,25 1 * * 2,3', true)).toEqual({base: 4, minuteValues: [20,25], hourValues: [1], dayValues: [2,3], custom: '20,25 1 * * 2,3'});
     });
 
     it("cronService.fromCron: '25,30 9,10 6,7 * *' should have minutes and hours set and base mode 5", function() {
-        expect(cronService.fromCron('25,30 9,10 6,7 * *', true)).toEqual({base: 5, minuteValues: [25,30], hourValues: [9,10], dayOfMonthValues: [6,7]});
+        expect(cronService.fromCron('25,30 9,10 6,7 * *', true)).toEqual({base: 5, minuteValues: [25,30], hourValues: [9,10], dayOfMonthValues: [6,7], custom: '25,30 9,10 6,7 * *'});
     });
 
     it("cronService.fromCron: '35 23 29 3,4 *' should have minutes and hours set and base mode 6", function() {
-        expect(cronService.fromCron('35 23 29 3,4 *', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [3,4]});
+        expect(cronService.fromCron('35 23 29 3,4 *', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [3,4], custom: '35 23 29 3,4 *'});
     });
 
     it("cron should be set for every minute", function() {
@@ -151,47 +151,47 @@ describe('AngularCronJobs', function() {
     });
 
     it("cronService.fromQuartzCron: '0 15 * * * ?' should have minutes set and base mode 2 with multiple false", function() {
-        expect(cronService.fromQuartzCron('0 15 * * * ?', false)).toEqual({base: 2, minuteValues: 15});
+        expect(cronService.fromQuartzCron('0 15 * * * ?', false)).toEqual({base: 2, minuteValues: 15, custom: '0 15 * * * ?'});
     });
 
     it("cronService.fromQuartzCron: '0 15 * * * ?' should have minutes set and base mode 2 with multiple true", function() {
-        expect(cronService.fromQuartzCron('0 15 * * * ?', true)).toEqual({base: 2, minuteValues: [15]});
+        expect(cronService.fromQuartzCron('0 15 * * * ?', true)).toEqual({base: 2, minuteValues: [15], custom: '0 15 * * * ?'});
     });
 
     it("cronService.fromQuartzCron: '0 20 19 * * ?' should have minutes and hours set and base mode 3", function() {
-        expect(cronService.fromQuartzCron('0 20 19 * * ?')).toEqual({base: 3, minuteValues: 20, hourValues: 19});
+        expect(cronService.fromQuartzCron('0 20 19 * * ?')).toEqual({base: 3, minuteValues: 20, hourValues: 19, custom: '0 20 19 * * ?'});
     });
 
     it("cronService.fromQuartzCron: '0 25 1 ? * 3' should have minutes and hours set and base mode 4", function() {
-        expect(cronService.fromQuartzCron('0 25 1 ? * 3')).toEqual({base: 4, minuteValues: 25, hourValues: 1, dayValues: 3});
+        expect(cronService.fromQuartzCron('0 25 1 ? * 3')).toEqual({base: 4, minuteValues: 25, hourValues: 1, dayValues: 3, custom: '0 25 1 ? * 3'});
     });
 
     it("cronService.fromQuartzCron: '0 30 10 7 * ?' should have minutes and hours set and base mode 5", function() {
-        expect(cronService.fromQuartzCron('0 30 10 7 * ?', true)).toEqual({base: 5, minuteValues: [30], hourValues: [10], dayOfMonthValues: [7]});
+        expect(cronService.fromQuartzCron('0 30 10 7 * ?', true)).toEqual({base: 5, minuteValues: [30], hourValues: [10], dayOfMonthValues: [7], custom: '0 30 10 7 * ?'});
     });
 
     it("cronService.fromQuartzCron: '0 35 23 29 4 ?' should have minutes and hours set and base mode 6", function() {
-        expect(cronService.fromQuartzCron('0 35 23 29 4 ?', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [4]});
+        expect(cronService.fromQuartzCron('0 35 23 29 4 ?', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [4], custom: '0 35 23 29 4 ?'});
     });
 
     it("cronService.fromQuartzCron: '0 10,15 * * * ?' should have minutes set and base mode 2", function() {
-        expect(cronService.fromQuartzCron('0 10,15 * * * ?', true)).toEqual({base: 2, minuteValues: [10,15]});
+        expect(cronService.fromQuartzCron('0 10,15 * * * ?', true)).toEqual({base: 2, minuteValues: [10,15], custom: '0 10,15 * * * ?'});
     });
 
     it("cronService.fromQuartzCron: '0 15,20 18,19 * * ?' should have minutes and hours set and base mode 3", function() {
-        expect(cronService.fromQuartzCron('0 15,20 18,19 * * ?', true)).toEqual({base: 3, minuteValues: [15,20], hourValues: [18,19]});
+        expect(cronService.fromQuartzCron('0 15,20 18,19 * * ?', true)).toEqual({base: 3, minuteValues: [15,20], hourValues: [18,19], custom: '0 15,20 18,19 * * ?'});
     });
 
     it("cronService.fromQuartzCron: '0 20,25 1 ? * 3' should have minutes and hours set and base mode 4", function() {
-        expect(cronService.fromQuartzCron('0 20,25 1 ? * 2,3', true)).toEqual({base: 4, minuteValues: [20,25], hourValues: [1], dayValues: [2,3]});
+        expect(cronService.fromQuartzCron('0 20,25 1 ? * 2,3', true)).toEqual({base: 4, minuteValues: [20,25], hourValues: [1], dayValues: [2,3], custom: '0 20,25 1 ? * 2,3'});
     });
 
     it("cronService.fromQuartzCron: '0 25,30 9,10 6,7 * ?' should have minutes and hours set and base mode 5", function() {
-        expect(cronService.fromQuartzCron('0 25,30 9,10 6,7 * ?', true)).toEqual({base: 5, minuteValues: [25,30], hourValues: [9,10], dayOfMonthValues: [6,7]});
+        expect(cronService.fromQuartzCron('0 25,30 9,10 6,7 * ?', true)).toEqual({base: 5, minuteValues: [25,30], hourValues: [9,10], dayOfMonthValues: [6,7], custom: '0 25,30 9,10 6,7 * ?'});
     });
 
     it("cronService.fromQuartzCron: '0 35 23 29 3,4 ?' should have minutes and hours set and base mode 6", function() {
-        expect(cronService.fromQuartzCron('0 35 23 29 3,4 ?', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [3,4]});
+        expect(cronService.fromQuartzCron('0 35 23 29 3,4 ?', true)).toEqual({base: 6, minuteValues: [35], hourValues: [23], dayOfMonthValues: [29], monthValues: [3,4], custom: '0 35 23 29 3,4 ?'});
     });
 
     it("quartz cron should be set for every hour at 10 past", function() {

@@ -7,7 +7,8 @@ angular.module('angular-cron-jobs')
     day: 3,
     week: 4,
     month: 5,
-    year: 6
+    year: 6,
+    custom: 0
 })
 .factory('cronService', ['baseFrequency', function(baseFrequency) {
     var service = {};
@@ -22,6 +23,11 @@ angular.module('angular-cron-jobs')
 
     service.setQuartzCron = function(n){
         var cron = ["0", "*", "*",  "*",  "*", "?"];
+
+        if (n && typeof n.base !== "undefined" && n.base === baseFrequency.custom) {
+            return n.custom;
+        }
+
         if(n && n.base && n.base >= baseFrequency.hour) {
             cron[1] = typeof n.minuteValues !== "undefined" ? n.minuteValues : "0";
         }
@@ -49,6 +55,10 @@ angular.module('angular-cron-jobs')
     service.setDefaultCron = function(n){
         var cron = ["*", "*", "*", "*", "*"];
 
+        if (n && typeof n.base !== "undefined" && n.base === baseFrequency.custom) {
+            return n.custom;
+        }
+
         if (n && n.base && n.base >= baseFrequency.hour) {
             cron[0] = typeof n.minuteValues !== "undefined" ? n.minuteValues : "*";
         }
@@ -71,7 +81,7 @@ angular.module('angular-cron-jobs')
         return cron.join(" ");
     };
 
-	service.fromCron = function(value, allowMultiple, cronType) {
+	service.fromCron = function(value, allowMultiple, cronType, isCustom) {
         if(cronType === "quartz") {
             return this.fromQuartzCron(value, allowMultiple);
         } else {
@@ -79,7 +89,7 @@ angular.module('angular-cron-jobs')
         }
     };
 
-    service.fromDefaultCron = function(value, allowMultiple) {
+    service.fromDefaultCron = function(value, allowMultiple, isCustom) {
         var cron = value.replace(/\s+/g, " ").split(" ");
         var frequency = { base: "1" }; // default: every minute
         var tempArray = [];
@@ -148,10 +158,15 @@ angular.module('angular-cron-jobs')
                 frequency.dayValues = parseInt(cron[4]);
             }
         }
+        if (isCustom) {
+            frequency.base = 0;
+        }
+        frequency.custom = value;
+
         return frequency;
     };
 
-    service.fromQuartzCron = function(value, allowMultiple) {
+    service.fromQuartzCron = function(value, allowMultiple, isCustom) {
         var cron = value.replace(/\s+/g, " ").split(" ");
         var frequency = {base: "1"}; // default: every minute
         var tempArray = [];
@@ -220,7 +235,11 @@ angular.module('angular-cron-jobs')
                 frequency.dayValues = parseInt(cron[5]);
             }
         }
-
+        if (isCustom) {
+            frequency.base = 0;
+        }
+        frequency.custom = value;
+        
         return frequency;
     };
 

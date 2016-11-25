@@ -80,5 +80,10 @@
             </select>
         </div>
         <span ng-show="myFrequency.base == 2"> past the hour</span>
+        <!-- Custom Cron Expression -->
+        <span ng-show="myFrequency.base == 0"> Expression: </span>
+        <div ng-show="myFrequency.base == 0" class="cron-select-wrap">
+            <input type="text" class="cron-select custom-value" value="myFrequency.custom" ng-model="myFrequency.custom">
+        </div>
     </div>
 </div>
