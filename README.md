@@ -32,7 +32,7 @@ as a string.
 The directive takes an optional attribute of `config`
 
     <cron-selection ng-model="myOutput" config="myConfig"></cron-selection>
-    
+
 ###Options
 
 This is an object in your controller you can use to remove options from the user.  For example if you would like the user to be able to set Minute, Hour, and Day but not Week, Month, and Year you would create the following object in your controller:
@@ -41,7 +41,7 @@ This is an object in your controller you can use to remove options from the user
         options: {
             allowWeek : false,
             allowMonth : false,
-            allowYear : false
+            allowYear : false,
         }
     }
 
@@ -53,6 +53,9 @@ Currently the config object accepts an options property with an object of allowe
 * allowWeek
 * allowMonth
 * allowYear
+* allowCustom
+
+`allowCustom` adds an option to input a cron expression manually
 
 Setting the keys as booleans will turn the selection on and off.
 
@@ -106,7 +109,7 @@ The directive takes an attribute of `ng-model` used for init and output data.
 This is a string in your controller of cron syntax that was recieved from your server or any other source:
 
     $scope.myOutput = "30 2 4 * *"
-    
+
 Thew directive will properly build out the UI to reflect this data.
 
 ##Setting Cron after directive load
@@ -120,7 +123,7 @@ This is an expression paired with a value in your controller.  Whenever the valu
     $timeout(function(){
        $scope.myOutput = "0 0 * * *"
     }, 3000);
-    
+
 The directive will properly build out the UI to reflect this data.
 
 ##Utilize Exposed $scope.myFrequency:
