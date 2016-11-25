@@ -19,6 +19,7 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
         link: function($scope, $el, $attr, $ngModel) {
 
             var modelChanged = false;
+            var isCustom = false;
             
             $scope.baseFrequency = baseFrequency;
 
@@ -40,14 +41,15 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
             }, {
                 value: 6,
                 label: "Year"
+            }, {
+                value: 0,
+                label: "Custom"
             }];
 
             $scope.$watch("ngModel", function (newValue) {
                 if (angular.isDefined(newValue) && newValue) {
                     modelChanged = true;
-                    $scope.myFrequency = cronService.fromCron(newValue, $scope.allowMultiple, $scope.cronStyle);
-                } else if (newValue === "") {
-                    $scope.myFrequency = undefined;
+                    $scope.myFrequency = cronService.fromCron(newValue, $scope.allowMultiple, $scope.cronStyle, isCustom);
                 }
             });
 
@@ -96,7 +98,7 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
                     } else if (n && n.base && o && o.base) {
                         modelChanged = false;
                     }
-                    
+                    isCustom = (n.base === 0);
                     var newVal = cronService.setCron(n, $scope.cronStyle);
                     $ngModel.$setViewValue(newVal);
                 }
@@ -123,6 +125,10 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
 
                 if (freq.base === baseFrequency.year) {
                     freq.monthValues = $scope.monthValues[0];
+                }
+
+                if (freq.base === baseFrequency.custom) {
+                    freq.custom = "* * * * * *";
                 }
             }
         }
