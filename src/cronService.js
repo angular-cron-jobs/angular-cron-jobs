@@ -83,9 +83,9 @@ angular.module('angular-cron-jobs')
 
 	service.fromCron = function(value, allowMultiple, cronType, isCustom) {
         if(cronType === "quartz") {
-            return this.fromQuartzCron(value, allowMultiple);
+            return this.fromQuartzCron(value, allowMultiple, isCustom);
         } else {
-            return this.fromDefaultCron(value, allowMultiple);
+            return this.fromDefaultCron(value, allowMultiple, isCustom);
         }
     };
 
