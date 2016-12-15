@@ -1,10 +1,10 @@
 <div class="cron-wrap">
-    <span>Every: </span>
+    <span>{{templateKeys.EVERY}}: </span>
     <div class="cron-select-wrap">
         <select class="cron-select" ng-model="myFrequency.base" ng-options="item.value as item.label for item in frequency"></select>
     </div>
     <div class="select-options">
-        <span ng-show="myFrequency.base == 4">on </span>
+        <span ng-show="myFrequency.base == 4">{{templateKeys.ON}} </span>
         <div ng-show="myFrequency.base == 4" class="cron-select-wrap">
             <!-- If Multiple is Enabled -->
             <select class="cron-select day-value"
@@ -19,7 +19,7 @@
                     ng-options="value as (value | cronDayName: cronStyle) for value in dayValues">
             </select>
         </div>
-        <span ng-show="myFrequency.base >= 5">on the </span>
+        <span ng-show="myFrequency.base >= 5">{{templateKeys.ON_THE}} </span>
         <div ng-show="myFrequency.base >= 5" class="cron-select-wrap">
             <!-- If Multiple is Enabled -->
             <select class="cron-select day-of-month-value"
@@ -34,7 +34,7 @@
                     ng-options="value as (value | cronNumeral) for value in dayOfMonthValues">
             </select>
         </div>
-        <span ng-show="myFrequency.base == 6">of </span>
+        <span ng-show="myFrequency.base == 6">{{templateKeys.OF}} </span>
         <!-- If Multiple is Enabled -->
         <div ng-show="myFrequency.base == 6" class="cron-select-wrap">
             <select class="cron-select month-value"
@@ -49,7 +49,7 @@
                     ng-options="value as (value | cronMonthName) for value in monthValues">
             </select>
         </div>
-        <span ng-show="myFrequency.base >= 2">at </span>
+        <span ng-show="myFrequency.base >= 2">{{templateKeys.AT}} </span>
         <!-- If Multiple is Enabled -->
         <div ng-show="myFrequency.base >= 3" class="cron-select-wrap">
             <select class="cron-select hour-value"
@@ -79,6 +79,6 @@
                     ng-options="value as value for value in minuteValues">
             </select>
         </div>
-        <span ng-show="myFrequency.base == 2"> past the hour</span>
+        <span ng-show="myFrequency.base == 2"> {{templateKeys.PAST_THE_HOUR}}</span>
     </div>
 </div>

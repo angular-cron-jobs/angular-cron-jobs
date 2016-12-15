@@ -63,8 +63,21 @@ You can also set whether or not you want to allow a user to select multiple calu
     $scope.myConfig = {
         allowMultiple: true
     }
+    
+Setting allowMultiple to either true or false will toggle the ability.    
+    
+###Internationalization (i18n)
 
-Setting allowMultiple to either true or false will toggle the ability.
+You can configure iternationalization using "i18n" key at the config object. 
+ 
+     $scope.myConfig = {
+         i18n: 'en'
+     }
+
+Currently the config object accepts two languages. These include:
+
+* EN - English
+* PT_BR - Portuguese (Brazil)
 
 ###Quartz by [RajanRastogi](https://github.com/RajanRastogi)
 
