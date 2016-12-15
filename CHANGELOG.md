@@ -1,3 +1,10 @@
+<a name="3.2.1"></a>
+# 3.2.1 (2016-12-15)
+
+## Updates
+
+- Added `Internationalization (i18n)` property to config accepting English (EN) and Portuguese - Brazil (PT_BR) for now.
+
 <a name="3.2.0"></a>
 # 3.2.0 (2016-09-19)
 
