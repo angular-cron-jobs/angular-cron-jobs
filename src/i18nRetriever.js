@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("angular-cron-jobs")
-    .service('i18nRetriever', function() {
+    .service("i18nRetriever", function() {
 
         var translation = {
             EN: {
@@ -121,7 +121,7 @@ angular.module("angular-cron-jobs")
                 return actualInfo.FREQUENCIES;
             },
             getNumeral: function(input){
-                if (typeof(actualInfo.NUMERALS[input]) === 'undefined'){
+                if (typeof(actualInfo.NUMERALS[input]) === "undefined"){
                     return input + actualInfo.UNTREATED_NUMERAL_INFO;
                 }
                 return actualInfo.NUMERALS[input];
@@ -132,6 +132,6 @@ angular.module("angular-cron-jobs")
             getDays: function(){
                 return actualInfo.DAYS;
             }
-        }
+        };
 
 });

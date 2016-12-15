@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v3.2.0 - 2016-12-15 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v3.2.1 - 2016-12-15 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jc@jacobcarter.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -221,14 +221,14 @@ angular.module("angular-cron-jobs")
                     }
                 }
             };
-    }]).filter("cronNumeral", ['i18nRetriever', function(i18n) {
+    }]).filter("cronNumeral", ["i18nRetriever", function(i18n) {
         return function(input) {
             if (input !== null) {
                 return i18n.getNumeral(input);
             }
             return null;
         };
-    }]).filter("cronMonthName", ['i18nRetriever', function(i18n) {
+    }]).filter("cronMonthName", ["i18nRetriever", function(i18n) {
         return function(input) {
             var months = i18n.getMonths();
 
@@ -238,7 +238,7 @@ angular.module("angular-cron-jobs")
                 return null;
             }
         };
-    }]).filter("cronDayName", ['i18nRetriever', function(i18n) {
+    }]).filter("cronDayName", ["i18nRetriever", function(i18n) {
         return function(input, cronType) {
 
             var days = i18n.getDays();
@@ -498,7 +498,7 @@ angular.module('angular-cron-jobs')
 "use strict";
 
 angular.module("angular-cron-jobs")
-    .service('i18nRetriever', function() {
+    .service("i18nRetriever", function() {
 
         var translation = {
             EN: {
@@ -618,7 +618,7 @@ angular.module("angular-cron-jobs")
                 return actualInfo.FREQUENCIES;
             },
             getNumeral: function(input){
-                if (typeof(actualInfo.NUMERALS[input]) === 'undefined'){
+                if (typeof(actualInfo.NUMERALS[input]) === "undefined"){
                     return input + actualInfo.UNTREATED_NUMERAL_INFO;
                 }
                 return actualInfo.NUMERALS[input];
@@ -629,6 +629,6 @@ angular.module("angular-cron-jobs")
             getDays: function(){
                 return actualInfo.DAYS;
             }
-        }
+        };
 
 });

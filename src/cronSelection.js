@@ -125,14 +125,14 @@ angular.module("angular-cron-jobs")
                     }
                 }
             };
-    }]).filter("cronNumeral", ['i18nRetriever', function(i18n) {
+    }]).filter("cronNumeral", ["i18nRetriever", function(i18n) {
         return function(input) {
             if (input !== null) {
                 return i18n.getNumeral(input);
             }
             return null;
         };
-    }]).filter("cronMonthName", ['i18nRetriever', function(i18n) {
+    }]).filter("cronMonthName", ["i18nRetriever", function(i18n) {
         return function(input) {
             var months = i18n.getMonths();
 
@@ -142,7 +142,7 @@ angular.module("angular-cron-jobs")
                 return null;
             }
         };
-    }]).filter("cronDayName", ['i18nRetriever', function(i18n) {
+    }]).filter("cronDayName", ["i18nRetriever", function(i18n) {
         return function(input, cronType) {
 
             var days = i18n.getDays();
