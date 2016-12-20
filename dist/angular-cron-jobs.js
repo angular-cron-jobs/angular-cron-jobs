@@ -1,6 +1,6 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v3.2.2 - 2016-12-20 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v3.2.3 - 2016-12-20 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jc@jacobcarter.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -306,7 +306,11 @@ angular.module("cronselection.html", []).run(["$templateCache", function($templa
 
                 if(n && n.base && n.base === baseFrequency.week) {
                     cron[3] = "?";
-                    cron[5] = n.dayValues;
+                    if ((angular.isArray(n.dayValues) && n.dayValues.length>0)
+                        || (angular.isDefined(n.dayValues) && !angular.isArray(n.dayValues)))
+                    {
+                        cron[5] = n.dayValues;
+                    }
                 }
 
                 if(n && n.base && n.base >= baseFrequency.month) {

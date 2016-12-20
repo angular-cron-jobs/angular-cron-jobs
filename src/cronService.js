@@ -33,7 +33,11 @@
 
                 if(n && n.base && n.base === baseFrequency.week) {
                     cron[3] = "?";
-                    cron[5] = n.dayValues;
+                    if ((angular.isArray(n.dayValues) && n.dayValues.length>0)
+                        || (angular.isDefined(n.dayValues) && !angular.isArray(n.dayValues)))
+                    {
+                        cron[5] = n.dayValues;
+                    }
                 }
 
                 if(n && n.base && n.base >= baseFrequency.month) {
