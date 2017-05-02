@@ -11,7 +11,9 @@
     "url": "git://github.com/jacobscarter/angular-cron-jobs.git"
   },
   "dependencies": {
-    "angular": "*",
+    "angular": "*"
+  },
+  "devDependencies": {
     "angular-mocks": "*"
   },
   "ignore": [
