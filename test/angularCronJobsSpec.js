@@ -136,6 +136,15 @@ describe('AngularCronJobs', function() {
         expect(scope.cron).toEqual('10 4 5,6 5,6 *');
     });
 
+    it("cron should correctly set the day of week when dayValues is undefined (e.g. when switching from monthly to weekly)", function() {
+        var scope = $rootScope.$new();
+        var view = createView(scope);
+        // send dayOfMonthValues instead of dayValues to simulate switching from monthly to weekly
+        scope.myFrequency = {base: 4, hourValues: [18], minuteValues: [55], dayOfMonthValues: 2};
+        scope.cron = cronService.setCron(scope.myFrequency);
+        expect(scope.cron).toEqual('55 18 * * 0');
+    });
+
     it("cron should disallow minute if set in config", function() {
         var scope = $rootScope.$new();
         var view = createView(scope);
@@ -290,5 +299,19 @@ describe('AngularCronJobs', function() {
         expect(scope.cron).toEqual('0 10 4 5,6 5,6 ?');
     });
 
-	
+    it("quartz cron should correctly set the day of week when dayValues is undefined (e.g. when switching from monthly to weekly)", function() {
+        var scope = $rootScope.$new();
+        var config = {
+            allowMultiple: true,
+            options : {
+                allowMinute : false
+            },
+            quartz: true
+        };
+        var view = createView(scope, config);
+        scope.myFrequency = {base: 4, hourValues: [4], minuteValues: [10]};
+        scope.cron = cronService.setQuartzCron(scope.myFrequency);
+        expect(scope.cron).toEqual('0 10 4 ? * 1');
+    });
+
 });
