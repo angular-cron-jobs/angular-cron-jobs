@@ -3,7 +3,7 @@
 ### This project is no longer maintained! If some wants to take over the project and begin merging in PRs, addressing Issues, and updating functionality please reach out!
 
 ### Last known compatibility is with Angular 1.5.8
-### Thanks you everyone who used and helped reate Angular Cron Jobs!
+### Thanks you everyone who used and helped create Angular Cron Jobs!
 
 
 [![Build Status](https://travis-ci.org/angular-cron-jobs/angular-cron-jobs.svg?branch=master)](https://travis-ci.org/angular-cron-jobs/angular-cron-jobs)  [![Coverage Status](https://coveralls.io/repos/github/angular-cron-jobs/angular-cron-jobs/badge.svg?branch=master)](https://coveralls.io/github/angular-cron-jobs/angular-cron-jobs?branch=master)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/31435876fa31464b8fb495de9b7f49c2)](https://www.codacy.com/app/jc_2/angular-cron-jobs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=angular-cron-jobs/angular-cron-jobs&amp;utm_campaign=Badge_Grade)  [![npm version](https://badge.fury.io/js/angular-cron-jobs.svg)](https://badge.fury.io/js/angular-cron-jobs)
