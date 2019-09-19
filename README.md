@@ -1,15 +1,24 @@
+# NO LONGER MAINTAINED
+
+### This project is no longer maintained! If some wants to take over the project and begin merging in PRs, addressing Issues, and updating functionality please reach out!
+
+### Last known compatibility is with Angular 1.5.8
+### Thanks you everyone who used and helped reate Angular Cron Jobs!
+
+
 [![Build Status](https://travis-ci.org/angular-cron-jobs/angular-cron-jobs.svg?branch=master)](https://travis-ci.org/angular-cron-jobs/angular-cron-jobs)  [![Coverage Status](https://coveralls.io/repos/github/angular-cron-jobs/angular-cron-jobs/badge.svg?branch=master)](https://coveralls.io/github/angular-cron-jobs/angular-cron-jobs?branch=master)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/31435876fa31464b8fb495de9b7f49c2)](https://www.codacy.com/app/jc_2/angular-cron-jobs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=angular-cron-jobs/angular-cron-jobs&amp;utm_campaign=Badge_Grade)  [![npm version](https://badge.fury.io/js/angular-cron-jobs.svg)](https://badge.fury.io/js/angular-cron-jobs)
 # angular-cron-jobs
 UI Component For Creating Cron Job Syntax To Send To Server
 
-##[Demo](http://angular-cron-jobs.github.io/angular-cron-jobs/#/)
-##Installation
+## [Demo](http://angular-cron-jobs.github.io/angular-cron-jobs/#/)
+
+## Installation
 
 Install using bower:
 
 `bower install angular-cron-jobs`
 
-##Use:
+## Use:
 
 Include the component in your application:
 
@@ -27,13 +36,13 @@ For example, a job selected to run every month on the 11th at 4:10 AM would outp
 
 as a string.
 
-##Configuration:
+## Configuration:
 
 The directive takes an optional attribute of `config`
 
     <cron-selection ng-model="myOutput" config="myConfig"></cron-selection>
     
-###Options
+### Options
 
 This is an object in your controller you can use to remove options from the user.  For example if you would like the user to be able to set Minute, Hour, and Day but not Week, Month, and Year you would create the following object in your controller:
 
@@ -56,7 +65,7 @@ Currently the config object accepts an options property with an object of allowe
 
 Setting the keys as booleans will turn the selection on and off.
 
-###allowMultiple
+### allowMultiple
 
 You can also set whether or not you want to allow a user to select multiple calues for a cron:
 
@@ -66,7 +75,7 @@ You can also set whether or not you want to allow a user to select multiple calu
 
 Setting allowMultiple to either true or false will toggle the ability.
 
-###Quartz by [RajanRastogi](https://github.com/RajanRastogi)
+### Quartz by [RajanRastogi](https://github.com/RajanRastogi)
 
 By default, the cron expression generated is Unix Cron compatible. Incase you use the [Quartz Scheduler](https://github.com/quartz-scheduler/quartz), you would want to enable the `quartz` mode in the options.
 You can do so by passing that flag as `true` in the config object.
@@ -91,13 +100,13 @@ A complete config object may look like the following:
         quartz: true
     }
 
-##Custom Templates:
+## Custom Templates:
 
 As noted by [TimotheeJeannin](https://github.com/TimotheeJeannin) you can use custom template by setting the template attribute on your cron DOM element:
 
     <cron-selection template="path/to/my/template.html"></cron-selection>
 
-##Initializing UI with data from server
+## Initializing UI with data from server
 
 The directive takes an attribute of `ng-model` used for init and output data.
 
@@ -109,7 +118,7 @@ This is a string in your controller of cron syntax that was recieved from your s
     
 Thew directive will properly build out the UI to reflect this data.
 
-##Setting Cron after directive load
+## Setting Cron after directive load
 
 The `ng-model` attribute also works as a reset attribute
 
@@ -123,7 +132,7 @@ This is an expression paired with a value in your controller.  Whenever the valu
     
 The directive will properly build out the UI to reflect this data.
 
-##Utilize Exposed $scope.myFrequency:
+## Utilize Exposed $scope.myFrequency:
 
 the `frequency` attribute grants you exposure to the `$scope.myFrequency` object inside the directive.  It is two way bound so you can manipulate it from outside the directive as well.
 
@@ -139,23 +148,25 @@ Properties you now have access to via `frequency` attribute include:
 * **dayOfMonthValue** `{number|Array.<number>}` 0-6 (Sunday thru Saturday)
 * **monthValue** `{number|Array.<number>}` 1-12
 
-###You can get away from using select inputs in your custom temple using the `frequency` attribute.
+### You can get away from using select inputs in your custom temple using the `frequency` attribute.
 
-####[Demo Without Using Selects](http://angular-cron-jobs.github.io/angular-cron-jobs/#/#noSelectSample)
+#### [Demo Without Using Selects](http://angular-cron-jobs.github.io/angular-cron-jobs/#/#noSelectSample)
 
-##Contributors
+## Contributors
+
+[@jacobscarter](https://github.com/jacobscarter) - Author
 
 [@wowo](https://github.com/wowo)
 
-[@immertreu] (https://github.com/immertreu)
+[@immertreu](https://github.com/immertreu)
 
-[@TSteele27] (https://github.com/TSteele27)
+[@TSteele27](https://github.com/TSteele27)
 
-[@DmitryEfimenki] (https://github.com/DmitryEfimenko)
+[@DmitryEfimenki](https://github.com/DmitryEfimenko)
 
 
-##Coming Soon:
+## ~Coming Soon:~
 
-The next big to-do's on my list include:
+~The next big to-do's on my list include:~
 
-* Support generlized selections such as a one button click for "Every Five Minutes" or "Last Thursday of Every Month"
+~* Support generlized selections such as a one button click for "Every Five Minutes" or "Last Thursday of Every Month"~

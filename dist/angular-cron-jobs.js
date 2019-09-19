@@ -1,12 +1,12 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v3.2.0 - 2016-09-20 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v3.2.1 - 2019-09-18 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jc@jacobcarter.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 angular.module('templates-angularcronjobs', ['cronselection.html']);
 
-angular.module("cronselection.html", []).run(["$templateCache", function($templateCache) {
+angular.module("cronselection.html", []).run(["$templateCache", function ($templateCache) {
   $templateCache.put("cronselection.html",
     "<div class=\"cron-wrap\">\n" +
     "    <span>Every: </span>\n" +

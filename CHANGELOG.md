@@ -1,3 +1,11 @@
+<a name="3.2.1"></a>
+# 3.2.1 (2019-09-18)
+
+## Updates
+
+- Hard code dependency versions in bower.json
+- Update README.md with end of life message
+
 <a name="3.2.0"></a>
 # 3.2.0 (2016-09-19)
 
